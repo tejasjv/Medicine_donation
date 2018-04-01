@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="sp🚧  no-js lt-ie9" lang="en" ><![endif]-->
+<!--[if gt IE 8]><!--><html class="sp🚧  no-js" lang="en" ><!--<![endif]-->
+  <head>
+    <link href="//dab1nmslvvntp.cloudfront.net" ref="dns-prefetch">
+    <link href="//d2sis3lil8ndrq.cloudfront.net" ref="dns-prefetch">
+    <link href="//sitepoint.com" ref="dns-prefetch">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:image" content="https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/icon.programming.png">
+        
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <link rel="apple-touch-icon-precomposed" href="/wp-content/themes/sitepoint/assets/images/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/wp-content/themes/sitepoint/assets/images/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/wp-content/themes/sitepoint/assets/images/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/wp-content/themes/sitepoint/assets/images/apple-touch-icon-144x144-precomposed.png" />
+
+    <!-- Sitepoint's new font from Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:900,900italic,700,700italic,400,400italic,300,300italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for SitePoint.com" href="https://www.sitepoint.com/feed/" />
+
+        <link href="https://plus.google.com/+sitepoint" rel="publisher" />
+        <meta property="twitter:account_id" content="15743570" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    
+<script type="text/javascript">
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+
+  ga('create', 'UA-30131-1', '.sitepoint.com');
+
+  ga('set', 'dimension2', 'programming');
+
+  ga('require', 'eventTracker', {
+    attributePrefix: "data-ga-",
+    events: ["click", "submit"]
+  });
+  ga('require', 'impressionTracker', {
+    attributePrefix: "data-ga-",
+    elements: [],
+    fieldsObj: {
+      eventCategory: "maestro",
+    }
+  });
+  ga('require', 'outboundLinkTracker');
+  ga('require', 'SitePointPlugin');
+
+  ga('send', 'pageview');
+
+  // Cross Domain Tracking to Learnable
+  ga('require', 'linker');
+  // command, domains, useAnchor, enableForms
+  ga('linker:autoLink', ['learnable.com'], false, true);
+
+  (function() {
+		var ga = window[window['GoogleAnalyticsObject'] || 'ga'];
+
+		var providePlugin = function(pluginName, pluginConstructor) {
+			if (ga) {
+				ga('provide', pluginName, pluginConstructor);
+			}
+		};
+
+		var SitePointPlugin = function(tracker) {
+			this.impressionObservables = [];
+			this.hasIntersectionObserverLoaded = false;
+			this.tracker = tracker;
+			var originalSendHitTask = this.tracker.get('sendHitTask');
+			this.tracker.set('sendHitTask', function(model) {
+				originalSendHitTask(model);
+
+        
+				if (model.get('eventCategory') !== 'Demandbase') return;
+				window.SP_OnDemandBaseReady && window.SP_OnDemandBaseReady(model);
+			});
+		};
+
+    SitePointPlugin.prototype.observeImpressions = function(el) {
+      if (el) this.impressionObservables = this.impressionObservables.concat(el);
+
+      if (this.hasIntersectionObserverLoaded && this.impressionObservables.length) {
+		    var ga = window[window['GoogleAnalyticsObject'] || 'ga'];
+        ga('impressionTracker:observeElements', this.impressionObservables);
+        this.impressionObservables = [];
+      }
+    }
+
+    SitePointPlugin.prototype.intersectionObserverLoaded = function() {
+      this.hasIntersectionObserverLoaded = true;
+      this.observeImpressions();
+    }
+
+		providePlugin('SitePointPlugin', SitePointPlugin);
+	})();
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<meta name="google-site-verification" content="hcQq0cWX73AYby8aMMzNHx8bZrTDI75GWeljGdPmNf8"  />
+<meta name="google-site-verification" content="I0jyQlTvZaveab8RtDOjUxSPZXbdSgFrcKdAwaCCfvA"  />
+<script 
+  src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"
+  async
+  defer
+  onload="ga('SitePointPlugin:intersectionObserverLoaded')"
+></script>
+    <script type="text/javascript">
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+      (function() {
+      var gads = document.createElement('script');
+      gads.async = true;
+      gads.type = 'text/javascript';
+      var useSSL = 'https:' == document.location.protocol;
+      gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+      var node = document.getElementsByTagName('script')[0];
+      node.parentNode.insertBefore(gads, node);
+      })();
+    </script>
+    <script type="text/javascript">
+var AdBridg = AdBridg || {};
+AdBridg.cmd = AdBridg.cmd || [];
+(function() {
+    var adb = document.createElement("script");
+    adb.async = true;
+    adb.type = "text/javascript";
+    adb.src = '//prod.adspsp.com/adb.1339625.min.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(adb, node);
+})();
+AdBridg.noLoad = function() {
+  if (AdBridg.exists) { return; }
+  document.createElement('IMG').src = '//adspsp.com:5050/pt/1339625/3/1/?e=0';
+  googletag.cmd.push(function() {
+    AdBridg.display = function(d) { googletag.display(d); }
+    AdBridg.defineSlot = function(p, s, d) { googletag.defineSlot(p, s, d).addService(googletag.pubads()); }
+    AdBridg.refresh = function(s, o) { googletag.pubads().refresh(s, o); }
+    AdBridg.render = function() { }
+    AdBridg.serve = function() { googletag.enableServices(); }
+  });
+  while (AdBridg.cmd.length) { googletag.cmd.push(AdBridg.cmd.shift()); }
+  AdBridg.cmd = googletag.cmd;
+}
+setTimeout(AdBridg.noLoad, 2500);
+</script>
+    
+<!-- This site is optimized with the Yoast SEO plugin v3.0.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<title>Build Your Own Database Driven Web Site Using PHP &amp; MySQL, Part 2: Introducing MySQL Article</title>
+<link rel="canonical" href="https://www.sitepoint.com/getting-started-mysql/" />
+<link rel="publisher" href="https://plus.google.com/+sitepoint/"/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Build Your Own Database Driven Web Site Using PHP &amp; MySQL, Part 2: Introducing MySQL Article" />
+<meta property="og:description" content="Although we&#039;re sure you&#039;ll be anxious to get started building dynamic web pages, this chapter begins with an introduction to databases in general, and the MySQL relational database management system in particular." />
+<meta property="og:url" content="https://www.sitepoint.com/getting-started-mysql/" />
+<meta property="og:site_name" content="SitePoint" />
+<meta property="article:publisher" content="https://www.facebook.com/sitepoint" />
+<meta property="article:section" content="Programming" />
+<meta property="article:published_time" content="2009-07-07T00:00:00+00:00" />
+<meta property="fb:admins" content="121300382" />
+<meta property="og:image" content="http://i2.sitepoint.com/graphics/1731_table_structure.thumb.jpg" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:description" content="Although we&#039;re sure you&#039;ll be anxious to get started building dynamic web pages, this chapter begins with an introduction to databases in general, and the MySQL relational database management system in particular. "/>
+<meta name="twitter:title" content="Build Your Own Database Driven Web Site Using PHP &amp; MySQL, Part 2: Introducing MySQL Article"/>
+<meta name="twitter:site" content="@sitepointdotcom"/>
+<meta name="twitter:image" content="http://i2.sitepoint.com/graphics/1731_table_structure.thumb.jpg"/>
+<meta name="twitter:creator" content="@sentience"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="SitePoint &raquo; Build Your Own Database Driven Web Site Using PHP &#038; MySQL, Part 2: Introducing MySQL Article Comments Feed" href="https://www.sitepoint.com/getting-started-mysql/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/www.sitepoint.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.2"}};
+			!function(a,b,c){function d(a){var c,d=b.createElement("canvas"),e=d.getContext&&d.getContext("2d"),f=String.fromCharCode;return e&&e.fillText?(e.textBaseline="top",e.font="600 32px Arial","flag"===a?(e.fillText(f(55356,56806,55356,56826),0,0),d.toDataURL().length>3e3):"diversity"===a?(e.fillText(f(55356,57221),0,0),c=e.getImageData(16,16,1,1).data.toString(),e.fillText(f(55356,57221,55356,57343),0,0),c!==e.getImageData(16,16,1,1).data.toString()):("simple"===a?e.fillText(f(55357,56835),0,0):e.fillText(f(55356,57135),0,0),0!==e.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='sitepoint-styles-css'  href='//www.sitepoint.com/wp-content/themes/sitepoint/assets/stylesheets/styles-6260fcbee3534eddd34efc828b1e263e.css?ver=4.4.2' type='text/css' media='all' />
+<style id='sitepoint-styles-inline-css' type='text/css'>
+.sp🚧 .m-border{border-radius:2px;border:1px solid #e5e5e5}.sp🚧 .m-border-b{border-bottom:1px solid #e5e5e5}.sp🚧 .f-xxlarge{font-size:3rem}.sp🚧 .f-xlarge{font-size:2.25rem}.sp🚧 .f-larger{font-size:1.5rem}.sp🚧 .f-large{font-size:1.25rem}.sp🚧 .f-medium{font-size:1rem}.sp🚧 .f-small{font-size:.875rem}.sp🚧 .f-smaller{font-size:.75rem}@media (min-width:624px){.sp🚧 .f-xxlarge--2col{font-size:3rem}.sp🚧 .f-xlarge--2col{font-size:2.25rem}.sp🚧 .f-larger--2col{font-size:1.5rem}.sp🚧 .f-large--2col{font-size:1.25rem}.sp🚧 .f-medium--2col{font-size:1rem}.sp🚧 .f-small--2col{font-size:.875rem}.sp🚧 .f-smaller--2col{font-size:.75rem}}@media (min-width:1072px){.sp🚧 .f-xxlarge--3col{font-size:3rem}.sp🚧 .f-xlarge--3col{font-size:2.25rem}.sp🚧 .f-larger--3col{font-size:1.5rem}.sp🚧 .f-large--3col{font-size:1.25rem}.sp🚧 .f-medium--3col{font-size:1rem}.sp🚧 .f-small--3col{font-size:.875rem}.sp🚧 .f-smaller--3col{font-size:.75rem}}@media (min-width:1280px){.sp🚧 .f-xxlarge--4col{font-size:3rem}.sp🚧 .f-xlarge--4col{font-size:2.25rem}.sp🚧 .f-larger--4col{font-size:1.5rem}.sp🚧 .f-large--4col{font-size:1.25rem}.sp🚧 .f-medium--4col{font-size:1rem}.sp🚧 .f-small--4col{font-size:.875rem}.sp🚧 .f-smaller--4col{font-size:.75rem}}.sp🚧 .f-bold{font-weight:700}.sp🚧 .f-light{font-weight:300}.sp🚧 .f-underline{text-decoration:underline}.sp🚧 .f-uppercase{text-transform:uppercase}.sp🚧 .f-lh{line-height:1}.sp🚧 .f-lh-title{line-height:1.5}.sp🚧 .f-lh-copy{line-height:1.6}.sp🚧 .f-left{text-align:left}.sp🚧 .f-right{text-align:right}.sp🚧 .f-center{text-align:center}@media (min-width:624px){.sp🚧 .f-left--2col{text-align:left}.sp🚧 .f-right--2col{text-align:right}.sp🚧 .f-center--2col{text-align:center}}@media (min-width:1072px){.sp🚧 .f-left--3col{text-align:left}.sp🚧 .f-right--3col{text-align:right}.sp🚧 .f-center--3col{text-align:center}}@media (min-width:1280px){.sp🚧 .f-left--4col{text-align:left}.sp🚧 .f-right--4col{text-align:right}.sp🚧 .f-center--4col{text-align:center}}.sp🚧 .f-nowrap{white-space:nowrap}.sp🚧 .f-c-white{color:#fff}.sp🚧 .f-c-grey-50{color:#f7f7f7}.sp🚧 .f-c-grey-100{color:#efefef}.sp🚧 .f-c-grey-200{color:#e5e5e5}.sp🚧 .f-c-grey-300{color:#a2a2a2}.sp🚧 .f-c-grey-400{color:#6f6f6f}.sp🚧 .f-c-grey-500{color:#3a3a3a}.sp🚧 .f-c-grey-700{color:#262626}.sp🚧 .f-c-pink-500{color:#ff837d}.sp🚧 .f-c-teal-500{color:#3ec9cb}.sp🚧 .l-h0{height:0}.sp🚧 .l-h1{height:4px}.sp🚧 .l-h2{height:8px}.sp🚧 .l-h3{height:16px}.sp🚧 .l-h4{height:32px}.sp🚧 .l-h5{height:64px}.sp🚧 .l-h6{height:128px}.sp🚧 .l-h7{height:256px}@media (min-width:624px){.sp🚧 .l-h0--2col{height:0}.sp🚧 .l-h1--2col{height:4px}.sp🚧 .l-h2--2col{height:8px}.sp🚧 .l-h3--2col{height:16px}.sp🚧 .l-h4--2col{height:32px}.sp🚧 .l-h5--2col{height:64px}.sp🚧 .l-h6--2col{height:128px}.sp🚧 .l-h7--2col{height:256px}}@media (min-width:1072px){.sp🚧 .l-h0--3col{height:0}.sp🚧 .l-h1--3col{height:4px}.sp🚧 .l-h2--3col{height:8px}.sp🚧 .l-h3--3col{height:16px}.sp🚧 .l-h4--3col{height:32px}.sp🚧 .l-h5--3col{height:64px}.sp🚧 .l-h6--3col{height:128px}.sp🚧 .l-h7--3col{height:256px}}@media (min-width:1280px){.sp🚧 .l-h0--4col{height:0}.sp🚧 .l-h1--4col{height:4px}.sp🚧 .l-h2--4col{height:8px}.sp🚧 .l-h3--4col{height:16px}.sp🚧 .l-h4--4col{height:32px}.sp🚧 .l-h5--4col{height:64px}.sp🚧 .l-h6--4col{height:128px}.sp🚧 .l-h7--4col{height:256px}}.sp🚧 .l-w0{width:0}.sp🚧 .l-w1{width:4px}.sp🚧 .l-w2{width:8px}.sp🚧 .l-w3{width:16px}.sp🚧 .l-w4{width:32px}.sp🚧 .l-w5{width:64px}.sp🚧 .l-w6{width:128px}.sp🚧 .l-w7{width:256px}@media (min-width:624px){.sp🚧 .l-w0--2col{width:0}.sp🚧 .l-w1--2col{width:4px}.sp🚧 .l-w2--2col{width:8px}.sp🚧 .l-w3--2col{width:16px}.sp🚧 .l-w4--2col{width:32px}.sp🚧 .l-w5--2col{width:64px}.sp🚧 .l-w6--2col{width:128px}.sp🚧 .l-w7--2col{width:256px}}@media (min-width:1072px){.sp🚧 .l-w0--3col{width:0}.sp🚧 .l-w1--3col{width:4px}.sp🚧 .l-w2--3col{width:8px}.sp🚧 .l-w3--3col{width:16px}.sp🚧 .l-w4--3col{width:32px}.sp🚧 .l-w5--3col{width:64px}.sp🚧 .l-w6--3col{width:128px}.sp🚧 .l-w7--3col{width:256px}}@media (min-width:1280px){.sp🚧 .l-w0--4col{width:0}.sp🚧 .l-w1--4col{width:4px}.sp🚧 .l-w2--4col{width:8px}.sp🚧 .l-w3--4col{width:16px}.sp🚧 .l-w4--4col{width:32px}.sp🚧 .l-w5--4col{width:64px}.sp🚧 .l-w6--4col{width:128px}.sp🚧 .l-w7--4col{width:256px}}.sp🚧 .l-s0{height:0;width:0}.sp🚧 .l-s1{height:4px;width:4px}.sp🚧 .l-s2{height:8px;width:8px}.sp🚧 .l-s3{height:16px;width:16px}.sp🚧 .l-s4{height:32px;width:32px}.sp🚧 .l-s5{height:64px;width:64px}.sp🚧 .l-s6{height:128px;width:128px}.sp🚧 .l-s7{height:256px;width:256px}@media (min-width:624px){.sp🚧 .l-s0--2col{height:0;width:0}.sp🚧 .l-s1--2col{height:4px;width:4px}.sp🚧 .l-s2--2col{height:8px;width:8px}.sp🚧 .l-s3--2col{height:16px;width:16px}.sp🚧 .l-s4--2col{height:32px;width:32px}.sp🚧 .l-s5--2col{height:64px;width:64px}.sp🚧 .l-s6--2col{height:128px;width:128px}.sp🚧 .l-s7--2col{height:256px;width:256px}}@media (min-width:1072px){.sp🚧 .l-s0--3col{height:0;width:0}.sp🚧 .l-s1--3col{height:4px;width:4px}.sp🚧 .l-s2--3col{height:8px;width:8px}.sp🚧 .l-s3--3col{height:16px;width:16px}.sp🚧 .l-s4--3col{height:32px;width:32px}.sp🚧 .l-s5--3col{height:64px;width:64px}.sp🚧 .l-s6--3col{height:128px;width:128px}.sp🚧 .l-s7--3col{height:256px;width:256px}}@media (min-width:1280px){.sp🚧 .l-s0--4col{height:0;width:0}.sp🚧 .l-s1--4col{height:4px;width:4px}.sp🚧 .l-s2--4col{height:8px;width:8px}.sp🚧 .l-s3--4col{height:16px;width:16px}.sp🚧 .l-s4--4col{height:32px;width:32px}.sp🚧 .l-s5--4col{height:64px;width:64px}.sp🚧 .l-s6--4col{height:128px;width:128px}.sp🚧 .l-s7--4col{height:256px;width:256px}}.sp🚧 .l-i0{font-size:0}.sp🚧 .l-i1{font-size:4px}.sp🚧 .l-i2{font-size:8px}.sp🚧 .l-i3{font-size:16px}.sp🚧 .l-i4{font-size:32px}.sp🚧 .l-i5{font-size:64px}.sp🚧 .l-i6{font-size:128px}.sp🚧 .l-i7{font-size:256px}@media (min-width:624px){.sp🚧 .l-i0--2col{font-size:0}.sp🚧 .l-i1--2col{font-size:4px}.sp🚧 .l-i2--2col{font-size:8px}.sp🚧 .l-i3--2col{font-size:16px}.sp🚧 .l-i4--2col{font-size:32px}.sp🚧 .l-i5--2col{font-size:64px}.sp🚧 .l-i6--2col{font-size:128px}.sp🚧 .l-i7--2col{font-size:256px}}@media (min-width:1072px){.sp🚧 .l-i0--3col{font-size:0}.sp🚧 .l-i1--3col{font-size:4px}.sp🚧 .l-i2--3col{font-size:8px}.sp🚧 .l-i3--3col{font-size:16px}.sp🚧 .l-i4--3col{font-size:32px}.sp🚧 .l-i5--3col{font-size:64px}.sp🚧 .l-i6--3col{font-size:128px}.sp🚧 .l-i7--3col{font-size:256px}}@media (min-width:1280px){.sp🚧 .l-i0--4col{font-size:0}.sp🚧 .l-i1--4col{font-size:4px}.sp🚧 .l-i2--4col{font-size:8px}.sp🚧 .l-i3--4col{font-size:16px}.sp🚧 .l-i4--4col{font-size:32px}.sp🚧 .l-i5--4col{font-size:64px}.sp🚧 .l-i6--4col{font-size:128px}.sp🚧 .l-i7--4col{font-size:256px}}.sp🚧 .l-w-100{width:100%}.sp🚧 .l-w-col{width:280px}.sp🚧 .l-w-1col{width:312px}.sp🚧 .l-w-2col{width:624px}.sp🚧 .l-w-2col-i{width:592px}.sp🚧 .l-w-3col{width:936px}.sp🚧 .l-w-3col-aside{width:1072px}.sp🚧 .l-w-3col-i{width:904px}.sp🚧 .l-w-4col{width:1248px}.sp🚧 .l-w-4col-aside{width:1384px}.sp🚧 .l-w-4col-i{width:1216px}@media (min-width:624px){.sp🚧 .l-w-100--2col{width:100%}.sp🚧 .l-w-col--2col{width:280px}.sp🚧 .l-w-1col--2col{width:312px}.sp🚧 .l-w-2col--2col{width:624px}.sp🚧 .l-w-2col-i--2col{width:592px}.sp🚧 .l-w-3col--2col{width:936px}.sp🚧 .l-w-3col-aside--2col{width:1072px}.sp🚧 .l-w-3col-i--2col{width:904px}.sp🚧 .l-w-4col--2col{width:1248px}.sp🚧 .l-w-4col-aside--2col{width:1384px}.sp🚧 .l-w-4col-i--2col{width:1216px}}@media (min-width:1072px){.sp🚧 .l-w-100--3col{width:100%}.sp🚧 .l-w-col--3col{width:280px}.sp🚧 .l-w-1col--3col{width:312px}.sp🚧 .l-w-2col--3col{width:624px}.sp🚧 .l-w-2col-i--3col{width:592px}.sp🚧 .l-w-3col--3col{width:936px}.sp🚧 .l-w-3col-aside--3col{width:1072px}.sp🚧 .l-w-3col-i--3col{width:904px}.sp🚧 .l-w-4col--3col{width:1248px}.sp🚧 .l-w-4col-aside--3col{width:1384px}.sp🚧 .l-w-4col-i--3col{width:1216px}}@media (min-width:1280px){.sp🚧 .l-w-100--4col{width:100%}.sp🚧 .l-w-col--4col{width:280px}.sp🚧 .l-w-1col--4col{width:312px}.sp🚧 .l-w-2col--4col{width:624px}.sp🚧 .l-w-2col-i--4col{width:592px}.sp🚧 .l-w-3col--4col{width:936px}.sp🚧 .l-w-3col-aside--4col{width:1072px}.sp🚧 .l-w-3col-i--4col{width:904px}.sp🚧 .l-w-4col--4col{width:1248px}.sp🚧 .l-w-4col-aside--4col{width:1384px}.sp🚧 .l-w-4col-i--4col{width:1216px}}.sp🚧 .l-w-aside{width:332px}.sp🚧 .l-w-aside-i{width:300px}.sp🚧 .l-mxh-100{max-height:100%}.sp🚧 .l-mxw-100{max-width:100%}.sp🚧 .l-d-b{display:block}.sp🚧 .l-d-f{display:flex}.sp🚧 .l-d-ib{display:inline-block}.sp🚧 .l-d-if{display:inline-flex}.sp🚧 .l-d-n{display:none}@media (min-width:624px){.sp🚧 .l-d-b--2col{display:block}.sp🚧 .l-d-f--2col{display:flex}.sp🚧 .l-d-ib--2col{display:inline-block}.sp🚧 .l-d-if--2col{display:inline-flex}.sp🚧 .l-d-n--2col{display:none}}@media (min-width:1072px){.sp🚧 .l-d-b--3col{display:block}.sp🚧 .l-d-f--3col{display:flex}.sp🚧 .l-d-ib--3col{display:inline-block}.sp🚧 .l-d-if--3col{display:inline-flex}.sp🚧 .l-d-n--3col{display:none}}@media (min-width:1280px){.sp🚧 .l-d-b--4col{display:block}.sp🚧 .l-d-f--4col{display:flex}.sp🚧 .l-d-ib--4col{display:inline-block}.sp🚧 .l-d-if--4col{display:inline-flex}.sp🚧 .l-d-n--4col{display:none}}.sp🚧 .l-fd-col{flex-direction:column}.sp🚧 .l-fd-row{flex-direction:row}@media (min-width:624px){.sp🚧 .l-fd-col--2col{flex-direction:column}.sp🚧 .l-fd-row--2col{flex-direction:row}}@media (min-width:1072px){.sp🚧 .l-fd-col--3col{flex-direction:column}.sp🚧 .l-fd-row--3col{flex-direction:row}}@media (min-width:1280px){.sp🚧 .l-fd-col--4col{flex-direction:column}.sp🚧 .l-fd-row--4col{flex-direction:row}}.sp🚧 .l-fw-w{flex-wrap:wrap}@media (min-width:624px){.sp🚧 .l-fw-w--2col{flex-wrap:wrap}}@media (min-width:1072px){.sp🚧 .l-fw-w--3col{flex-wrap:wrap}}@media (min-width:1280px){.sp🚧 .l-fw-w--4col{flex-wrap:wrap}}.sp🚧 .l-fw-n{flex-wrap:nowrap}@media (min-width:624px){.sp🚧 .l-fw-n--2col{flex-wrap:nowrap}}@media (min-width:1072px){.sp🚧 .l-fw-n--3col{flex-wrap:nowrap}}@media (min-width:1280px){.sp🚧 .l-fw-n--4col{flex-wrap:nowrap}}.sp🚧 .l-f1{flex:1}.sp🚧 .l-fs0{flex-shrink:0}@media (min-width:624px){.sp🚧 .l-fs0--2col{flex-shrink:0}}@media (min-width:1072px){.sp🚧 .l-fs0--3col{flex-shrink:0}}@media (min-width:1280px){.sp🚧 .l-fs0--4col{flex-shrink:0}}.sp🚧 .l-fg1{flex-grow:1}@media (min-width:624px){.sp🚧 .l-fg1--2col{flex-grow:1}}@media (min-width:1072px){.sp🚧 .l-fg1--3col{flex-grow:1}}@media (min-width:1280px){.sp🚧 .l-fg1--4col{flex-grow:1}}.sp🚧 .l-ai-cen{align-items:center}.sp🚧 .l-ai-fs{align-items:flex-start}.sp🚧 .l-ai-fe{align-items:flex-end}.sp🚧 .l-ai-str{align-items:stretch}@media (min-width:624px){.sp🚧 .l-ai-cen--2col{align-items:center}.sp🚧 .l-ai-fs--2col{align-items:flex-start}.sp🚧 .l-ai-fe--2col{align-items:flex-end}.sp🚧 .l-ai-str--2col{align-items:stretch}}@media (min-width:1072px){.sp🚧 .l-ai-cen--3col{align-items:center}.sp🚧 .l-ai-fs--3col{align-items:flex-start}.sp🚧 .l-ai-fe--3col{align-items:flex-end}.sp🚧 .l-ai-str--3col{align-items:stretch}}@media (min-width:1280px){.sp🚧 .l-ai-cen--4col{align-items:center}.sp🚧 .l-ai-fs--4col{align-items:flex-start}.sp🚧 .l-ai-fe--4col{align-items:flex-end}.sp🚧 .l-ai-str--4col{align-items:stretch}}.sp🚧 .l-as-fe{align-self:flex-end}.sp🚧 .l-as-fs{align-self:flex-start}@media (min-width:624px){.sp🚧 .l-as-fe--2col{align-self:flex-end}.sp🚧 .l-as-fs--2col{align-self:flex-start}}@media (min-width:1072px){.sp🚧 .l-as-fe--3col{align-self:flex-end}.sp🚧 .l-as-fs--3col{align-self:flex-start}}@media (min-width:1280px){.sp🚧 .l-as-fe--4col{align-self:flex-end}.sp🚧 .l-as-fs--4col{align-self:flex-start}}.sp🚧 .l-jc-cen{justify-content:center}.sp🚧 .l-jc-fs{justify-content:flex-start}.sp🚧 .l-jc-fe{justify-content:flex-end}.sp🚧 .l-jc-sb{justify-content:space-between}@media (min-width:624px){.sp🚧 .l-jc-cen--2col{justify-content:center}.sp🚧 .l-jc-fs--2col{justify-content:flex-start}.sp🚧 .l-jc-fe--2col{justify-content:flex-end}.sp🚧 .l-jc-sb--2col{justify-content:space-between}}@media (min-width:1072px){.sp🚧 .l-jc-cen--3col{justify-content:center}.sp🚧 .l-jc-fs--3col{justify-content:flex-start}.sp🚧 .l-jc-fe--3col{justify-content:flex-end}.sp🚧 .l-jc-sb--3col{justify-content:space-between}}@media (min-width:1280px){.sp🚧 .l-jc-cen--4col{justify-content:center}.sp🚧 .l-jc-fs--4col{justify-content:flex-start}.sp🚧 .l-jc-fe--4col{justify-content:flex-end}.sp🚧 .l-jc-sb--4col{justify-content:space-between}}.sp🚧 .l-p-rel{position:relative}.sp🚧 .l-o-h{overflow:hidden}.sp🚧 .l-round{border-radius:50%}.sp🚧 .l-br{border-radius:2px}.sp🚧 .l-br0{border-radius:0}@media (min-width:624px){.sp🚧 .l-br--2col{border-radius:2px}.sp🚧 .l-br0--2col{border-radius:0}}@media (min-width:1072px){.sp🚧 .l-br--3col{border-radius:2px}.sp🚧 .l-br0--3col{border-radius:0}}@media (min-width:1280px){.sp🚧 .l-br--4col{border-radius:2px}.sp🚧 .l-br0--4col{border-radius:0}}.sp🚧 .l-b-n{border:none}@media (min-width:624px){.sp🚧 .l-b-n--2col{border:none}}@media (min-width:1072px){.sp🚧 .l-b-n--3col{border:none}}@media (min-width:1280px){.sp🚧 .l-b-n--4col{border:none}}.sp🚧 .l-ma0{margin:0}.sp🚧 .l-ma1{margin:4px}.sp🚧 .l-ma2{margin:8px}.sp🚧 .l-ma3{margin:16px}.sp🚧 .l-ma4{margin:32px}.sp🚧 .l-ma5{margin:64px}.sp🚧 .l-ma6{margin:128px}.sp🚧 .l-ma7{margin:256px}@media (min-width:624px){.sp🚧 .l-ma0--2col{margin:0}.sp🚧 .l-ma1--2col{margin:4px}.sp🚧 .l-ma2--2col{margin:8px}.sp🚧 .l-ma3--2col{margin:16px}.sp🚧 .l-ma4--2col{margin:32px}.sp🚧 .l-ma5--2col{margin:64px}.sp🚧 .l-ma6--2col{margin:128px}.sp🚧 .l-ma7--2col{margin:256px}}@media (min-width:1072px){.sp🚧 .l-ma0--3col{margin:0}.sp🚧 .l-ma1--3col{margin:4px}.sp🚧 .l-ma2--3col{margin:8px}.sp🚧 .l-ma3--3col{margin:16px}.sp🚧 .l-ma4--3col{margin:32px}.sp🚧 .l-ma5--3col{margin:64px}.sp🚧 .l-ma6--3col{margin:128px}.sp🚧 .l-ma7--3col{margin:256px}}@media (min-width:1280px){.sp🚧 .l-ma0--4col{margin:0}.sp🚧 .l-ma1--4col{margin:4px}.sp🚧 .l-ma2--4col{margin:8px}.sp🚧 .l-ma3--4col{margin:16px}.sp🚧 .l-ma4--4col{margin:32px}.sp🚧 .l-ma5--4col{margin:64px}.sp🚧 .l-ma6--4col{margin:128px}.sp🚧 .l-ma7--4col{margin:256px}}.sp🚧 .l-mh0{margin-left:0;margin-right:0}.sp🚧 .l-mh1{margin-left:4px;margin-right:4px}.sp🚧 .l-mh2{margin-left:8px;margin-right:8px}.sp🚧 .l-mh3{margin-left:16px;margin-right:16px}.sp🚧 .l-mh4{margin-left:32px;margin-right:32px}.sp🚧 .l-mh5{margin-left:64px;margin-right:64px}.sp🚧 .l-mh6{margin-left:128px;margin-right:128px}.sp🚧 .l-mh7{margin-left:256px;margin-right:256px}@media (min-width:624px){.sp🚧 .l-mh0--2col{margin-left:0;margin-right:0}.sp🚧 .l-mh1--2col{margin-left:4px;margin-right:4px}.sp🚧 .l-mh2--2col{margin-left:8px;margin-right:8px}.sp🚧 .l-mh3--2col{margin-left:16px;margin-right:16px}.sp🚧 .l-mh4--2col{margin-left:32px;margin-right:32px}.sp🚧 .l-mh5--2col{margin-left:64px;margin-right:64px}.sp🚧 .l-mh6--2col{margin-left:128px;margin-right:128px}.sp🚧 .l-mh7--2col{margin-left:256px;margin-right:256px}}@media (min-width:1072px){.sp🚧 .l-mh0--3col{margin-left:0;margin-right:0}.sp🚧 .l-mh1--3col{margin-left:4px;margin-right:4px}.sp🚧 .l-mh2--3col{margin-left:8px;margin-right:8px}.sp🚧 .l-mh3--3col{margin-left:16px;margin-right:16px}.sp🚧 .l-mh4--3col{margin-left:32px;margin-right:32px}.sp🚧 .l-mh5--3col{margin-left:64px;margin-right:64px}.sp🚧 .l-mh6--3col{margin-left:128px;margin-right:128px}.sp🚧 .l-mh7--3col{margin-left:256px;margin-right:256px}}@media (min-width:1280px){.sp🚧 .l-mh0--4col{margin-left:0;margin-right:0}.sp🚧 .l-mh1--4col{margin-left:4px;margin-right:4px}.sp🚧 .l-mh2--4col{margin-left:8px;margin-right:8px}.sp🚧 .l-mh3--4col{margin-left:16px;margin-right:16px}.sp🚧 .l-mh4--4col{margin-left:32px;margin-right:32px}.sp🚧 .l-mh5--4col{margin-left:64px;margin-right:64px}.sp🚧 .l-mh6--4col{margin-left:128px;margin-right:128px}.sp🚧 .l-mh7--4col{margin-left:256px;margin-right:256px}}.sp🚧 .l-mh-auto{margin-left:auto;margin-right:auto}@media (min-width:624px){.sp🚧 .l-mh-auto--2col{margin-left:auto;margin-right:auto}}@media (min-width:1072px){.sp🚧 .l-mh-auto--3col{margin-left:auto;margin-right:auto}}@media (min-width:1280px){.sp🚧 .l-mh-auto--4col{margin-left:auto;margin-right:auto}}.sp🚧 .l-mv0{margin-top:0;margin-bottom:0}.sp🚧 .l-mv1{margin-top:4px;margin-bottom:4px}.sp🚧 .l-mv2{margin-top:8px;margin-bottom:8px}.sp🚧 .l-mv3{margin-top:16px;margin-bottom:16px}.sp🚧 .l-mv4{margin-top:32px;margin-bottom:32px}.sp🚧 .l-mv5{margin-top:64px;margin-bottom:64px}.sp🚧 .l-mv6{margin-top:128px;margin-bottom:128px}.sp🚧 .l-mv7{margin-top:256px;margin-bottom:256px}@media (min-width:624px){.sp🚧 .l-mv0--2col{margin-top:0;margin-bottom:0}.sp🚧 .l-mv1--2col{margin-top:4px;margin-bottom:4px}.sp🚧 .l-mv2--2col{margin-top:8px;margin-bottom:8px}.sp🚧 .l-mv3--2col{margin-top:16px;margin-bottom:16px}.sp🚧 .l-mv4--2col{margin-top:32px;margin-bottom:32px}.sp🚧 .l-mv5--2col{margin-top:64px;margin-bottom:64px}.sp🚧 .l-mv6--2col{margin-top:128px;margin-bottom:128px}.sp🚧 .l-mv7--2col{margin-top:256px;margin-bottom:256px}}@media (min-width:1072px){.sp🚧 .l-mv0--3col{margin-top:0;margin-bottom:0}.sp🚧 .l-mv1--3col{margin-top:4px;margin-bottom:4px}.sp🚧 .l-mv2--3col{margin-top:8px;margin-bottom:8px}.sp🚧 .l-mv3--3col{margin-top:16px;margin-bottom:16px}.sp🚧 .l-mv4--3col{margin-top:32px;margin-bottom:32px}.sp🚧 .l-mv5--3col{margin-top:64px;margin-bottom:64px}.sp🚧 .l-mv6--3col{margin-top:128px;margin-bottom:128px}.sp🚧 .l-mv7--3col{margin-top:256px;margin-bottom:256px}}@media (min-width:1280px){.sp🚧 .l-mv0--4col{margin-top:0;margin-bottom:0}.sp🚧 .l-mv1--4col{margin-top:4px;margin-bottom:4px}.sp🚧 .l-mv2--4col{margin-top:8px;margin-bottom:8px}.sp🚧 .l-mv3--4col{margin-top:16px;margin-bottom:16px}.sp🚧 .l-mv4--4col{margin-top:32px;margin-bottom:32px}.sp🚧 .l-mv5--4col{margin-top:64px;margin-bottom:64px}.sp🚧 .l-mv6--4col{margin-top:128px;margin-bottom:128px}.sp🚧 .l-mv7--4col{margin-top:256px;margin-bottom:256px}}.sp🚧 .l-ml0{margin-left:0}.sp🚧 .l-ml1{margin-left:4px}.sp🚧 .l-ml2{margin-left:8px}.sp🚧 .l-ml3{margin-left:16px}.sp🚧 .l-ml4{margin-left:32px}.sp🚧 .l-ml5{margin-left:64px}.sp🚧 .l-ml6{margin-left:128px}.sp🚧 .l-ml7{margin-left:256px}@media (min-width:624px){.sp🚧 .l-ml0--2col{margin-left:0}.sp🚧 .l-ml1--2col{margin-left:4px}.sp🚧 .l-ml2--2col{margin-left:8px}.sp🚧 .l-ml3--2col{margin-left:16px}.sp🚧 .l-ml4--2col{margin-left:32px}.sp🚧 .l-ml5--2col{margin-left:64px}.sp🚧 .l-ml6--2col{margin-left:128px}.sp🚧 .l-ml7--2col{margin-left:256px}}@media (min-width:1072px){.sp🚧 .l-ml0--3col{margin-left:0}.sp🚧 .l-ml1--3col{margin-left:4px}.sp🚧 .l-ml2--3col{margin-left:8px}.sp🚧 .l-ml3--3col{margin-left:16px}.sp🚧 .l-ml4--3col{margin-left:32px}.sp🚧 .l-ml5--3col{margin-left:64px}.sp🚧 .l-ml6--3col{margin-left:128px}.sp🚧 .l-ml7--3col{margin-left:256px}}@media (min-width:1280px){.sp🚧 .l-ml0--4col{margin-left:0}.sp🚧 .l-ml1--4col{margin-left:4px}.sp🚧 .l-ml2--4col{margin-left:8px}.sp🚧 .l-ml3--4col{margin-left:16px}.sp🚧 .l-ml4--4col{margin-left:32px}.sp🚧 .l-ml5--4col{margin-left:64px}.sp🚧 .l-ml6--4col{margin-left:128px}.sp🚧 .l-ml7--4col{margin-left:256px}}.sp🚧 .l-mr0{margin-right:0}.sp🚧 .l-mr1{margin-right:4px}.sp🚧 .l-mr2{margin-right:8px}.sp🚧 .l-mr3{margin-right:16px}.sp🚧 .l-mr4{margin-right:32px}.sp🚧 .l-mr5{margin-right:64px}.sp🚧 .l-mr6{margin-right:128px}.sp🚧 .l-mr7{margin-right:256px}@media (min-width:624px){.sp🚧 .l-mr0--2col{margin-right:0}.sp🚧 .l-mr1--2col{margin-right:4px}.sp🚧 .l-mr2--2col{margin-right:8px}.sp🚧 .l-mr3--2col{margin-right:16px}.sp🚧 .l-mr4--2col{margin-right:32px}.sp🚧 .l-mr5--2col{margin-right:64px}.sp🚧 .l-mr6--2col{margin-right:128px}.sp🚧 .l-mr7--2col{margin-right:256px}}@media (min-width:1072px){.sp🚧 .l-mr0--3col{margin-right:0}.sp🚧 .l-mr1--3col{margin-right:4px}.sp🚧 .l-mr2--3col{margin-right:8px}.sp🚧 .l-mr3--3col{margin-right:16px}.sp🚧 .l-mr4--3col{margin-right:32px}.sp🚧 .l-mr5--3col{margin-right:64px}.sp🚧 .l-mr6--3col{margin-right:128px}.sp🚧 .l-mr7--3col{margin-right:256px}}@media (min-width:1280px){.sp🚧 .l-mr0--4col{margin-right:0}.sp🚧 .l-mr1--4col{margin-right:4px}.sp🚧 .l-mr2--4col{margin-right:8px}.sp🚧 .l-mr3--4col{margin-right:16px}.sp🚧 .l-mr4--4col{margin-right:32px}.sp🚧 .l-mr5--4col{margin-right:64px}.sp🚧 .l-mr6--4col{margin-right:128px}.sp🚧 .l-mr7--4col{margin-right:256px}}.sp🚧 .l-mt0{margin-top:0}.sp🚧 .l-mt1{margin-top:4px}.sp🚧 .l-mt2{margin-top:8px}.sp🚧 .l-mt3{margin-top:16px}.sp🚧 .l-mt4{margin-top:32px}.sp🚧 .l-mt5{margin-top:64px}.sp🚧 .l-mt6{margin-top:128px}.sp🚧 .l-mt7{margin-top:256px}@media (min-width:624px){.sp🚧 .l-mt0--2col{margin-top:0}.sp🚧 .l-mt1--2col{margin-top:4px}.sp🚧 .l-mt2--2col{margin-top:8px}.sp🚧 .l-mt3--2col{margin-top:16px}.sp🚧 .l-mt4--2col{margin-top:32px}.sp🚧 .l-mt5--2col{margin-top:64px}.sp🚧 .l-mt6--2col{margin-top:128px}.sp🚧 .l-mt7--2col{margin-top:256px}}@media (min-width:1072px){.sp🚧 .l-mt0--3col{margin-top:0}.sp🚧 .l-mt1--3col{margin-top:4px}.sp🚧 .l-mt2--3col{margin-top:8px}.sp🚧 .l-mt3--3col{margin-top:16px}.sp🚧 .l-mt4--3col{margin-top:32px}.sp🚧 .l-mt5--3col{margin-top:64px}.sp🚧 .l-mt6--3col{margin-top:128px}.sp🚧 .l-mt7--3col{margin-top:256px}}@media (min-width:1280px){.sp🚧 .l-mt0--4col{margin-top:0}.sp🚧 .l-mt1--4col{margin-top:4px}.sp🚧 .l-mt2--4col{margin-top:8px}.sp🚧 .l-mt3--4col{margin-top:16px}.sp🚧 .l-mt4--4col{margin-top:32px}.sp🚧 .l-mt5--4col{margin-top:64px}.sp🚧 .l-mt6--4col{margin-top:128px}.sp🚧 .l-mt7--4col{margin-top:256px}}.sp🚧 .l-mb0{margin-bottom:0}.sp🚧 .l-mb1{margin-bottom:4px}.sp🚧 .l-mb2{margin-bottom:8px}.sp🚧 .l-mb3{margin-bottom:16px}.sp🚧 .l-mb4{margin-bottom:32px}.sp🚧 .l-mb5{margin-bottom:64px}.sp🚧 .l-mb6{margin-bottom:128px}.sp🚧 .l-mb7{margin-bottom:256px}@media (min-width:624px){.sp🚧 .l-mb0--2col{margin-bottom:0}.sp🚧 .l-mb1--2col{margin-bottom:4px}.sp🚧 .l-mb2--2col{margin-bottom:8px}.sp🚧 .l-mb3--2col{margin-bottom:16px}.sp🚧 .l-mb4--2col{margin-bottom:32px}.sp🚧 .l-mb5--2col{margin-bottom:64px}.sp🚧 .l-mb6--2col{margin-bottom:128px}.sp🚧 .l-mb7--2col{margin-bottom:256px}}@media (min-width:1072px){.sp🚧 .l-mb0--3col{margin-bottom:0}.sp🚧 .l-mb1--3col{margin-bottom:4px}.sp🚧 .l-mb2--3col{margin-bottom:8px}.sp🚧 .l-mb3--3col{margin-bottom:16px}.sp🚧 .l-mb4--3col{margin-bottom:32px}.sp🚧 .l-mb5--3col{margin-bottom:64px}.sp🚧 .l-mb6--3col{margin-bottom:128px}.sp🚧 .l-mb7--3col{margin-bottom:256px}}@media (min-width:1280px){.sp🚧 .l-mb0--4col{margin-bottom:0}.sp🚧 .l-mb1--4col{margin-bottom:4px}.sp🚧 .l-mb2--4col{margin-bottom:8px}.sp🚧 .l-mb3--4col{margin-bottom:16px}.sp🚧 .l-mb4--4col{margin-bottom:32px}.sp🚧 .l-mb5--4col{margin-bottom:64px}.sp🚧 .l-mb6--4col{margin-bottom:128px}.sp🚧 .l-mb7--4col{margin-bottom:256px}}.sp🚧 .l-pa0{padding:0}.sp🚧 .l-pa1{padding:4px}.sp🚧 .l-pa2{padding:8px}.sp🚧 .l-pa3{padding:16px}.sp🚧 .l-pa4{padding:32px}.sp🚧 .l-pa5{padding:64px}.sp🚧 .l-pa6{padding:128px}.sp🚧 .l-pa7{padding:256px}@media (min-width:624px){.sp🚧 .l-pa0--2col{padding:0}.sp🚧 .l-pa1--2col{padding:4px}.sp🚧 .l-pa2--2col{padding:8px}.sp🚧 .l-pa3--2col{padding:16px}.sp🚧 .l-pa4--2col{padding:32px}.sp🚧 .l-pa5--2col{padding:64px}.sp🚧 .l-pa6--2col{padding:128px}.sp🚧 .l-pa7--2col{padding:256px}}@media (min-width:1072px){.sp🚧 .l-pa0--3col{padding:0}.sp🚧 .l-pa1--3col{padding:4px}.sp🚧 .l-pa2--3col{padding:8px}.sp🚧 .l-pa3--3col{padding:16px}.sp🚧 .l-pa4--3col{padding:32px}.sp🚧 .l-pa5--3col{padding:64px}.sp🚧 .l-pa6--3col{padding:128px}.sp🚧 .l-pa7--3col{padding:256px}}@media (min-width:1280px){.sp🚧 .l-pa0--4col{padding:0}.sp🚧 .l-pa1--4col{padding:4px}.sp🚧 .l-pa2--4col{padding:8px}.sp🚧 .l-pa3--4col{padding:16px}.sp🚧 .l-pa4--4col{padding:32px}.sp🚧 .l-pa5--4col{padding:64px}.sp🚧 .l-pa6--4col{padding:128px}.sp🚧 .l-pa7--4col{padding:256px}}.sp🚧 .l-ph0{padding-left:0;padding-right:0}.sp🚧 .l-ph1{padding-left:4px;padding-right:4px}.sp🚧 .l-ph2{padding-left:8px;padding-right:8px}.sp🚧 .l-ph3{padding-left:16px;padding-right:16px}.sp🚧 .l-ph4{padding-left:32px;padding-right:32px}.sp🚧 .l-ph5{padding-left:64px;padding-right:64px}.sp🚧 .l-ph6{padding-left:128px;padding-right:128px}.sp🚧 .l-ph7{padding-left:256px;padding-right:256px}@media (min-width:624px){.sp🚧 .l-ph0--2col{padding-left:0;padding-right:0}.sp🚧 .l-ph1--2col{padding-left:4px;padding-right:4px}.sp🚧 .l-ph2--2col{padding-left:8px;padding-right:8px}.sp🚧 .l-ph3--2col{padding-left:16px;padding-right:16px}.sp🚧 .l-ph4--2col{padding-left:32px;padding-right:32px}.sp🚧 .l-ph5--2col{padding-left:64px;padding-right:64px}.sp🚧 .l-ph6--2col{padding-left:128px;padding-right:128px}.sp🚧 .l-ph7--2col{padding-left:256px;padding-right:256px}}@media (min-width:1072px){.sp🚧 .l-ph0--3col{padding-left:0;padding-right:0}.sp🚧 .l-ph1--3col{padding-left:4px;padding-right:4px}.sp🚧 .l-ph2--3col{padding-left:8px;padding-right:8px}.sp🚧 .l-ph3--3col{padding-left:16px;padding-right:16px}.sp🚧 .l-ph4--3col{padding-left:32px;padding-right:32px}.sp🚧 .l-ph5--3col{padding-left:64px;padding-right:64px}.sp🚧 .l-ph6--3col{padding-left:128px;padding-right:128px}.sp🚧 .l-ph7--3col{padding-left:256px;padding-right:256px}}@media (min-width:1280px){.sp🚧 .l-ph0--4col{padding-left:0;padding-right:0}.sp🚧 .l-ph1--4col{padding-left:4px;padding-right:4px}.sp🚧 .l-ph2--4col{padding-left:8px;padding-right:8px}.sp🚧 .l-ph3--4col{padding-left:16px;padding-right:16px}.sp🚧 .l-ph4--4col{padding-left:32px;padding-right:32px}.sp🚧 .l-ph5--4col{padding-left:64px;padding-right:64px}.sp🚧 .l-ph6--4col{padding-left:128px;padding-right:128px}.sp🚧 .l-ph7--4col{padding-left:256px;padding-right:256px}}.sp🚧 .l-pv0{padding-top:0;padding-bottom:0}.sp🚧 .l-pv1{padding-top:4px;padding-bottom:4px}.sp🚧 .l-pv2{padding-top:8px;padding-bottom:8px}.sp🚧 .l-pv3{padding-top:16px;padding-bottom:16px}.sp🚧 .l-pv4{padding-top:32px;padding-bottom:32px}.sp🚧 .l-pv5{padding-top:64px;padding-bottom:64px}.sp🚧 .l-pv6{padding-top:128px;padding-bottom:128px}.sp🚧 .l-pv7{padding-top:256px;padding-bottom:256px}@media (min-width:624px){.sp🚧 .l-pv0--2col{padding-top:0;padding-bottom:0}.sp🚧 .l-pv1--2col{padding-top:4px;padding-bottom:4px}.sp🚧 .l-pv2--2col{padding-top:8px;padding-bottom:8px}.sp🚧 .l-pv3--2col{padding-top:16px;padding-bottom:16px}.sp🚧 .l-pv4--2col{padding-top:32px;padding-bottom:32px}.sp🚧 .l-pv5--2col{padding-top:64px;padding-bottom:64px}.sp🚧 .l-pv6--2col{padding-top:128px;padding-bottom:128px}.sp🚧 .l-pv7--2col{padding-top:256px;padding-bottom:256px}}@media (min-width:1072px){.sp🚧 .l-pv0--3col{padding-top:0;padding-bottom:0}.sp🚧 .l-pv1--3col{padding-top:4px;padding-bottom:4px}.sp🚧 .l-pv2--3col{padding-top:8px;padding-bottom:8px}.sp🚧 .l-pv3--3col{padding-top:16px;padding-bottom:16px}.sp🚧 .l-pv4--3col{padding-top:32px;padding-bottom:32px}.sp🚧 .l-pv5--3col{padding-top:64px;padding-bottom:64px}.sp🚧 .l-pv6--3col{padding-top:128px;padding-bottom:128px}.sp🚧 .l-pv7--3col{padding-top:256px;padding-bottom:256px}}@media (min-width:1280px){.sp🚧 .l-pv0--4col{padding-top:0;padding-bottom:0}.sp🚧 .l-pv1--4col{padding-top:4px;padding-bottom:4px}.sp🚧 .l-pv2--4col{padding-top:8px;padding-bottom:8px}.sp🚧 .l-pv3--4col{padding-top:16px;padding-bottom:16px}.sp🚧 .l-pv4--4col{padding-top:32px;padding-bottom:32px}.sp🚧 .l-pv5--4col{padding-top:64px;padding-bottom:64px}.sp🚧 .l-pv6--4col{padding-top:128px;padding-bottom:128px}.sp🚧 .l-pv7--4col{padding-top:256px;padding-bottom:256px}}.sp🚧 .l-pl0{padding-left:0}.sp🚧 .l-pl1{padding-left:4px}.sp🚧 .l-pl2{padding-left:8px}.sp🚧 .l-pl3{padding-left:16px}.sp🚧 .l-pl4{padding-left:32px}.sp🚧 .l-pl5{padding-left:64px}.sp🚧 .l-pl6{padding-left:128px}.sp🚧 .l-pl7{padding-left:256px}@media (min-width:624px){.sp🚧 .l-pl0--2col{padding-left:0}.sp🚧 .l-pl1--2col{padding-left:4px}.sp🚧 .l-pl2--2col{padding-left:8px}.sp🚧 .l-pl3--2col{padding-left:16px}.sp🚧 .l-pl4--2col{padding-left:32px}.sp🚧 .l-pl5--2col{padding-left:64px}.sp🚧 .l-pl6--2col{padding-left:128px}.sp🚧 .l-pl7--2col{padding-left:256px}}@media (min-width:1072px){.sp🚧 .l-pl0--3col{padding-left:0}.sp🚧 .l-pl1--3col{padding-left:4px}.sp🚧 .l-pl2--3col{padding-left:8px}.sp🚧 .l-pl3--3col{padding-left:16px}.sp🚧 .l-pl4--3col{padding-left:32px}.sp🚧 .l-pl5--3col{padding-left:64px}.sp🚧 .l-pl6--3col{padding-left:128px}.sp🚧 .l-pl7--3col{padding-left:256px}}@media (min-width:1280px){.sp🚧 .l-pl0--4col{padding-left:0}.sp🚧 .l-pl1--4col{padding-left:4px}.sp🚧 .l-pl2--4col{padding-left:8px}.sp🚧 .l-pl3--4col{padding-left:16px}.sp🚧 .l-pl4--4col{padding-left:32px}.sp🚧 .l-pl5--4col{padding-left:64px}.sp🚧 .l-pl6--4col{padding-left:128px}.sp🚧 .l-pl7--4col{padding-left:256px}}.sp🚧 .l-pr0{padding-right:0}.sp🚧 .l-pr1{padding-right:4px}.sp🚧 .l-pr2{padding-right:8px}.sp🚧 .l-pr3{padding-right:16px}.sp🚧 .l-pr4{padding-right:32px}.sp🚧 .l-pr5{padding-right:64px}.sp🚧 .l-pr6{padding-right:128px}.sp🚧 .l-pr7{padding-right:256px}@media (min-width:624px){.sp🚧 .l-pr0--2col{padding-right:0}.sp🚧 .l-pr1--2col{padding-right:4px}.sp🚧 .l-pr2--2col{padding-right:8px}.sp🚧 .l-pr3--2col{padding-right:16px}.sp🚧 .l-pr4--2col{padding-right:32px}.sp🚧 .l-pr5--2col{padding-right:64px}.sp🚧 .l-pr6--2col{padding-right:128px}.sp🚧 .l-pr7--2col{padding-right:256px}}@media (min-width:1072px){.sp🚧 .l-pr0--3col{padding-right:0}.sp🚧 .l-pr1--3col{padding-right:4px}.sp🚧 .l-pr2--3col{padding-right:8px}.sp🚧 .l-pr3--3col{padding-right:16px}.sp🚧 .l-pr4--3col{padding-right:32px}.sp🚧 .l-pr5--3col{padding-right:64px}.sp🚧 .l-pr6--3col{padding-right:128px}.sp🚧 .l-pr7--3col{padding-right:256px}}@media (min-width:1280px){.sp🚧 .l-pr0--4col{padding-right:0}.sp🚧 .l-pr1--4col{padding-right:4px}.sp🚧 .l-pr2--4col{padding-right:8px}.sp🚧 .l-pr3--4col{padding-right:16px}.sp🚧 .l-pr4--4col{padding-right:32px}.sp🚧 .l-pr5--4col{padding-right:64px}.sp🚧 .l-pr6--4col{padding-right:128px}.sp🚧 .l-pr7--4col{padding-right:256px}}.sp🚧 .l-pt0{padding-top:0}.sp🚧 .l-pt1{padding-top:4px}.sp🚧 .l-pt2{padding-top:8px}.sp🚧 .l-pt3{padding-top:16px}.sp🚧 .l-pt4{padding-top:32px}.sp🚧 .l-pt5{padding-top:64px}.sp🚧 .l-pt6{padding-top:128px}.sp🚧 .l-pt7{padding-top:256px}@media (min-width:624px){.sp🚧 .l-pt0--2col{padding-top:0}.sp🚧 .l-pt1--2col{padding-top:4px}.sp🚧 .l-pt2--2col{padding-top:8px}.sp🚧 .l-pt3--2col{padding-top:16px}.sp🚧 .l-pt4--2col{padding-top:32px}.sp🚧 .l-pt5--2col{padding-top:64px}.sp🚧 .l-pt6--2col{padding-top:128px}.sp🚧 .l-pt7--2col{padding-top:256px}}@media (min-width:1072px){.sp🚧 .l-pt0--3col{padding-top:0}.sp🚧 .l-pt1--3col{padding-top:4px}.sp🚧 .l-pt2--3col{padding-top:8px}.sp🚧 .l-pt3--3col{padding-top:16px}.sp🚧 .l-pt4--3col{padding-top:32px}.sp🚧 .l-pt5--3col{padding-top:64px}.sp🚧 .l-pt6--3col{padding-top:128px}.sp🚧 .l-pt7--3col{padding-top:256px}}@media (min-width:1280px){.sp🚧 .l-pt0--4col{padding-top:0}.sp🚧 .l-pt1--4col{padding-top:4px}.sp🚧 .l-pt2--4col{padding-top:8px}.sp🚧 .l-pt3--4col{padding-top:16px}.sp🚧 .l-pt4--4col{padding-top:32px}.sp🚧 .l-pt5--4col{padding-top:64px}.sp🚧 .l-pt6--4col{padding-top:128px}.sp🚧 .l-pt7--4col{padding-top:256px}}.sp🚧 .l-pb0{padding-bottom:0}.sp🚧 .l-pb1{padding-bottom:4px}.sp🚧 .l-pb2{padding-bottom:8px}.sp🚧 .l-pb3{padding-bottom:16px}.sp🚧 .l-pb4{padding-bottom:32px}.sp🚧 .l-pb5{padding-bottom:64px}.sp🚧 .l-pb6{padding-bottom:128px}.sp🚧 .l-pb7{padding-bottom:256px}@media (min-width:624px){.sp🚧 .l-pb0--2col{padding-bottom:0}.sp🚧 .l-pb1--2col{padding-bottom:4px}.sp🚧 .l-pb2--2col{padding-bottom:8px}.sp🚧 .l-pb3--2col{padding-bottom:16px}.sp🚧 .l-pb4--2col{padding-bottom:32px}.sp🚧 .l-pb5--2col{padding-bottom:64px}.sp🚧 .l-pb6--2col{padding-bottom:128px}.sp🚧 .l-pb7--2col{padding-bottom:256px}}@media (min-width:1072px){.sp🚧 .l-pb0--3col{padding-bottom:0}.sp🚧 .l-pb1--3col{padding-bottom:4px}.sp🚧 .l-pb2--3col{padding-bottom:8px}.sp🚧 .l-pb3--3col{padding-bottom:16px}.sp🚧 .l-pb4--3col{padding-bottom:32px}.sp🚧 .l-pb5--3col{padding-bottom:64px}.sp🚧 .l-pb6--3col{padding-bottom:128px}.sp🚧 .l-pb7--3col{padding-bottom:256px}}@media (min-width:1280px){.sp🚧 .l-pb0--4col{padding-bottom:0}.sp🚧 .l-pb1--4col{padding-bottom:4px}.sp🚧 .l-pb2--4col{padding-bottom:8px}.sp🚧 .l-pb3--4col{padding-bottom:16px}.sp🚧 .l-pb4--4col{padding-bottom:32px}.sp🚧 .l-pb5--4col{padding-bottom:64px}.sp🚧 .l-pb6--4col{padding-bottom:128px}.sp🚧 .l-pb7--4col{padding-bottom:256px}}.sp🚧 .t-bg-white{background-color:#fff}.sp🚧 .t-bg-black{background-color:#000}.sp🚧 .t-bg-teal-100{background-color:#b9e8ea}.sp🚧 .t-bg-teal-300{background-color:#71dfe1}.sp🚧 .t-bg-teal-500{background-color:#3ec9cb}.sp🚧 .t-bg-teal-700{background-color:#24b3b5}.sp🚧 .t-bg-grey-50{background-color:#f7f7f7}.sp🚧 .t-bg-grey-200{background-color:#e5e5e5}.sp🚧 .t-bg-grey-300{background-color:#a2a2a2}.sp🚧 .t-bg-grey-500{background-color:#3a3a3a}.sp🚧 .t-bg-component-500{background-color:#896eb3}.sp🚧 .t-t{transition:all .2s ease}.sp🚧 .t-o-0{opacity:0}.sp🚧 .t-o-50{opacity:.5}.sp🚧 .t-o-100{opacity:1}.sp🚧 .lst-s-n{list-style:none}.sp🚧 .m-728x90{display:none;max-width:728px;max-height:90px}@media (min-width:728px){.sp🚧 .m-728x90{display:block}}
+</style>
+<script type='text/javascript' src='//www.sitepoint.com/wp-content/themes/sitepoint/assets/javascripts/scripts-head-e4a2be27db699092d2993e42901cedf6.js?ver=4.4.2'></script>
+<link rel='https://api.w.org/' href='https://www.sitepoint.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.sitepoint.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.sitepoint.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.4.2" />
+<link rel='shortlink' href='https://www.sitepoint.com/?p=33752' />
+<link rel="alternate" type="application/json+oembed" href="https://www.sitepoint.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sitepoint.com%2Fgetting-started-mysql%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.sitepoint.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sitepoint.com%2Fgetting-started-mysql%2F&#038;format=xml" />
+<!-- BEGIN wp-parsely Plugin Version 1.8 -->
+<meta name='wp-parsely_version' id='wp-parsely_version' content='1.8' />
+   <script type="application/ld+json">
+   {"@context":"http:\/\/schema.org","@type":"NewsArticle","headline":"Build Your Own Database Driven Web Site Using PHP &#038; MySQL, Part 2: Introducing MySQL Article","url":"https:\/\/www.sitepoint.com\/getting-started-mysql\/","thumbnailUrl":"","articleId":"33752","dateCreated":"2009-07-06T14:00:00Z","articleSection":"Programming","creator":["Kevin Yank"],"keywords":[]}   </script>
+<!-- END wp-parsely Plugin Version 1.8 -->
+    <script type="text/javascript">
+      AdBridg.cmd.push(function() {
+        		googletag.pubads().setTargeting("channel", "programming");
+		googletag.pubads().setTargeting("post_id", "33752");
+		googletag.pubads().setTargeting("AOL",["true", "false"]);
+		googletag.pubads().setTargeting("OpenX",["true", "false"]);
+		googletag.pubads().setTargeting("Tribal",["true", "false"]);
+		googletag.pubads().enableSingleRequest();
+                googletag.pubads().collapseEmptyDivs();
+      });
+      SP_Adbridg_Slots = [];
+    </script>
+    <!--[if lt IE 9]>
+      <script src="/wp-content/themes/sitepoint/assets/javascripts/vendor/respond.custom.min.js"></script>
+    <![endif]-->
+    <style>
+  .t-p-teal-color { color: #1a9b9e }
+  a.t-p-teal-color:hover,
+  button.t-p-teal-color:hover { color: #018285 }
+
+  .t-p-teal-bg { background-color: #1a9b9e }
+  a.t-p-teal-bg:hover,
+  button.t-p-teal-bg:hover { background-color: #018285}
+
+  .t-p-teal-border { border-color: #1a9b9e }
+  a.t-p-teal-border:hover,
+  button.t-p-teal-border:hover { border-color: #018285 }
+
+  .t-p-teal-bg-tint { background-color: #5EB9BB }
+  .t-p-teal-bg-dark { background-color: #018285 }
+  .t-p-teal-border-tint { border-color: #5EB9BB }
+
+  .t-p-teal-fill path, .t-p-teal-fill ellipse, .t-p-teal-fill rect { fill: #1a9b9e; }
+
+  .t-p-teal-list li:before { background-color: #1a9b9e; }
+
+  .t-p-watermelon-color { color: #FF8480 }
+  a.t-p-watermelon-color:hover,
+  button.t-p-watermelon-color:hover { color: #E66B67 }
+
+  .t-p-watermelon-bg { background-color: #FF8480 }
+  a.t-p-watermelon-bg:hover,
+  button.t-p-watermelon-bg:hover { background-color: #E66B67}
+
+  .t-p-watermelon-border { border-color: #FF8480 }
+  a.t-p-watermelon-border:hover,
+  button.t-p-watermelon-border:hover { border-color: #E66B67 }
+
+  .t-p-watermelon-bg-tint { background-color: #FFA9A6 }
+  .t-p-watermelon-bg-dark { background-color: #E66B67 }
+  .t-p-watermelon-border-tint { border-color: #FFA9A6 }
+
+  .t-p-watermelon-fill path, .t-p-watermelon-fill ellipse, .t-p-watermelon-fill rect { fill: #FF8480; }
+
+  .t-p-watermelon-list li:before { background-color: #FF8480; }
+
+  .t-p-pop-bg { background-color: #FF8480 }
+  a.t-p-pop-bg:hover,
+  button.t-p-pop-bg:hover { background-color: #E66B67}
+</style>
+    <!-- Start Alexa Certify Javascript -->
+<script type="text/javascript">
+_atrk_opts = { atrk_acct:"3/2Rk1ao6C526C", domain:"sitepoint.com",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+</script>
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=3/2Rk1ao6C526C" style="display:none" height="1" width="1" alt="" /></noscript>
+<!-- End Alexa Certify Javascript -->
+  </head>
+
+  <body>
+    <header class="main-header" role="banner">
+      <nav class="l-d-f l-w-100 f-c-white t-bg-grey-500 UniNav">
+        <div class="l-d-f l-w-100 l-w-4col--4col l-jc-sb l-mh-auto UniNav_container">
+          <section class="l-d-f l-ai-str l-jc-sta">
+            <a class="l-d-f l-ai-cen l-pa3 f-c-white t-t UniNav_item" onClick="sitepoint.SidebarNav_toggle(event)">
+              <i class="f-medium fa fa-navicon"></i>
+            </a>
+            <a class="l-d-f UniNav_logo" href="/">
+              <div class="l-d-n l-d-f--3col l-ai-cen">
+                <svg class="sp-logo" viewBox="0 0 123 27">
+  <g fill-rule="evenodd">
+    <path d="M31.36,16.75 C31.56,17.07 31.82,17.31 32.14,17.50 C32.46,17.68 32.82,17.82 33.23,17.89 C33.63,17.97 34.05,18.01 34.48,18.01 C34.81,18.01 35.16,17.99 35.52,17.94 C35.89,17.89 36.22,17.81 36.53,17.68 C36.83,17.55 37.08,17.36 37.28,17.11 C37.48,16.87 37.58,16.55 37.58,16.17 C37.58,15.64 37.37,15.24 36.96,14.97 C36.55,14.69 36.03,14.47 35.41,14.31 C34.79,14.14 34.12,13.99 33.39,13.85 C32.66,13.71 31.99,13.52 31.37,13.27 C30.75,13.03 30.23,12.68 29.82,12.23 C29.41,11.78 29.20,11.16 29.20,10.36 C29.20,9.73 29.34,9.20 29.63,8.75 C29.92,8.30 30.30,7.94 30.75,7.66 C31.20,7.38 31.72,7.17 32.29,7.03 C32.86,6.90 33.42,6.83 33.99,6.83 C34.71,6.83 35.38,6.89 35.99,7.01 C36.61,7.13 37.15,7.34 37.62,7.63 C38.09,7.93 38.46,8.33 38.75,8.83 C39.03,9.34 39.19,9.96 39.24,10.72 L37.13,10.72 C37.10,10.32 36.99,9.98 36.81,9.72 C36.63,9.46 36.40,9.25 36.12,9.08 C35.84,8.92 35.53,8.81 35.19,8.74 C34.85,8.66 34.51,8.63 34.16,8.63 C33.84,8.63 33.53,8.65 33.20,8.70 C32.88,8.75 32.59,8.83 32.32,8.95 C32.06,9.07 31.84,9.23 31.68,9.43 C31.51,9.63 31.43,9.89 31.43,10.21 C31.43,10.56 31.56,10.86 31.82,11.09 C32.07,11.32 32.40,11.51 32.80,11.66 C33.19,11.82 33.64,11.95 34.13,12.05 C34.63,12.15 35.13,12.26 35.62,12.37 C36.15,12.49 36.67,12.62 37.17,12.78 C37.67,12.94 38.12,13.15 38.51,13.42 C38.90,13.68 39.21,14.01 39.45,14.41 C39.69,14.81 39.81,15.31 39.81,15.90 C39.81,16.66 39.65,17.28 39.33,17.77 C39.01,18.27 38.58,18.67 38.06,18.98 C37.54,19.28 36.96,19.49 36.30,19.61 C35.65,19.73 35.00,19.79 34.36,19.79 C33.65,19.79 32.97,19.72 32.32,19.58 C31.68,19.43 31.11,19.20 30.61,18.87 C30.12,18.54 29.72,18.11 29.42,17.57 C29.13,17.03 28.96,16.38 28.93,15.61 L31.03,15.61 C31.05,16.06 31.16,16.44 31.36,16.75" id="Fill-1"></path>
+    <path d="M42.27,7.12 L44.37,7.12 L44.37,19.53 L42.27,19.53 L42.27,7.12 Z" id="Fill-2"></path>
+    <path d="M53.13,7.12 L53.13,8.92 L50.57,8.92 L50.57,16.62 C50.57,16.86 50.59,17.05 50.63,17.20 C50.67,17.34 50.75,17.46 50.87,17.54 C50.99,17.62 51.15,17.67 51.35,17.69 C51.56,17.71 51.83,17.73 52.16,17.73 L53.13,17.73 L53.13,19.53 L51.51,19.53 C50.97,19.53 50.50,19.49 50.11,19.42 C49.72,19.35 49.41,19.22 49.17,19.02 C48.93,18.83 48.75,18.56 48.64,18.21 C48.52,17.86 48.46,17.39 48.46,16.81 L48.46,8.92 L46.28,8.92 L46.28,7.12 L48.46,7.12 L48.46,3.39 L50.57,3.39 L50.57,7.12 L53.13,7.12" id="Fill-3"></path>
+    <path d="M64.53,18.73 C63.57,19.44 62.36,19.79 60.91,19.79 C59.89,19.79 59.00,19.63 58.25,19.31 C57.49,18.99 56.86,18.54 56.35,17.97 C55.84,17.39 55.45,16.70 55.20,15.90 C54.94,15.10 54.80,14.23 54.76,13.29 C54.76,12.34 54.91,11.48 55.21,10.69 C55.51,9.91 55.92,9.23 56.46,8.65 C57.00,8.08 57.63,7.63 58.37,7.31 C59.11,6.99 59.91,6.83 60.79,6.83 C61.93,6.83 62.87,7.05 63.63,7.51 C64.38,7.97 64.98,8.55 65.44,9.25 C65.89,9.96 66.20,10.73 66.38,11.56 C66.55,12.39 66.62,13.18 66.59,13.93 L56.99,13.93 C56.98,14.48 57.04,14.99 57.19,15.48 C57.34,15.97 57.58,16.40 57.91,16.78 C58.24,17.16 58.66,17.46 59.18,17.68 C59.69,17.90 60.29,18.01 60.98,18.01 C61.88,18.01 62.61,17.82 63.18,17.41 C63.75,17.02 64.13,16.41 64.31,15.59 L66.39,15.59 C66.11,16.98 65.49,18.03 64.53,18.73 L64.53,18.73 Z M64.02,10.76 C63.83,10.33 63.58,9.96 63.25,9.65 C62.93,9.34 62.55,9.09 62.11,8.90 C61.68,8.72 61.19,8.63 60.66,8.63 C60.12,8.63 59.62,8.72 59.19,8.90 C58.75,9.09 58.37,9.34 58.06,9.66 C57.75,9.98 57.50,10.35 57.32,10.78 C57.13,11.20 57.03,11.65 56.99,12.13 L64.36,12.13 C64.32,11.65 64.21,11.20 64.02,10.76 L64.02,10.76 Z" id="Fill-4"></path>
+    <path d="M70.95,7.12 L70.95,8.80 L71.00,8.80 C71.35,8.11 71.89,7.61 72.64,7.30 C73.38,6.98 74.20,6.83 75.09,6.83 C76.09,6.83 76.95,7.00 77.68,7.36 C78.42,7.71 79.03,8.18 79.52,8.78 C80.01,9.38 80.37,10.08 80.62,10.86 C80.87,11.65 80.99,12.48 80.99,13.36 C80.99,14.24 80.87,15.07 80.63,15.85 C80.39,16.64 80.03,17.32 79.54,17.91 C79.06,18.49 78.44,18.95 77.71,19.29 C76.97,19.62 76.12,19.79 75.14,19.79 C74.83,19.79 74.48,19.76 74.09,19.70 C73.70,19.63 73.32,19.53 72.94,19.38 C72.56,19.24 72.20,19.04 71.86,18.79 C71.52,18.55 71.23,18.24 71.00,17.87 L70.95,17.87 L70.95,24.26 L68.84,24.26 L68.84,7.12 L70.95,7.12 L70.95,7.12 Z M78.53,11.52 C78.37,10.97 78.13,10.48 77.81,10.04 C77.49,9.61 77.07,9.27 76.57,9.01 C76.06,8.76 75.47,8.63 74.79,8.63 C74.08,8.63 73.48,8.76 72.98,9.04 C72.49,9.31 72.08,9.67 71.77,10.10 C71.46,10.55 71.23,11.05 71.09,11.60 C70.95,12.17 70.88,12.73 70.88,13.31 C70.88,13.92 70.95,14.51 71.10,15.07 C71.25,15.64 71.48,16.14 71.81,16.57 C72.13,17.01 72.55,17.35 73.06,17.62 C73.57,17.88 74.19,18.01 74.92,18.01 C75.65,18.01 76.25,17.88 76.74,17.61 C77.23,17.34 77.62,16.98 77.92,16.53 C78.22,16.08 78.43,15.57 78.56,14.99 C78.70,14.41 78.76,13.82 78.76,13.21 C78.76,12.64 78.68,12.07 78.53,11.52 L78.53,11.52 Z" id="Fill-5"></path>
+    <path d="M83.17,10.78 C83.44,9.98 83.84,9.30 84.36,8.71 C84.89,8.13 85.55,7.67 86.33,7.33 C87.10,7.00 87.99,6.83 89.00,6.83 C90.03,6.83 90.92,7.00 91.69,7.33 C92.46,7.67 93.11,8.13 93.64,8.71 C94.17,9.30 94.56,9.98 94.83,10.78 C95.09,11.57 95.23,12.42 95.23,13.33 C95.23,14.25 95.09,15.09 94.83,15.88 C94.56,16.66 94.17,17.35 93.64,17.93 C93.11,18.52 92.46,18.97 91.69,19.30 C90.92,19.63 90.03,19.79 89.00,19.79 C87.99,19.79 87.10,19.63 86.33,19.30 C85.55,18.97 84.89,18.52 84.36,17.93 C83.84,17.35 83.44,16.66 83.17,15.88 C82.91,15.09 82.78,14.25 82.78,13.33 C82.78,12.42 82.91,11.57 83.17,10.78 L83.17,10.78 Z M85.32,15.34 C85.53,15.92 85.81,16.41 86.18,16.80 C86.54,17.19 86.96,17.49 87.45,17.70 C87.94,17.91 88.46,18.01 89.00,18.01 C89.55,18.01 90.06,17.91 90.55,17.70 C91.04,17.49 91.46,17.19 91.83,16.80 C92.19,16.41 92.48,15.92 92.68,15.34 C92.89,14.75 92.99,14.09 92.99,13.33 C92.99,12.58 92.89,11.91 92.68,11.33 C92.48,10.75 92.19,10.25 91.83,9.85 C91.46,9.45 91.04,9.15 90.55,8.94 C90.06,8.73 89.55,8.63 89.00,8.63 C88.46,8.63 87.94,8.73 87.45,8.94 C86.96,9.15 86.54,9.45 86.18,9.85 C85.81,10.25 85.53,10.75 85.32,11.33 C85.11,11.91 85.01,12.58 85.01,13.33 C85.01,14.09 85.11,14.75 85.32,15.34 L85.32,15.34 Z" id="Fill-6"></path>
+    <path d="M97.83,7.12 L99.94,7.12 L99.94,19.53 L97.83,19.53 L97.83,7.12 Z" id="Fill-7"></path>
+    <path d="M105.19,7.12 L105.19,9.08 L105.24,9.08 C106.12,7.58 107.51,6.83 109.41,6.83 C110.25,6.83 110.95,6.94 111.51,7.16 C112.08,7.39 112.53,7.70 112.88,8.10 C113.23,8.50 113.47,8.98 113.61,9.53 C113.75,10.08 113.82,10.69 113.82,11.36 L113.82,19.53 L111.71,19.53 L111.71,11.12 C111.71,10.36 111.48,9.75 111.02,9.30 C110.56,8.85 109.92,8.63 109.11,8.63 C108.46,8.63 107.91,8.72 107.43,8.92 C106.96,9.11 106.57,9.38 106.26,9.73 C105.94,10.08 105.71,10.50 105.55,10.97 C105.39,11.44 105.32,11.96 105.32,12.52 L105.32,19.53 L103.21,19.53 L103.21,7.12 L105.19,7.12" id="Fill-8"></path>
+    <path d="M122.47,7.12 L122.47,8.92 L119.92,8.92 L119.92,16.62 C119.92,16.86 119.94,17.05 119.98,17.20 C120.02,17.34 120.10,17.46 120.22,17.54 C120.33,17.62 120.49,17.67 120.70,17.69 C120.91,17.71 121.18,17.73 121.50,17.73 L122.47,17.73 L122.47,19.53 L120.86,19.53 C120.32,19.53 119.85,19.49 119.46,19.42 C119.07,19.35 118.76,19.22 118.52,19.02 C118.28,18.83 118.10,18.56 117.99,18.21 C117.87,17.86 117.81,17.39 117.81,16.81 L117.81,8.92 L115.63,8.92 L115.63,7.12 L117.81,7.12 L117.81,3.39 L119.92,3.39 L119.92,7.12 L122.47,7.12" id="Fill-9"></path>
+    <path d="M0.67,11.87 L2.62,13.76 L8.76,19.50 L11.41,16.94 C11.65,16.61 11.64,16.16 11.36,15.84 L8.94,13.72 L8.95,13.72 L6.34,11.19 C6.04,10.84 6.04,10.32 6.37,9.99 L13.38,3.21 L10.20,0.12 L0.68,9.31 C-0.05,10.02 -0.05,11.17 0.67,11.87" id="Fill-10"></path>
+    <path d="M21.60,15.15 L19.66,13.27 L13.51,7.53 L10.86,10.08 C10.62,10.42 10.64,10.87 10.91,11.19 L13.33,13.31 L13.33,13.31 L15.93,15.84 C16.24,16.19 16.23,16.70 15.91,17.04 L8.89,23.82 L12.08,26.91 L19.65,19.60 L21.60,17.71 C22.33,17.01 22.33,15.86 21.60,15.15" id="Fill-11"></path>
+    <path d="M44.55,4.58 C44.55,5.24 44.00,5.77 43.32,5.77 C42.64,5.77 42.09,5.24 42.09,4.58 C42.09,3.93 42.64,3.39 43.32,3.39 C44.00,3.39 44.55,3.93 44.55,4.58" id="Fill-12"></path>
+    <path d="M100.11,4.58 C100.11,5.24 99.56,5.77 98.88,5.77 C98.20,5.77 97.65,5.24 97.65,4.58 C97.65,3.93 98.20,3.39 98.88,3.39 C99.56,3.39 100.11,3.93 100.11,4.58" id="Fill-13"></path>
+  </g>
+</svg>
+              </div>
+              <div class="l-d-f l-d-n--3col l-ai-cen">
+                <svg width="22px" height="27px" viewBox="0 0 22 27">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-52.00, -407.00)" fill="#FFFFFF">
+            <g transform="translate(52.00, 407.00)">
+                <path d="M0.54,11.75 L2.49,13.64 L8.63,19.38 L11.28,16.82 C11.52,16.49 11.51,16.04 11.23,15.72 L8.81,13.60 L8.82,13.60 L6.21,11.07 C5.91,10.72 5.91,10.20 6.24,9.87 L13.25,3.09 L10.06,0 L0.54,9.19 C-0.18,9.90 -0.18,11.05 0.54,11.75"></path>
+                <path d="M20.71,14.62 L18.76,12.74 L12.62,7 L9.97,9.55 C9.73,9.89 9.74,10.34 10.02,10.65 L12.44,12.78 L12.43,12.78 L15.04,15.31 C15.34,15.66 15.33,16.17 15.01,16.51 L8,23.29 L11.18,26.38 L18.75,19.06 L20.70,17.18 C21.43,16.48 21.44,15.33 20.71,14.62"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+              </div>
+            </a>
+          </section>
+
+          <section class="l-d-f l-w-100 l-ai-str l-jc-fe">
+            <div id="search-container" class="l-d-f l-p-rel l-w-100 l-w-1col--3col l-pa2 f-small f-light t-t UniNav_search">
+              <form class="l-d-f l-ai-cen l-jc-fe l-ma0" method="get" action="https://www.sitepoint.com/">
+                <input autocomplete="off" id="search-box" name="s" placeholder="Search SitePoint" type="text" class="l-w0 l-ma0 l-pa0 l-pb1 l-b-n f-light f-medium f-c-grey-500 t-t">
+                <button class="l-p-rel l-ma0 l-b-n l-ph1 f-c-white"><i class="l-ph1 f-medium fa fa-search"></i></button>
+                <span class="l-d-n l-d-f--3col">Search</span>
+
+                <div id="search-dropdown" class="UniNav_searchDropdown">
+                  <div data-role="search-for">
+                    <a class="search-link" href="#">Search for...</a>
+                  </div>
+                  <ul data-role="results"></ul>
+                </div>
+              </form>
+            </div>
+            <a class="l-d-n l-d-f--3col l-ai-cen l-ml4 l-pa2 f-small f-light f-c-white UniNav_item u-desktop" href="https://www.sitepoint.com/themes/?utm_source=blog&utm_medium=main-nav"><i class="l-mr2 f-medium fa fa-file-image-o"></i>Themes</a>
+            <a class="l-d-n l-d-f--3col l-ai-cen l-ml4 l-pa2 f-small f-light f-c-white UniNav_item u-desktop" href="https://www.sitepoint.com/versioning-show/"><i class="l-mr2 f-medium fa fa-microphone"></i>Podcast</a>
+            <a class="l-d-n l-d-f--3col l-ai-cen l-ml4 l-pa2 f-small f-light f-c-white UniNav_item u-desktop" href="https://www.sitepoint.com/community/"><i class="l-mr2 f-medium fa fa-comment"></i>Forums</a>
+            <a class="l-d-n l-d-f--3col l-ai-cen l-ml4 l-pa2 f-small f-light f-c-white UniNav_item u-desktop" href="https://www.sitepoint.com/premium/topics/all">
+              <div class="l-d-ib l-mr2 f-medium UniNav_svgIcon">
+                <svg width="22px" height="27px" viewBox="0 0 22 27">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-52.00, -407.00)" fill="#FFFFFF">
+            <g transform="translate(52.00, 407.00)">
+                <path d="M0.54,11.75 L2.49,13.64 L8.63,19.38 L11.28,16.82 C11.52,16.49 11.51,16.04 11.23,15.72 L8.81,13.60 L8.82,13.60 L6.21,11.07 C5.91,10.72 5.91,10.20 6.24,9.87 L13.25,3.09 L10.06,0 L0.54,9.19 C-0.18,9.90 -0.18,11.05 0.54,11.75"></path>
+                <path d="M20.71,14.62 L18.76,12.74 L12.62,7 L9.97,9.55 C9.73,9.89 9.74,10.34 10.02,10.65 L12.44,12.78 L12.43,12.78 L15.04,15.31 C15.34,15.66 15.33,16.17 15.01,16.51 L8,23.29 L11.18,26.38 L18.75,19.06 L20.70,17.18 C21.43,16.48 21.44,15.33 20.71,14.62"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+              </div>Premium
+            </a>
+          </section>
+        </div>
+      </nav>
+
+      <div class="UniNav_offsetSpacer"></div>
+
+    </header>
+
+<div class="l-d-n l-d-b--4col l-p-rel t-bg-white ChannelsNav">
+  <ul class="l-d-f l-jc-sta l-w-100 l-w-3col--3col l-w-4col--4col l-pa0 l-mv0 l-mh-auto">
+    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-html-css"><a href="https://www.sitepoint.com/html-css/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">HTML &amp; CSS</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-javascript"><a href="https://www.sitepoint.com/javascript/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">JavaScript</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-php"><a href="https://www.sitepoint.com/php/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">PHP</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-ruby"><a href="https://www.sitepoint.com/ruby/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">Ruby</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-mobile"><a href="https://www.sitepoint.com/mobile/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">Mobile</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-design-ux"><a href="https://www.sitepoint.com/design-ux/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">Design &amp; UX</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-entrepreneur"><a href="https://www.sitepoint.com/entrepreneur/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">Entrepreneur</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-web"><a href="https://www.sitepoint.com/web/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">Web</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-wordpress"><a href="https://www.sitepoint.com/wordpress/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">WordPress</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-java"><a href="https://www.sitepoint.com/java/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">Java</a></li>    <li class="l-d-ib l-p-rel f-left t-t ChannelsNav_link u-woorank"><a href="https://www.sitepoint.com/woorank/" class="l-d-ib l-pv0 l-mt1 l-ph3 f-smaller f-bold f-uppercase f-c-grey-300 f-nowrap t-t">SEO By WooRank</a></li>  </ul>
+</div>
+
+<div id="SidebarNav" class="SidebarNav">
+  <header class="m-border-b SidebarNav_header">
+    <a href="#" onClick="sitepoint.SidebarNav_toggle(event)" class="l-pt0 f-light">
+      <span class="SidebarNav_icon">&times;</span>
+    </a>
+    <div class="l-d-n l-d-b--3col SidebarNav_search">
+      <form method="get" action="https://www.sitepoint.com/">
+        <input autocomplete="off" id="sidebar-search-box" name="s" placeholder="Search" type="text">
+        <button><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+  </header>
+
+  <section class="l-d-b l-d-n--3col l-pv2 m-border-b">
+    <a href="https://www.sitepoint.com/premium/topics/all" class="l-d-b l-pa3 SidebarNav_link">
+      <svg class="sp-logo" viewbox="0 0 207 27">
+  <g fill-rule="evenodd">
+    <g>
+      <path d="M31.36,16.75 C31.56,17.07 31.82,17.31 32.14,17.50 C32.46,17.68 32.82,17.82 33.23,17.89 C33.63,17.97 34.05,18.01 34.48,18.01 C34.81,18.01 35.16,17.99 35.52,17.94 C35.89,17.89 36.22,17.81 36.53,17.68 C36.83,17.55 37.08,17.36 37.28,17.11 C37.48,16.87 37.58,16.55 37.58,16.17 C37.58,15.64 37.37,15.24 36.96,14.97 C36.55,14.69 36.03,14.47 35.41,14.31 C34.79,14.14 34.12,13.99 33.39,13.85 C32.66,13.71 31.99,13.52 31.37,13.27 C30.75,13.03 30.23,12.68 29.82,12.23 C29.41,11.78 29.20,11.16 29.20,10.36 C29.20,9.73 29.34,9.20 29.63,8.75 C29.92,8.30 30.30,7.94 30.75,7.66 C31.20,7.38 31.72,7.17 32.29,7.03 C32.86,6.90 33.42,6.83 33.99,6.83 C34.71,6.83 35.38,6.89 35.99,7.01 C36.61,7.13 37.15,7.34 37.62,7.63 C38.09,7.93 38.46,8.33 38.75,8.83 C39.03,9.34 39.19,9.96 39.24,10.72 L37.13,10.72 C37.10,10.32 36.99,9.98 36.81,9.72 C36.63,9.46 36.40,9.25 36.12,9.08 C35.84,8.92 35.53,8.81 35.19,8.74 C34.85,8.66 34.51,8.63 34.16,8.63 C33.84,8.63 33.53,8.65 33.20,8.70 C32.88,8.75 32.59,8.83 32.32,8.95 C32.06,9.07 31.84,9.23 31.68,9.43 C31.51,9.63 31.43,9.89 31.43,10.21 C31.43,10.56 31.56,10.86 31.82,11.09 C32.07,11.32 32.40,11.51 32.80,11.66 C33.19,11.82 33.64,11.95 34.13,12.05 C34.63,12.15 35.13,12.26 35.62,12.37 C36.15,12.49 36.67,12.62 37.17,12.78 C37.67,12.94 38.12,13.15 38.51,13.42 C38.90,13.68 39.21,14.01 39.45,14.41 C39.69,14.81 39.81,15.31 39.81,15.90 C39.81,16.66 39.65,17.28 39.33,17.77 C39.01,18.27 38.58,18.67 38.06,18.98 C37.54,19.28 36.96,19.49 36.30,19.61 C35.65,19.73 35.00,19.79 34.36,19.79 C33.65,19.79 32.97,19.72 32.32,19.58 C31.68,19.43 31.11,19.20 30.61,18.87 C30.12,18.54 29.72,18.11 29.42,17.57 C29.13,17.03 28.96,16.38 28.93,15.61 L31.03,15.61 C31.05,16.06 31.16,16.44 31.36,16.75"></path>
+      <path d="M42.27,7.12 L44.37,7.12 L44.37,19.53 L42.27,19.53 L42.27,7.12 Z"></path>
+      <path d="M53.13,7.12 L53.13,8.92 L50.57,8.92 L50.57,16.62 C50.57,16.86 50.59,17.05 50.63,17.20 C50.67,17.34 50.75,17.46 50.87,17.54 C50.99,17.62 51.15,17.67 51.35,17.69 C51.56,17.71 51.83,17.73 52.16,17.73 L53.13,17.73 L53.13,19.53 L51.51,19.53 C50.97,19.53 50.50,19.49 50.11,19.42 C49.72,19.35 49.41,19.22 49.17,19.02 C48.93,18.83 48.75,18.56 48.64,18.21 C48.52,17.86 48.46,17.39 48.46,16.81 L48.46,8.92 L46.28,8.92 L46.28,7.12 L48.46,7.12 L48.46,3.39 L50.57,3.39 L50.57,7.12 L53.13,7.12"></path>
+      <path d="M64.53,18.73 C63.57,19.44 62.36,19.79 60.91,19.79 C59.89,19.79 59.00,19.63 58.25,19.31 C57.49,18.99 56.86,18.54 56.35,17.97 C55.84,17.39 55.45,16.70 55.20,15.90 C54.94,15.10 54.80,14.23 54.76,13.29 C54.76,12.34 54.91,11.48 55.21,10.69 C55.51,9.91 55.92,9.23 56.46,8.65 C57.00,8.08 57.63,7.63 58.37,7.31 C59.11,6.99 59.91,6.83 60.79,6.83 C61.93,6.83 62.87,7.05 63.63,7.51 C64.38,7.97 64.98,8.55 65.44,9.25 C65.89,9.96 66.20,10.73 66.38,11.56 C66.55,12.39 66.62,13.18 66.59,13.93 L56.99,13.93 C56.98,14.48 57.04,14.99 57.19,15.48 C57.34,15.97 57.58,16.40 57.91,16.78 C58.24,17.16 58.66,17.46 59.18,17.68 C59.69,17.90 60.29,18.01 60.98,18.01 C61.88,18.01 62.61,17.82 63.18,17.41 C63.75,17.02 64.13,16.41 64.31,15.59 L66.39,15.59 C66.11,16.98 65.49,18.03 64.53,18.73 L64.53,18.73 Z M64.02,10.76 C63.83,10.33 63.58,9.96 63.25,9.65 C62.93,9.34 62.55,9.09 62.11,8.90 C61.68,8.72 61.19,8.63 60.66,8.63 C60.12,8.63 59.62,8.72 59.19,8.90 C58.75,9.09 58.37,9.34 58.06,9.66 C57.75,9.98 57.50,10.35 57.32,10.78 C57.13,11.20 57.03,11.65 56.99,12.13 L64.36,12.13 C64.32,11.65 64.21,11.20 64.02,10.76 L64.02,10.76 Z"></path>
+      <path d="M70.95,7.12 L70.95,8.80 L71.00,8.80 C71.35,8.11 71.89,7.61 72.64,7.30 C73.38,6.98 74.20,6.83 75.09,6.83 C76.09,6.83 76.95,7.00 77.68,7.36 C78.42,7.71 79.03,8.18 79.52,8.78 C80.01,9.38 80.37,10.08 80.62,10.86 C80.87,11.65 80.99,12.48 80.99,13.36 C80.99,14.24 80.87,15.07 80.63,15.85 C80.39,16.64 80.03,17.32 79.54,17.91 C79.06,18.49 78.44,18.95 77.71,19.29 C76.97,19.62 76.12,19.79 75.14,19.79 C74.83,19.79 74.48,19.76 74.09,19.70 C73.70,19.63 73.32,19.53 72.94,19.38 C72.56,19.24 72.20,19.04 71.86,18.79 C71.52,18.55 71.23,18.24 71.00,17.87 L70.95,17.87 L70.95,24.26 L68.84,24.26 L68.84,7.12 L70.95,7.12 L70.95,7.12 Z M78.53,11.52 C78.37,10.97 78.13,10.48 77.81,10.04 C77.49,9.61 77.07,9.27 76.57,9.01 C76.06,8.76 75.47,8.63 74.79,8.63 C74.08,8.63 73.48,8.76 72.98,9.04 C72.49,9.31 72.08,9.67 71.77,10.10 C71.46,10.55 71.23,11.05 71.09,11.60 C70.95,12.17 70.88,12.73 70.88,13.31 C70.88,13.92 70.95,14.51 71.10,15.07 C71.25,15.64 71.48,16.14 71.81,16.57 C72.13,17.01 72.55,17.35 73.06,17.62 C73.57,17.88 74.19,18.01 74.92,18.01 C75.65,18.01 76.25,17.88 76.74,17.61 C77.23,17.34 77.62,16.98 77.92,16.53 C78.22,16.08 78.43,15.57 78.56,14.99 C78.70,14.41 78.76,13.82 78.76,13.21 C78.76,12.64 78.68,12.07 78.53,11.52 L78.53,11.52 Z"></path>
+      <path d="M83.17,10.78 C83.44,9.98 83.84,9.30 84.36,8.71 C84.89,8.13 85.55,7.67 86.33,7.33 C87.10,7.00 87.99,6.83 89.00,6.83 C90.03,6.83 90.92,7.00 91.69,7.33 C92.46,7.67 93.11,8.13 93.64,8.71 C94.17,9.30 94.56,9.98 94.83,10.78 C95.09,11.57 95.23,12.42 95.23,13.33 C95.23,14.25 95.09,15.09 94.83,15.88 C94.56,16.66 94.17,17.35 93.64,17.93 C93.11,18.52 92.46,18.97 91.69,19.30 C90.92,19.63 90.03,19.79 89.00,19.79 C87.99,19.79 87.10,19.63 86.33,19.30 C85.55,18.97 84.89,18.52 84.36,17.93 C83.84,17.35 83.44,16.66 83.17,15.88 C82.91,15.09 82.78,14.25 82.78,13.33 C82.78,12.42 82.91,11.57 83.17,10.78 L83.17,10.78 Z M85.32,15.34 C85.53,15.92 85.81,16.41 86.18,16.80 C86.54,17.19 86.96,17.49 87.45,17.70 C87.94,17.91 88.46,18.01 89.00,18.01 C89.55,18.01 90.06,17.91 90.55,17.70 C91.04,17.49 91.46,17.19 91.83,16.80 C92.19,16.41 92.48,15.92 92.68,15.34 C92.89,14.75 92.99,14.09 92.99,13.33 C92.99,12.58 92.89,11.91 92.68,11.33 C92.48,10.75 92.19,10.25 91.83,9.85 C91.46,9.45 91.04,9.15 90.55,8.94 C90.06,8.73 89.55,8.63 89.00,8.63 C88.46,8.63 87.94,8.73 87.45,8.94 C86.96,9.15 86.54,9.45 86.18,9.85 C85.81,10.25 85.53,10.75 85.32,11.33 C85.11,11.91 85.01,12.58 85.01,13.33 C85.01,14.09 85.11,14.75 85.32,15.34 L85.32,15.34 Z"></path>
+      <path d="M97.83,7.12 L99.94,7.12 L99.94,19.53 L97.83,19.53 L97.83,7.12 Z"></path>
+      <path d="M105.19,7.12 L105.19,9.08 L105.24,9.08 C106.12,7.58 107.51,6.83 109.41,6.83 C110.25,6.83 110.95,6.94 111.51,7.16 C112.08,7.39 112.53,7.70 112.88,8.10 C113.23,8.50 113.47,8.98 113.61,9.53 C113.75,10.08 113.82,10.69 113.82,11.36 L113.82,19.53 L111.71,19.53 L111.71,11.12 C111.71,10.36 111.48,9.75 111.02,9.30 C110.56,8.85 109.92,8.63 109.11,8.63 C108.46,8.63 107.91,8.72 107.43,8.92 C106.96,9.11 106.57,9.38 106.26,9.73 C105.94,10.08 105.71,10.50 105.55,10.97 C105.39,11.44 105.32,11.96 105.32,12.52 L105.32,19.53 L103.21,19.53 L103.21,7.12 L105.19,7.12"></path>
+      <path d="M122.47,7.12 L122.47,8.92 L119.92,8.92 L119.92,16.62 C119.92,16.86 119.94,17.05 119.98,17.20 C120.02,17.34 120.10,17.46 120.22,17.54 C120.33,17.62 120.49,17.67 120.70,17.69 C120.91,17.71 121.18,17.73 121.50,17.73 L122.47,17.73 L122.47,19.53 L120.86,19.53 C120.32,19.53 119.85,19.49 119.46,19.42 C119.07,19.35 118.76,19.22 118.52,19.02 C118.28,18.83 118.10,18.56 117.99,18.21 C117.87,17.86 117.81,17.39 117.81,16.81 L117.81,8.92 L115.63,8.92 L115.63,7.12 L117.81,7.12 L117.81,3.39 L119.92,3.39 L119.92,7.12 L122.47,7.12"></path>
+      <path d="M0.67,11.87 L2.62,13.76 L8.76,19.50 L11.41,16.94 C11.65,16.61 11.64,16.16 11.36,15.84 L8.94,13.72 L8.95,13.72 L6.34,11.19 C6.04,10.84 6.04,10.32 6.37,9.99 L13.38,3.21 L10.20,0.12 L0.68,9.31 C-0.05,10.02 -0.05,11.17 0.67,11.87"></path>
+      <path d="M21.60,15.15 L19.66,13.27 L13.51,7.53 L10.86,10.08 C10.62,10.42 10.64,10.87 10.91,11.19 L13.33,13.31 L13.33,13.31 L15.93,15.84 C16.24,16.19 16.23,16.70 15.91,17.04 L8.89,23.82 L12.08,26.91 L19.65,19.60 L21.60,17.71 C22.33,17.01 22.33,15.86 21.60,15.15"></path>
+      <path d="M44.55,4.58 C44.55,5.24 44.00,5.77 43.32,5.77 C42.64,5.77 42.09,5.24 42.09,4.58 C42.09,3.93 42.64,3.39 43.32,3.39 C44.00,3.39 44.55,3.93 44.55,4.58"></path>
+      <path d="M100.11,4.58 C100.11,5.24 99.56,5.77 98.88,5.77 C98.20,5.77 97.65,5.24 97.65,4.58 C97.65,3.93 98.20,3.39 98.88,3.39 C99.56,3.39 100.11,3.93 100.11,4.58"></path>
+    </g>
+    <rect height="20" rx="1" width="78" x="129" y="3"></rect>
+    <path class="u-fill" d="M139.43,12.90 L139.43,10.02 L141.48,10.02 C142.07,10.02 142.50,10.14 142.78,10.39 C143.05,10.64 143.19,10.99 143.19,11.46 C143.19,11.93 143.05,12.29 142.78,12.54 C142.50,12.79 142.07,12.91 141.48,12.90 L139.43,12.90 Z M138.38,9.14 L138.38,17 L139.43,17 L139.43,13.78 L141.83,13.78 C142.62,13.79 143.22,13.59 143.63,13.18 C144.03,12.77 144.24,12.20 144.24,11.46 C144.24,10.73 144.03,10.16 143.63,9.75 C143.22,9.34 142.62,9.14 141.83,9.14 L138.38,9.14 Z M147.11,9.14 L147.11,17 L148.16,17 L148.16,13.64 L150.71,13.64 C150.97,13.64 151.17,13.68 151.33,13.76 C151.48,13.83 151.60,13.94 151.70,14.06 C151.79,14.19 151.86,14.34 151.91,14.51 C151.95,14.69 151.99,14.87 152.02,15.06 C152.06,15.25 152.08,15.44 152.08,15.64 C152.09,15.84 152.10,16.03 152.11,16.20 C152.11,16.37 152.13,16.53 152.16,16.67 C152.18,16.80 152.23,16.91 152.30,17 L153.47,17 C153.36,16.86 153.28,16.71 153.22,16.54 C153.17,16.37 153.13,16.18 153.10,15.99 C153.07,15.80 153.05,15.61 153.04,15.41 C153.03,15.21 153.02,15.02 153.01,14.83 C152.99,14.64 152.96,14.45 152.92,14.28 C152.87,14.10 152.81,13.94 152.73,13.80 C152.64,13.66 152.53,13.53 152.39,13.43 C152.24,13.33 152.06,13.26 151.83,13.21 L151.83,13.19 C152.31,13.06 152.65,12.81 152.87,12.45 C153.09,12.09 153.20,11.67 153.20,11.20 C153.20,10.56 152.98,10.06 152.56,9.69 C152.14,9.32 151.56,9.14 150.81,9.14 L147.11,9.14 Z M150.34,12.76 L148.16,12.76 L148.16,10.02 L150.75,10.02 C151.24,10.02 151.60,10.15 151.82,10.4 C152.04,10.64 152.15,10.97 152.15,11.36 C152.15,11.65 152.10,11.88 152.00,12.06 C151.90,12.24 151.77,12.38 151.61,12.49 C151.44,12.60 151.25,12.67 151.03,12.71 C150.81,12.74 150.58,12.76 150.34,12.76 L150.34,12.76 Z M156.25,9.14 L156.25,17 L161.70,17 L161.70,16.12 L157.29,16.12 L157.29,13.40 L161.37,13.40 L161.37,12.52 L157.29,12.52 L157.29,10.02 L161.67,10.02 L161.67,9.14 L156.25,9.14 Z M164.59,9.14 L164.59,17 L165.58,17 L165.58,10.46 L165.60,10.46 L168.06,17 L168.95,17 L171.40,10.46 L171.42,10.46 L171.42,17 L172.41,17 L172.41,9.14 L170.98,9.14 L168.50,15.74 L166.02,9.14 L164.59,9.14 Z M175.79,9.14 L175.79,17 L176.84,17 L176.84,9.14 L175.79,9.14 Z M186.47,14.16 L186.47,9.14 L185.42,9.14 L185.42,14.16 C185.42,14.86 185.25,15.39 184.90,15.76 C184.55,16.12 184.04,16.30 183.38,16.30 C182.67,16.30 182.13,16.12 181.76,15.76 C181.39,15.39 181.20,14.86 181.20,14.16 L181.20,9.14 L180.15,9.14 L180.15,14.16 C180.15,15.21 180.44,15.97 181.01,16.45 C181.58,16.93 182.37,17.17 183.38,17.17 C184.37,17.17 185.13,16.92 185.67,16.42 C186.20,15.92 186.47,15.16 186.47,14.16 L186.47,14.16 Z M189.76,9.14 L189.76,17 L190.75,17 L190.75,10.46 L190.77,10.46 L193.23,17 L194.12,17 L196.57,10.46 L196.59,10.46 L196.59,17 L197.58,17 L197.58,9.14 L196.15,9.14 L193.67,15.74 L191.19,9.14 L189.76,9.14 Z"></path>
+  </g>
+</svg>
+    </a>
+    <a href="https://www.sitepoint.com/community/" class="l-d-b l-pa3 SidebarNav_link">
+      <svg class="sp-logo" viewbox="0 0 202 27">
+  <g id="logo">
+      <path d="M31.36,16.75 C31.56,17.07 31.82,17.31 32.14,17.50 C32.46,17.68 32.82,17.82 33.23,17.89 C33.63,17.97 34.05,18.01 34.48,18.01 C34.81,18.01 35.16,17.99 35.52,17.94 C35.89,17.89 36.22,17.81 36.53,17.68 C36.83,17.55 37.08,17.36 37.28,17.11 C37.48,16.87 37.58,16.55 37.58,16.17 C37.58,15.64 37.37,15.24 36.96,14.97 C36.55,14.69 36.03,14.47 35.41,14.31 C34.79,14.14 34.12,13.99 33.39,13.85 C32.66,13.71 31.99,13.52 31.37,13.27 C30.75,13.03 30.23,12.68 29.82,12.23 C29.41,11.78 29.20,11.16 29.20,10.36 C29.20,9.73 29.34,9.20 29.63,8.75 C29.92,8.30 30.30,7.94 30.75,7.66 C31.20,7.38 31.72,7.17 32.29,7.03 C32.86,6.90 33.42,6.83 33.99,6.83 C34.71,6.83 35.38,6.89 35.99,7.01 C36.61,7.13 37.15,7.34 37.62,7.63 C38.09,7.93 38.46,8.33 38.75,8.83 C39.03,9.34 39.19,9.96 39.24,10.72 L37.13,10.72 C37.10,10.32 36.99,9.98 36.81,9.72 C36.63,9.46 36.40,9.25 36.12,9.08 C35.84,8.92 35.53,8.81 35.19,8.74 C34.85,8.66 34.51,8.63 34.16,8.63 C33.84,8.63 33.53,8.65 33.20,8.70 C32.88,8.75 32.59,8.83 32.32,8.95 C32.06,9.07 31.84,9.23 31.68,9.43 C31.51,9.63 31.43,9.89 31.43,10.21 C31.43,10.56 31.56,10.86 31.82,11.09 C32.07,11.32 32.40,11.51 32.80,11.66 C33.19,11.82 33.64,11.95 34.13,12.05 C34.63,12.15 35.13,12.26 35.62,12.37 C36.15,12.49 36.67,12.62 37.17,12.78 C37.67,12.94 38.12,13.15 38.51,13.42 C38.90,13.68 39.21,14.01 39.45,14.41 C39.69,14.81 39.81,15.31 39.81,15.90 C39.81,16.66 39.65,17.28 39.33,17.77 C39.01,18.27 38.58,18.67 38.06,18.98 C37.54,19.28 36.96,19.49 36.30,19.61 C35.65,19.73 35.00,19.79 34.36,19.79 C33.65,19.79 32.97,19.72 32.32,19.58 C31.68,19.43 31.11,19.20 30.61,18.87 C30.12,18.54 29.72,18.11 29.42,17.57 C29.13,17.03 28.96,16.38 28.93,15.61 L31.03,15.61 C31.05,16.06 31.16,16.44 31.36,16.75" id="Fill-1"></path>
+      <path d="M42.27,7.12 L44.37,7.12 L44.37,19.53 L42.27,19.53 L42.27,7.12 Z" id="Fill-2"></path>
+      <path d="M53.13,7.12 L53.13,8.92 L50.57,8.92 L50.57,16.62 C50.57,16.86 50.59,17.05 50.63,17.20 C50.67,17.34 50.75,17.46 50.87,17.54 C50.99,17.62 51.15,17.67 51.35,17.69 C51.56,17.71 51.83,17.73 52.16,17.73 L53.13,17.73 L53.13,19.53 L51.51,19.53 C50.97,19.53 50.50,19.49 50.11,19.42 C49.72,19.35 49.41,19.22 49.17,19.02 C48.93,18.83 48.75,18.56 48.64,18.21 C48.52,17.86 48.46,17.39 48.46,16.81 L48.46,8.92 L46.28,8.92 L46.28,7.12 L48.46,7.12 L48.46,3.39 L50.57,3.39 L50.57,7.12 L53.13,7.12" id="Fill-3"></path>
+      <path d="M64.53,18.73 C63.57,19.44 62.36,19.79 60.91,19.79 C59.89,19.79 59.00,19.63 58.25,19.31 C57.49,18.99 56.86,18.54 56.35,17.97 C55.84,17.39 55.45,16.70 55.20,15.90 C54.94,15.10 54.80,14.23 54.76,13.29 C54.76,12.34 54.91,11.48 55.21,10.69 C55.51,9.91 55.92,9.23 56.46,8.65 C57.00,8.08 57.63,7.63 58.37,7.31 C59.11,6.99 59.91,6.83 60.79,6.83 C61.93,6.83 62.87,7.05 63.63,7.51 C64.38,7.97 64.98,8.55 65.44,9.25 C65.89,9.96 66.20,10.73 66.38,11.56 C66.55,12.39 66.62,13.18 66.59,13.93 L56.99,13.93 C56.98,14.48 57.04,14.99 57.19,15.48 C57.34,15.97 57.58,16.40 57.91,16.78 C58.24,17.16 58.66,17.46 59.18,17.68 C59.69,17.90 60.29,18.01 60.98,18.01 C61.88,18.01 62.61,17.82 63.18,17.41 C63.75,17.02 64.13,16.41 64.31,15.59 L66.39,15.59 C66.11,16.98 65.49,18.03 64.53,18.73 L64.53,18.73 Z M64.02,10.76 C63.83,10.33 63.58,9.96 63.25,9.65 C62.93,9.34 62.55,9.09 62.11,8.90 C61.68,8.72 61.19,8.63 60.66,8.63 C60.12,8.63 59.62,8.72 59.19,8.90 C58.75,9.09 58.37,9.34 58.06,9.66 C57.75,9.98 57.50,10.35 57.32,10.78 C57.13,11.20 57.03,11.65 56.99,12.13 L64.36,12.13 C64.32,11.65 64.21,11.20 64.02,10.76 L64.02,10.76 Z" id="Fill-4"></path>
+      <path d="M70.95,7.12 L70.95,8.80 L71.00,8.80 C71.35,8.11 71.89,7.61 72.64,7.30 C73.38,6.98 74.20,6.83 75.09,6.83 C76.09,6.83 76.95,7.00 77.68,7.36 C78.42,7.71 79.03,8.18 79.52,8.78 C80.01,9.38 80.37,10.08 80.62,10.86 C80.87,11.65 80.99,12.48 80.99,13.36 C80.99,14.24 80.87,15.07 80.63,15.85 C80.39,16.64 80.03,17.32 79.54,17.91 C79.06,18.49 78.44,18.95 77.71,19.29 C76.97,19.62 76.12,19.79 75.14,19.79 C74.83,19.79 74.48,19.76 74.09,19.70 C73.70,19.63 73.32,19.53 72.94,19.38 C72.56,19.24 72.20,19.04 71.86,18.79 C71.52,18.55 71.23,18.24 71.00,17.87 L70.95,17.87 L70.95,24.26 L68.84,24.26 L68.84,7.12 L70.95,7.12 L70.95,7.12 Z M78.53,11.52 C78.37,10.97 78.13,10.48 77.81,10.04 C77.49,9.61 77.07,9.27 76.57,9.01 C76.06,8.76 75.47,8.63 74.79,8.63 C74.08,8.63 73.48,8.76 72.98,9.04 C72.49,9.31 72.08,9.67 71.77,10.10 C71.46,10.55 71.23,11.05 71.09,11.60 C70.95,12.17 70.88,12.73 70.88,13.31 C70.88,13.92 70.95,14.51 71.10,15.07 C71.25,15.64 71.48,16.14 71.81,16.57 C72.13,17.01 72.55,17.35 73.06,17.62 C73.57,17.88 74.19,18.01 74.92,18.01 C75.65,18.01 76.25,17.88 76.74,17.61 C77.23,17.34 77.62,16.98 77.92,16.53 C78.22,16.08 78.43,15.57 78.56,14.99 C78.70,14.41 78.76,13.82 78.76,13.21 C78.76,12.64 78.68,12.07 78.53,11.52 L78.53,11.52 Z" id="Fill-5"></path>
+      <path d="M83.17,10.78 C83.44,9.98 83.84,9.30 84.36,8.71 C84.89,8.13 85.55,7.67 86.33,7.33 C87.10,7.00 87.99,6.83 89.00,6.83 C90.03,6.83 90.92,7.00 91.69,7.33 C92.46,7.67 93.11,8.13 93.64,8.71 C94.17,9.30 94.56,9.98 94.83,10.78 C95.09,11.57 95.23,12.42 95.23,13.33 C95.23,14.25 95.09,15.09 94.83,15.88 C94.56,16.66 94.17,17.35 93.64,17.93 C93.11,18.52 92.46,18.97 91.69,19.30 C90.92,19.63 90.03,19.79 89.00,19.79 C87.99,19.79 87.10,19.63 86.33,19.30 C85.55,18.97 84.89,18.52 84.36,17.93 C83.84,17.35 83.44,16.66 83.17,15.88 C82.91,15.09 82.78,14.25 82.78,13.33 C82.78,12.42 82.91,11.57 83.17,10.78 L83.17,10.78 Z M85.32,15.34 C85.53,15.92 85.81,16.41 86.18,16.80 C86.54,17.19 86.96,17.49 87.45,17.70 C87.94,17.91 88.46,18.01 89.00,18.01 C89.55,18.01 90.06,17.91 90.55,17.70 C91.04,17.49 91.46,17.19 91.83,16.80 C92.19,16.41 92.48,15.92 92.68,15.34 C92.89,14.75 92.99,14.09 92.99,13.33 C92.99,12.58 92.89,11.91 92.68,11.33 C92.48,10.75 92.19,10.25 91.83,9.85 C91.46,9.45 91.04,9.15 90.55,8.94 C90.06,8.73 89.55,8.63 89.00,8.63 C88.46,8.63 87.94,8.73 87.45,8.94 C86.96,9.15 86.54,9.45 86.18,9.85 C85.81,10.25 85.53,10.75 85.32,11.33 C85.11,11.91 85.01,12.58 85.01,13.33 C85.01,14.09 85.11,14.75 85.32,15.34 L85.32,15.34 Z" id="Fill-6"></path>
+      <path d="M97.83,7.12 L99.94,7.12 L99.94,19.53 L97.83,19.53 L97.83,7.12 Z" id="Fill-7"></path>
+      <path d="M105.19,7.12 L105.19,9.08 L105.24,9.08 C106.12,7.58 107.51,6.83 109.41,6.83 C110.25,6.83 110.95,6.94 111.51,7.16 C112.08,7.39 112.53,7.70 112.88,8.10 C113.23,8.50 113.47,8.98 113.61,9.53 C113.75,10.08 113.82,10.69 113.82,11.36 L113.82,19.53 L111.71,19.53 L111.71,11.12 C111.71,10.36 111.48,9.75 111.02,9.30 C110.56,8.85 109.92,8.63 109.11,8.63 C108.46,8.63 107.91,8.72 107.43,8.92 C106.96,9.11 106.57,9.38 106.26,9.73 C105.94,10.08 105.71,10.50 105.55,10.97 C105.39,11.44 105.32,11.96 105.32,12.52 L105.32,19.53 L103.21,19.53 L103.21,7.12 L105.19,7.12" id="Fill-8"></path>
+      <path d="M122.47,7.12 L122.47,8.92 L119.92,8.92 L119.92,16.62 C119.92,16.86 119.94,17.05 119.98,17.20 C120.02,17.34 120.10,17.46 120.22,17.54 C120.33,17.62 120.49,17.67 120.70,17.69 C120.91,17.71 121.18,17.73 121.50,17.73 L122.47,17.73 L122.47,19.53 L120.86,19.53 C120.32,19.53 119.85,19.49 119.46,19.42 C119.07,19.35 118.76,19.22 118.52,19.02 C118.28,18.83 118.10,18.56 117.99,18.21 C117.87,17.86 117.81,17.39 117.81,16.81 L117.81,8.92 L115.63,8.92 L115.63,7.12 L117.81,7.12 L117.81,3.39 L119.92,3.39 L119.92,7.12 L122.47,7.12" id="Fill-9"></path>
+      <path d="M0.67,11.87 L2.62,13.76 L8.76,19.50 L11.41,16.94 C11.65,16.61 11.64,16.16 11.36,15.84 L8.94,13.72 L8.95,13.72 L6.34,11.19 C6.04,10.84 6.04,10.32 6.37,9.99 L13.38,3.21 L10.20,0.12 L0.68,9.31 C-0.05,10.02 -0.05,11.17 0.67,11.87" id="Fill-10"></path>
+      <path d="M21.60,15.15 L19.66,13.27 L13.51,7.53 L10.86,10.08 C10.62,10.42 10.64,10.87 10.91,11.19 L13.33,13.31 L13.33,13.31 L15.93,15.84 C16.24,16.19 16.23,16.70 15.91,17.04 L8.89,23.82 L12.08,26.91 L19.65,19.60 L21.60,17.71 C22.33,17.01 22.33,15.86 21.60,15.15" id="Fill-11"></path>
+      <path d="M44.55,4.58 C44.55,5.24 44.00,5.77 43.32,5.77 C42.64,5.77 42.09,5.24 42.09,4.58 C42.09,3.93 42.64,3.39 43.32,3.39 C44.00,3.39 44.55,3.93 44.55,4.58" id="Fill-12"></path>
+      <path d="M100.11,4.58 C100.11,5.24 99.56,5.77 98.88,5.77 C98.20,5.77 97.65,5.24 97.65,4.58 C97.65,3.93 98.20,3.39 98.88,3.39 C99.56,3.39 100.11,3.93 100.11,4.58" id="Fill-13"></path>
+  </g>
+  <rect x="129" y="3" width="73" height="20" rx="1"></rect>
+  <path class="u-fill" d="M139.62,9.14 L139.62,17 L140.67,17 L140.67,13.40 L144.28,13.40 L144.28,12.52 L140.67,12.52 L140.67,10.02 L144.78,10.02 L144.78,9.14 L139.62,9.14 Z M148.14,13.07 C148.14,12.67 148.19,12.28 148.30,11.90 C148.40,11.51 148.56,11.17 148.78,10.86 C149.00,10.55 149.28,10.30 149.63,10.11 C149.97,9.93 150.38,9.83 150.86,9.83 C151.34,9.83 151.75,9.93 152.09,10.11 C152.44,10.30 152.72,10.55 152.94,10.86 C153.16,11.17 153.32,11.51 153.42,11.90 C153.52,12.28 153.58,12.67 153.58,13.07 C153.58,13.46 153.52,13.85 153.42,14.24 C153.32,14.62 153.16,14.97 152.94,15.28 C152.72,15.59 152.44,15.83 152.09,16.02 C151.75,16.21 151.34,16.30 150.86,16.30 C150.38,16.30 149.97,16.21 149.63,16.02 C149.28,15.83 149.00,15.59 148.78,15.28 C148.56,14.97 148.40,14.62 148.30,14.24 C148.19,13.85 148.14,13.46 148.14,13.07 L148.14,13.07 Z M147.10,13.07 C147.10,13.60 147.18,14.12 147.33,14.61 C147.49,15.11 147.73,15.55 148.04,15.93 C148.36,16.31 148.75,16.61 149.22,16.84 C149.69,17.06 150.24,17.17 150.86,17.17 C151.48,17.17 152.03,17.06 152.50,16.84 C152.97,16.61 153.36,16.31 153.68,15.93 C153.99,15.55 154.23,15.11 154.38,14.61 C154.54,14.12 154.62,13.60 154.62,13.07 C154.62,12.53 154.54,12.02 154.38,11.52 C154.23,11.03 153.99,10.59 153.68,10.21 C153.36,9.83 152.97,9.52 152.50,9.3 C152.03,9.07 151.48,8.95 150.86,8.95 C150.24,8.95 149.69,9.07 149.22,9.3 C148.75,9.52 148.36,9.83 148.04,10.21 C147.73,10.59 147.49,11.03 147.33,11.52 C147.18,12.02 147.10,12.53 147.10,13.07 L147.10,13.07 Z M157.50,9.14 L157.50,17 L158.54,17 L158.54,13.64 L161.09,13.64 C161.35,13.64 161.56,13.68 161.71,13.76 C161.86,13.83 161.99,13.94 162.08,14.06 C162.18,14.19 162.25,14.34 162.29,14.51 C162.34,14.69 162.37,14.87 162.40,15.06 C162.44,15.25 162.46,15.44 162.47,15.64 C162.48,15.84 162.48,16.03 162.49,16.20 C162.50,16.37 162.51,16.53 162.54,16.67 C162.57,16.80 162.62,16.91 162.69,17 L163.86,17 C163.74,16.86 163.66,16.71 163.61,16.54 C163.55,16.37 163.51,16.18 163.48,15.99 C163.45,15.80 163.43,15.61 163.43,15.41 C163.42,15.21 163.41,15.02 163.39,14.83 C163.37,14.64 163.34,14.45 163.30,14.28 C163.26,14.10 163.20,13.94 163.11,13.80 C163.03,13.66 162.91,13.53 162.77,13.43 C162.63,13.33 162.44,13.26 162.22,13.21 L162.22,13.19 C162.69,13.06 163.04,12.81 163.26,12.45 C163.47,12.09 163.58,11.67 163.58,11.20 C163.58,10.56 163.37,10.06 162.95,9.69 C162.53,9.32 161.94,9.14 161.19,9.14 L157.50,9.14 Z M160.72,12.76 L158.54,12.76 L158.54,10.02 L161.14,10.02 C161.63,10.02 161.98,10.15 162.21,10.4 C162.43,10.64 162.54,10.97 162.54,11.36 C162.54,11.65 162.49,11.88 162.39,12.06 C162.29,12.24 162.16,12.38 161.99,12.49 C161.83,12.60 161.63,12.67 161.41,12.71 C161.19,12.74 160.96,12.76 160.72,12.76 L160.72,12.76 Z M172.90,14.16 L172.90,9.14 L171.86,9.14 L171.86,14.16 C171.86,14.86 171.68,15.39 171.33,15.76 C170.99,16.12 170.48,16.30 169.81,16.30 C169.11,16.30 168.57,16.12 168.19,15.76 C167.82,15.39 167.63,14.86 167.63,14.16 L167.63,9.14 L166.59,9.14 L166.59,14.16 C166.59,15.21 166.87,15.97 167.44,16.45 C168.01,16.93 168.80,17.17 169.81,17.17 C170.80,17.17 171.56,16.92 172.10,16.42 C172.63,15.92 172.90,15.16 172.90,14.16 L172.90,14.16 Z M176.20,9.14 L176.20,17 L177.19,17 L177.19,10.46 L177.21,10.46 L179.66,17 L180.55,17 L183.01,10.46 L183.03,10.46 L183.03,17 L184.02,17 L184.02,9.14 L182.59,9.14 L180.10,15.74 L177.63,9.14 L176.20,9.14 Z M191.90,11.44 L192.89,11.44 C192.87,11.01 192.79,10.64 192.64,10.32 C192.49,10.01 192.28,9.75 192.02,9.55 C191.76,9.34 191.46,9.19 191.12,9.10 C190.77,9.00 190.40,8.95 190,8.95 C189.64,8.95 189.29,9.00 188.94,9.09 C188.60,9.18 188.30,9.32 188.03,9.51 C187.76,9.70 187.55,9.93 187.39,10.22 C187.23,10.51 187.15,10.86 187.15,11.25 C187.15,11.61 187.22,11.91 187.36,12.15 C187.50,12.39 187.69,12.58 187.93,12.73 C188.17,12.88 188.44,13.00 188.74,13.10 C189.04,13.19 189.35,13.27 189.66,13.34 C189.97,13.41 190.28,13.47 190.58,13.54 C190.88,13.61 191.15,13.69 191.39,13.80 C191.62,13.91 191.82,14.04 191.96,14.21 C192.10,14.38 192.17,14.60 192.17,14.87 C192.17,15.16 192.11,15.39 192.00,15.58 C191.88,15.76 191.73,15.90 191.54,16.01 C191.34,16.12 191.13,16.19 190.89,16.24 C190.65,16.28 190.42,16.30 190.18,16.30 C189.89,16.30 189.60,16.27 189.32,16.19 C189.05,16.12 188.80,16.01 188.59,15.85 C188.38,15.70 188.21,15.50 188.09,15.26 C187.96,15.02 187.89,14.74 187.89,14.41 L186.90,14.41 C186.90,14.89 186.99,15.30 187.16,15.65 C187.33,16.00 187.57,16.28 187.87,16.51 C188.16,16.73 188.51,16.90 188.90,17.01 C189.29,17.12 189.71,17.17 190.15,17.17 C190.51,17.17 190.87,17.13 191.23,17.04 C191.60,16.96 191.92,16.82 192.22,16.64 C192.51,16.45 192.75,16.21 192.94,15.91 C193.12,15.61 193.22,15.26 193.22,14.84 C193.22,14.45 193.15,14.13 193.00,13.87 C192.86,13.61 192.67,13.40 192.43,13.23 C192.19,13.06 191.92,12.93 191.62,12.83 C191.32,12.73 191.02,12.65 190.70,12.57 C190.39,12.50 190.09,12.43 189.79,12.37 C189.49,12.31 189.22,12.23 188.98,12.13 C188.74,12.04 188.55,11.91 188.41,11.76 C188.26,11.61 188.19,11.42 188.19,11.18 C188.19,10.92 188.24,10.70 188.34,10.53 C188.44,10.36 188.57,10.22 188.74,10.12 C188.90,10.02 189.09,9.94 189.30,9.90 C189.51,9.86 189.73,9.83 189.95,9.83 C190.49,9.83 190.94,9.96 191.29,10.21 C191.64,10.47 191.84,10.88 191.90,11.44 L191.90,11.44 Z"></path>
+</svg>
+    </a>
+  </section>
+
+  <section class="m-border-b SidebarNav_topics">
+    <ul>
+      <li class="SidebarNav_link SidebarNav_channelLink u-html-css">
+            <i class="SidebarNav_icon fa fa-circle u-html-css"></i>
+            <a class="f-light" href="https://www.sitepoint.com/html-css/" data-channel="html-css">HTML &amp; CSS</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-javascript">
+            <i class="SidebarNav_icon fa fa-circle u-javascript"></i>
+            <a class="f-light" href="https://www.sitepoint.com/javascript/" data-channel="javascript">JavaScript</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-php">
+            <i class="SidebarNav_icon fa fa-circle u-php"></i>
+            <a class="f-light" href="https://www.sitepoint.com/php/" data-channel="php">PHP</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-ruby">
+            <i class="SidebarNav_icon fa fa-circle u-ruby"></i>
+            <a class="f-light" href="https://www.sitepoint.com/ruby/" data-channel="ruby">Ruby</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-mobile">
+            <i class="SidebarNav_icon fa fa-circle u-mobile"></i>
+            <a class="f-light" href="https://www.sitepoint.com/mobile/" data-channel="mobile">Mobile</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-design-ux">
+            <i class="SidebarNav_icon fa fa-circle u-design-ux"></i>
+            <a class="f-light" href="https://www.sitepoint.com/design-ux/" data-channel="design-ux">Design &amp; UX</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-entrepreneur">
+            <i class="SidebarNav_icon fa fa-circle u-entrepreneur"></i>
+            <a class="f-light" href="https://www.sitepoint.com/entrepreneur/" data-channel="entrepreneur">Entrepreneur</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-web">
+            <i class="SidebarNav_icon fa fa-circle u-web"></i>
+            <a class="f-light" href="https://www.sitepoint.com/web/" data-channel="web">Web</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-wordpress">
+            <i class="SidebarNav_icon fa fa-circle u-wordpress"></i>
+            <a class="f-light" href="https://www.sitepoint.com/wordpress/" data-channel="wordpress">WordPress</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-java">
+            <i class="SidebarNav_icon fa fa-circle u-java"></i>
+            <a class="f-light" href="https://www.sitepoint.com/java/" data-channel="java">Java</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink u-woorank">
+            <i class="SidebarNav_icon fa fa-circle u-woorank"></i>
+            <a class="f-light" href="https://www.sitepoint.com/woorank/" data-channel="woorank">SEO By WooRank</a>
+          </li>    </ul>
+  </section>
+
+  <section class="m-border-b SidebarNav_products">
+    <ul>
+      <li class="SidebarNav_link u-themes/?utm_source=blog&utm_medium=sidebar-nav">
+            <i class="SidebarNav_icon fa fa-file-image-o u-themes/?utm_source=blog&utm_medium=sidebar-nav"></i>
+            
+            <a class="f-light" href="/themes/?utm_source=blog&utm_medium=sidebar-nav">Themes</a>
+          </li>      <li class="SidebarNav_link u-versioning-show">
+            <i class="SidebarNav_icon fa fa-microphone u-versioning-show"></i>
+            
+            <a class="f-light" href="/versioning-show/">Podcast</a>
+          </li>      <li class="SidebarNav_link u-premium/books">
+            <i class="SidebarNav_icon fa fa-book u-premium/books"></i>
+            
+            <a class="f-light" href="/premium/books/">Books</a>
+          </li>      <li class="SidebarNav_link u-premium/courses">
+            <i class="SidebarNav_icon fa fa-play-circle u-premium/courses"></i>
+            
+            <a class="f-light" href="/premium/courses/">Courses</a>
+          </li>      <li class="SidebarNav_link u-premium/screencasts">
+            <i class="SidebarNav_icon fa fa-video-camera u-premium/screencasts"></i>
+            
+            <a class="f-light" href="/premium/screencasts/">Screencasts</a>
+          </li>      <li class="SidebarNav_link u-newsletter">
+            <i class="SidebarNav_icon fa fa-envelope u-newsletter"></i>
+            
+            <a class="f-light" href="/newsletter/">Newsletters</a>
+          </li>      <li class="SidebarNav_link u-versioning">
+            
+            <i class="SidebarNav_icon"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 463 533">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Misc-Icons" transform="translate(-224.000000, -209.000000)" fill="#A2A2A2">
+            <g id="Adam" transform="translate(224.000000, 209.000000)">
+                <path d="M205.23914,223.989305 C205.23914,239.058221 193.018305,251.270053 177.938282,251.270053 C162.858259,251.270053 150.637425,239.064975 150.637425,223.989305 C150.637425,208.927144 162.858259,196.708557 177.938282,196.708557 C193.018305,196.708557 205.23914,208.927144 205.23914,223.989305" id="Shape"></path>
+                <path d="M319.240023,223.989305 C319.240023,239.058221 307.019188,251.270053 291.939165,251.270053 C276.859142,251.270053 264.638308,239.064975 264.638308,223.989305 C264.638308,208.927144 276.859142,196.708557 291.939165,196.708557 C307.019188,196.708557 319.240023,208.927144 319.240023,223.989305" id="Shape-Copy"></path>
+                <path d="M45.9192714,105.68948 C47.1603233,105.013767 48.4156135,104.338834 49.6814591,103.66477 C49.285517,101.268011 49.079511,98.8067359 49.079511,96.2970985 C49.079511,71.6393315 68.9663337,51.6502619 93.4979726,51.6502619 C104.828598,51.6502619 115.168338,55.9145566 123.11028,62.1553999 C123.11028,37.497633 142.997103,17.5085634 167.528742,17.5085634 C177.872808,17.5085634 187.39103,21.0626011 194.940698,27.0220906 C201.994758,11.1002236 217.874616,0 236.33381,0 C255.201408,0 271.374274,11.5968357 278.182101,28.0859033 C285.813075,16.4403992 298.937725,8.75428168 313.84838,8.75428168 C335.217866,8.75428168 352.918943,24.5413571 356.037389,45.1451696 C359.093922,44.2508863 362.326213,43.7714084 365.669919,43.7714084 C384.669913,43.7714084 400.072453,59.2531388 400.072453,78.3508211 C400.072453,84.451539 398.500668,90.1832596 395.741931,95.1591734 C420.545,106.093308 441.166028,118.313655 447.484806,130.438797 C462.05792,158.40324 448.921531,194.216875 441.795446,209.76377 C445.786047,226.227441 447.901492,243.429264 447.901492,261.127716 C447.901492,277.569319 446.075834,293.582324 442.617163,308.973095 C454.31826,313.102542 462.707645,324.30529 462.707645,337.477559 C462.707645,352.446546 451.87352,364.872078 437.657056,367.264056 C442.403415,372.604775 445.288641,379.652197 445.288641,387.376964 C445.288641,404.057219 431.83579,417.579236 415.240858,417.579236 C414.739425,417.579236 414.24086,417.56689 413.745449,417.542485 C416.086983,421.841984 417.418234,426.776628 417.418234,432.023801 C417.418234,448.704055 403.965383,462.226073 387.370451,462.226073 C385.766225,462.226073 384.191363,462.099709 382.655177,461.856345 C383.175775,464.083267 383.451175,466.405199 383.451175,468.791784 C383.451175,485.472038 369.998324,498.994056 353.403392,498.994056 C348.884389,498.994056 344.598385,497.991345 340.753583,496.195199 C340.156973,512.346957 326.941829,525.256901 310.726831,525.256901 C300.435078,525.256901 291.351821,520.056112 285.93648,512.126599 C281.811241,523.856499 270.681444,532.260326 257.598867,532.260326 C247.286985,532.260326 238.188331,527.039174 232.776786,519.083469 C227.365238,527.039175 218.266585,532.260326 207.954704,532.260326 C194.872127,532.260326 183.74233,523.856499 179.617091,512.126599 C174.20175,520.056112 165.118493,525.256901 154.82674,525.256901 C138.611742,525.256901 125.396598,512.346957 124.799988,496.195199 C120.955186,497.991345 116.669182,498.994056 112.150179,498.994056 C95.5552468,498.994056 82.1023962,485.472038 82.1023962,468.791784 C82.1023962,466.405199 82.3777956,464.083267 82.8983938,461.856345 C81.3622084,462.099709 79.7873457,462.226073 78.1831202,462.226073 C61.588188,462.226073 48.1353374,448.704055 48.1353374,432.023801 C48.1353374,426.776628 49.4665878,421.841984 51.8081225,417.542485 C51.312711,417.56689 50.8141464,417.579236 50.312713,417.579236 C33.7177807,417.579236 20.2649301,404.057219 20.2649301,387.376964 C20.2649301,379.652197 23.1501561,372.604775 27.8965152,367.264056 C13.6800506,364.872078 2.84592558,352.446546 2.84592558,337.477559 C2.84592558,324.30529 11.2353108,313.102542 22.9364075,308.973095 C19.4777374,293.582324 17.6520794,277.569319 17.6520794,261.127716 C17.6520794,244.483155 19.5230884,228.277837 23.0652378,212.71266 C23.0461555,212.67345 23.0269954,212.633634 23.0077587,212.593218 C8.40744355,199.915919 -22.2912349,139.477462 27.9975916,114.351569 C34.9803921,110.862741 40.9027514,108.009708 45.9192714,105.68948 L45.9192714,105.68948 Z M321.182928,338.855264 C312.257241,380.392075 275.494697,411.515802 231.5,411.515802 C187.505303,411.515802 150.742759,380.392075 141.817072,338.855264 L321.182928,338.855264 L321.182928,338.855264 L321.182928,338.855264 Z M323.401809,93.513343 C382.119911,125.539939 421.986958,188.049902 421.986958,259.919187 C421.986958,269.181179 421.324839,278.287729 420.045582,287.193626 L420.045582,287.193626 C414.531038,280.687855 406.320283,276.561781 397.150761,276.561781 C382.005642,276.561781 369.476084,287.817909 367.390774,302.461227 C361.921787,296.754612 354.241111,293.204376 345.735474,293.204376 C336.696537,293.204376 328.589254,297.213765 323.07789,303.559722 L323.07789,303.559722 C317.566526,297.213765 309.459243,293.204376 300.420306,293.204376 C291.140116,293.204376 282.841976,297.430646 277.326999,304.072813 C271.812023,297.430646 263.513882,293.204376 254.233693,293.204376 C245.884947,293.204376 238.331009,296.624848 232.883277,302.147652 L232.883277,302.147652 C227.435545,296.624848 219.881607,293.204376 211.532861,293.204376 C202.252672,293.204376 193.954531,297.430646 188.439555,304.072813 C182.924578,297.430646 174.626438,293.204376 165.346248,293.204376 C156.307311,293.204376 148.200028,297.213765 142.688664,303.559722 L142.688664,303.559722 C137.1773,297.213765 129.070017,293.204376 120.03108,293.204376 C111.525443,293.204376 103.844767,296.754612 98.3757799,302.461227 C96.2904699,287.817909 83.7609125,276.561781 68.6157934,276.561781 C60.2507056,276.561781 52.6835401,279.995657 47.2334107,285.537513 C46.105173,277.159748 45.5224867,268.607864 45.5224867,259.919187 C45.5224867,222.269089 56.4635528,187.187552 75.3242153,157.711582 C101.872077,155.792935 136.061257,148.07484 172.032022,134.915239 C218.909805,117.765397 257.559595,95.4909208 277.539381,75.8645287 C278.024685,75.9807367 278.50926,76.0988336 278.993099,76.2188112 C286.713596,87.3063559 299.514894,94.5568665 314.000977,94.5568665 C317.230893,94.5568665 320.377051,94.1964131 323.401809,93.513343 L323.401809,93.513343 L323.401809,93.513343 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+</i>
+            <a class="f-light" href="/versioning/">Versioning</a>
+          </li>      <li class="SidebarNav_link u-community">
+            <i class="SidebarNav_icon fa fa-comment u-community"></i>
+            
+            <a class="f-light" href="/community/">Forums</a>
+          </li>    </ul>
+  </section>
+
+  <section class="m-border-b SidebarNav_admin">
+    <ul>
+      <li class="SidebarNav_link u-advertise">
+            
+            
+            <a class="f-light" href="/advertise/">Advertise</a>
+          </li>      <li class="SidebarNav_link u-write-for-us">
+            
+            
+            <a class="f-light" href="/write-for-us/">Contribute</a>
+          </li>      <li class="SidebarNav_link u-contact-us">
+            
+            
+            <a class="f-light" href="/contact-us/">Contact Us</a>
+          </li>      <li class="SidebarNav_link u-about-us">
+            
+            
+            <a class="f-light" href="/about-us/">Our Story</a>
+          </li>    </ul>
+  </section>
+
+  <section class="SidebarNav_social">
+    <ul>
+      <li class="SidebarNav_socialLink">
+        <a class="f-light" href="/newsletter/">
+          <i class="fa fa-envelope SidebarNav_socialIcon u-newsletter"></i>
+          <span class="SidebarNav_socialCount">995k<br />Subscribers</span>
+        </a>
+      </li>
+      <li class="SidebarNav_socialLink">
+        <a class="f-light" href="https://twitter.com/sitepointdotcom" target="_blank">
+          <i class="fa fa-twitter SidebarNav_socialIcon u-twitter"></i>
+          <span class="SidebarNav_socialCount">132k<br />Followers</span>
+        </a>
+      </li>
+      <li class="SidebarNav_socialLink">
+        <a class="f-light" href="https://facebook.com/sitepoint" target="_blank">
+          <i class="fa fa-facebook SidebarNav_socialIcon u-facebook"></i>
+          <span class="SidebarNav_socialCount">80k<br />Followers</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<div class="SidebarNav_lightbox" onClick="sitepoint.SidebarNav_toggle(event)"></div>
+        <ads-weighted widget='54' data='{"US-TX":[{"id":"573","demandbase_field":null,"demandbase_value":null,"weight":"50","randMax":50},{"id":"570","demandbase_field":null,"demandbase_value":null,"weight":"50","randMax":100}],"US-IL":[{"id":"574","demandbase_field":null,"demandbase_value":null,"weight":"50","randMax":50},{"id":"571","demandbase_field":null,"demandbase_value":null,"weight":"50","randMax":100}],"US-CA":[{"id":"575","demandbase_field":null,"demandbase_value":null,"weight":"50","randMax":50},{"id":"572","demandbase_field":null,"demandbase_value":null,"weight":"50","randMax":100}]}' fallback='' url='getting-started-mysql' channelSlug='programming'></ads-weighted><div class="l-pv5 l-p-rel" role="main">
+  <div class="Article_bg u-programming"></div>
+      <div class="l-p-rel l-w-100 l-mh-auto">
+          <div class="l-w-4col--4col l-mb5 l-mh3 l-mh-auto--4col">
+      <div class="l-d-f">
+              <a href="https://www.sitepoint.com/programming/" class="f-c-grey-700 f-bold t-bg-white l-pa2 l-d-if l-ai-cen"><i class="fa fa-circle t-color l-mr2 l-i2"></i>Programming</a>
+            <div class="l-ml3 l-pa2 l-d-if l-ai-cen f-c-grey-700 f-bold t-bg-white">Article</div>
+      </div>
+
+      <h1 class="l-mv4 f-lh-title f-larger f-xxlarge--2col">
+        <span class="t-bg-white l-pa2 l-d-i">Build Your Own Database Driven Web Site Using PHP &#038; MySQL, Part 2: Introducing MySQL Article</span>
+      </h1>
+
+      <span class="l-d-ib t-bg-white f-c-grey-500 f-light">
+            <span class="l-d-ib l-pa2">By
+                      <a href="https://www.sitepoint.com/author/kevin-yank/" class="f-c-grey-500">
+            Kevin Yank        </a>
+          </span>
+                  <time class="l-d-ib l-pa2 l-ml3" datetime="2009-07-07" pubdate>July 07, 2009</time>
+                  </span>
+    </div>
+    
+      <div class="l-d-f l-jc-sb l-w-4col--4col l-mh-auto" data-hellobar="content">
+        <div class="u-showseriesx l-w-100 l-w-2col-i--2col l-fg1 l-mh3--2col l-ml0--4col">
+          
+              <div class="l-mb4 l-pa3 t-bg-white m-border">
+        <div class="l-mb3">
+      <div class="f-center l-mh-auto l-o-h t-bg-grey-50 m-728x90">
+        <div class="widget maestro maestro-content-type-html hide-for-mobile-SP" id="maestro-300"><adblock-msg data-message="Microsoft - helping keep SitePoint free!"></adblock-msg><script>ga('SitePointPlugin:observeImpressions', 'maestro-300')</script></div><div class="widget maestro maestro-content-type-ad hide-for-mobile-SP" id="maestro-37"><!-- SP2013_Articles_728x90_1 -->
+<div id="div-gpt-ad-article-header" style="" class="adspot ">
+    <script type="text/javascript">
+      window.SP_Adbridg_Slots.push({
+        id      : "article-header",
+        name    : "SP2013_Articles_728x90_1",
+        sizes   : [728,90],
+        desktop : 1,
+        tablet  : 1,
+        phone   : 0
+      });
+    </script>
+ </div></div>      </div>
+    </div>
+    <div class="widget maestro maestro-content-type-html " id="maestro-507"><article-promo 
+title="Minimal. Clean. Simple. Lightweight. Responsive." 
+content="SitePoint's <b>NEW WordPress base theme.</b>
+100% FREE for you."
+cta="Download Our FREE Base Theme!" 
+background_pattern_image=""
+background_class=""
+border_colour="#3EC9CB"
+button_class="u-teal"
+img="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/12/1481204009Base-Theme.png" 
+href="/themes/?utm_source=sitepoint&utm_campaign=themes&utm_medium=article-promo"></article-promo><script>ga('SitePointPlugin:observeImpressions', 'maestro-507')</script></div>    <div class="ArticleCopy language-">
+      <p><strong>In <a class="sublink" href="http://www.sitepoint.com/article/php-amp-mysql-1-installation/">Chapter 1: Installation</a>, we installed and set up two software programs: the Apache web server with PHP, and the MySQL database server. In this chapter, we&#8217;ll learn how to work with MySQL databases using Structured Query Language (SQL). If you&#8217;d rather read this tutorial offline, <a class="sublink" href="http://www.sitepoint.com/books/phpmysql4/samplechapters.php">you can download the chapters in PDF format</a>.</strong></p>
+<p>As I explained in that chapter, PHP is a server-side scripting language that lets you insert into your web pages instructions that your web server software (in most cases, Apache) will execute before it sends those pages to browsers that request them. In a brief example, I showed how it was possible to insert the current date into a web page every time it was requested.</p>
+<p>Now, that&#8217;s all well and good, but things really become interesting when a database is added to the mix. In this chapter, we&#8217;ll learn what a database is, and how to work with your own MySQL databases using Structured Query Language.</p>
+<h5>An Introduction to Databases</h5>
+<p>A database server (in our case, MySQL) is a program that can store large amounts of information in an organized format that&#8217;s easily accessible through programming languages like PHP. For example, you could tell PHP to look in the database for a list of jokes that you&#8217;d like to appear on your web site.</p>
+<p>In this example, the jokes would be stored entirely in the database. The advantages of this approach would be twofold: First, instead of having to write an HTML page for each of your jokes, you could write a single PHP script that was designed to fetch any joke from the database and display it by generating an HTML page for it on the fly. Second, adding a joke to your web site would be a simple matter of inserting the joke into the database. The PHP code would take care of the rest, automatically displaying the new joke along with the others when it fetched the list from the database.</p>
+<div id="adz" class="vertical"><script type="text/javascript">// < ![CDATA[
+GA_googleFillSlot("Articles_6_300x250");
+// ]]&gt;</script></div>
+<p>Let&#8217;s run with this example as we look at how data is stored in a database. A database is composed of one or more tables, each of which contains a list of items, or things. For our joke database, we&#8217;d probably start with a table called joke that would contain a list of jokes. Each table in a database has one or more columns, or fields. Each column holds a certain piece of information about each item in the table. In our example, our joke table might have one column for the text of the jokes, and another for the dates on which the jokes were added to the database. Each joke stored in this way would then be said to be a row or entry in the table. These rows and columns form a table that looks like the figure below.</p>
+<p><img src="http://i2.sitepoint.com/graphics/1731_table_structure.thumb.jpg" alt="A typical database table containing a list of jokes" width="400" height="168" /></p>
+<p>Notice that, in addition to columns for the joke text (<code>joketext</code>) and the date of the joke (<code>jokedate</code>), I&#8217;ve included a column named <code>id</code>. As a matter of good design, a database table should always provide a means by which we can identify each of its rows uniquely. Since it&#8217;s possible that a single joke could be entered more than once on the same date, the joketext and jokedate columns can&#8217;t be relied upon to tell all the jokes apart. The function of the id column, therefore, is to assign a unique number to each joke so that we have an easy way to refer to them and to keep track of which joke is which. We&#8217;ll take a closer look at database design issues like this in Chapter 5, Relational Database Design.</p>
+<p>So, to review, the table above is a three-column table with two rows, or entries. Each row in the table contains three fields, one for each column in the table: the joke&#8217;s ID, its text, and the date of the joke. With this basic terminology under your belt, you&#8217;re ready to dive into using MySQL.</p>
+<h5>Logging On to MySQL</h5>
+<p>Just as a web server is designed to respond to requests from a client (a web browser), the MySQL database server responds to requests from client programs. Later in this book, we&#8217;ll write our own MySQL client programs in the form of PHP scripts, but for now we can use some of the client programs that come included with the MySQL server.</p>
+<p><code>mysqladmin</code> is an example of a MySQL client program. If you followed the instructions in Chapter 1, Installation, after setting up a MySQL server of your own, you used the <code>mysqladmin</code> client program to connect to the server, establish a password for the root user, and view basic statistics about the running server.</p>
+<p>Another client program that comes with the MySQL server is called mysql. This program provides the most basic interface for working with a MySQL server, by establishing a connection to the server and then typing commands one at a time.</p>
+<p>The mysql program can be found in the same place as mysqladmin, so if you followed the instructions in <a class="sublink" href="http://www.sitepoint.com/article/php-amp-mysql-1-installation/">Chapter 1: Installation</a> to add this location to your system path, you should be able to open a Terminal window (or Command Prompt if you&#8217;re using a Windows system) and type this command to run the mysql client program:</p>
+<p><code>mysql --version</code></p>
+<p>If everything is set up right, this command should output a one-line description of the version of the mysql client program that you&#8217;ve installed. Here&#8217;s what this looks like on my Mac:</p>
+<p><code>mysql  Ver 14.14 Distrib 5.1.31, for apple-darwin9.5.0 (i386) using readline 5.1</code></p>
+<p>If instead you receive an error message complaining that your computer is unable to recognize the mysql command, you should probably revisit the installation instructions provided in <a class="sublink" href="http://www.sitepoint.com/article/php-amp-mysql-1-installation/">Chapter 1: Installation</a>. Once you&#8217;re able to run the <code>mysqladmin</code> commands in that chapter, the <code>mysql</code> command should work too. If you&#8217;re still stuck, drop by the <a class="sublink" href="http://www.sitepoint.com/forums/">SitePoint Forums</a> and ask for some help.</p>
+<p>Assuming the mysql program is running for you, you can now use it to connect to your MySQL server. First, make sure that server is running, then type this command and hit Enter:</p>
+<p><code>mysql -u root -p</code></p>
+<p>The <code>-u root</code> and <code>-p</code> parameters perform the same function for this program as they did for <code>mysqladmin</code> in Chapter 1: Installation. <code>-u root</code> tells the program you wish to connect to the server using the root user account, and <code>-p</code> tells it you&#8217;re going to provide a password.</p>
+<p>What you should see next is an Enter password: prompt. Enter the root password you chose for yourself in Chapter 1, and hit Enter.</p>
+<p>If you typed everything correctly, the MySQL client program will introduce itself and dump you on the MySQL command prompt:</p>
+<p><code>Welcome to the MySQL monitor.  Commands end with ; or g.<br />
+Your MySQL connection id is 7<br />
+Server version: 5.1.31 MySQL Community Server (GPL) </code></p>
+<p>Type &#8216;help;&#8217; or &#8216;h&#8217; for help. Type &#8216;c&#8217; to clear the buffer.</p>
+<p>mysql&gt;</p>
+<p>Let&#8217;s use a few simple commands to take a look around your MySQL server.</p>
+<p>The MySQL server can actually keep track of more than one database. This allows a web host to set up a single MySQL server for use by several of its subscribers, for example. So, your first step after connecting to the server should be to choose a database with which to work. First, let&#8217;s retrieve a list of databases on the current server.</p>
+<p><em><strong>Connecting to a Remote MySQL Server</strong></em></p>
+<p><em>The instructions in this chapter assume you&#8217;re working with a MySQL server running on your own computer. Of course, when it comes time to publish your first PHP-and-MySQL-powered web site, you will need to know how to work with the MySQL server provided by your web host, or by your company&#8217;s IT department.</em></p>
+<p><em>Technically, the mysql program we&#8217;re using in this chapter can connect to remote MySQL servers too. You just have to add an additional parameter when running it:</em></p>
+<p><code>mysql -h hostname -u username -p</code></p>
+<p><em>The <code>-h hostname</code> parameter (where <code>hostname</code> is the host name of the MySQL server to which you want to connect) tells the program to connect to a remote MySQL server instead of one running on the same computer. If you do this, you&#8217;ll probably also need to specify a username other than root, since the administrator responsible for the MySQL server will probably want to keep the root password secret for security reasons.</em></p>
+<p><em>In practice, most remote MySQL servers will block connections from client programs running on untrusted computers like yours. Disallowing this type of connection is a common security measure for MySQL servers used in production.</em></p>
+<p><em>To work with a remote MySQL server, you might be able to connect to a trusted computer and run the mysql program from there, but a far more common approach is to use a program called <code>phpMyAdmin</code> to manage your remote databases. <code>phpMyAdmin</code> is a sophisticated PHP script that lets you work with your MySQL databases using a web-based interface in your browser. <code>phpMyAdmin</code> connects to the remote MySQL server in the same way as the PHP scripts we&#8217;ll be writing later in this book.</em></p>
+<p><em>I&#8217;ll show you how to install and use <code>phpMyAdmin</code> in Chapter 10, MySQL Administration. For now, let&#8217;s focus on learning to work with the MySQL server you&#8217;ve installed on your computer.</em></p>
+<p>Type this command (including the semicolon!) and press Enter (As in <a class="sublink" href="http://www.sitepoint.com/article/php-amp-mysql-1-installation/">Chapter 1: Installation</a>, the mysql&gt;  prompt should already be visible on your screen; just type the command that comes after it):</p>
+<p><code>mysql&gt; SHOW DATABASES;</code></p>
+<p>MySQL will show you a list of the databases on the server. If you&#8217;re working on a brand new server, the list should look like this:</p>
+<p><code>+--------------------+<br />
+| Database           |<br />
++--------------------+<br />
+| information_schema |<br />
+| mysql              |<br />
+| test               |<br />
++--------------------+<br />
+3 rows in set (0.00 sec)</code></p>
+<p>The MySQL server uses the first database, named information_schema, to keep track of all the other databases on the server. Unless you&#8217;re doing some very advanced stuff, you&#8217;ll probably leave this database alone.</p>
+<p>The second database, mysql, is special too. MySQL uses it to keep track of users, their passwords, and what they&#8217;re allowed to do. We&#8217;ll steer clear of this for now, though we&#8217;ll revisit it in Chapter 10, MySQL Administration, when we discuss MySQL administration.</p>
+<p>The third database, named test, is a sample database. You can actually delete this database because I&#8217;ll show you how to create your own database in a moment.</p>
+<p><em><strong>No test on WampServer</strong></em></p>
+<p><em>As of this writing, WampServer&#8217;s initial MySQL database has no test database in it. No need to be alarmed though; the developers of WampServer just thought it was as useless as I do, I guess!</em></p>
+<p>Deleting stuff in MySQL is called &#8220;dropping&#8221; it, and the command for doing so is appropriately named:</p>
+<p><code>mysql&gt; DROP DATABASE test;</code></p>
+<p>If you type this command and press Enter, MySQL will obediently delete the database, displaying &#8220;Query OK&#8221; in confirmation. Notice that there&#8217;s no confirmation prompt like &#8220;Are you sure?&#8221;. You have to be very careful to type your commands correctly in the mysql client program because, as this example shows, you can obliterate your entire database &#8211; along with all the information it contains &#8211; with a single command!</p>
+<p>Before we go any further, let&#8217;s learn a couple of fundamentals about the MySQL command prompt. As you may have noticed, all commands in MySQL are terminated by a semicolon (;). If you forget the semicolon, MySQL will think you&#8217;re still typing your command, and will let you continue on another line:</p>
+<p><code>mysql&gt; SHOW<br />
+-&gt; DATABASES;</code></p>
+<p>MySQL shows that it&#8217;s waiting for you to type more of your command by changing the prompt from <code>mysql&gt;</code> to <code>-&gt;</code>. This handy feature allows you to spread long commands over several lines.</p>
+<p><em><strong>Case Sensitivity in SQL Queries</strong></em></p>
+<p><em>Most MySQL commands are not case-sensitive, which means you can type SHOW DATABASES, show databases, or ShOw DaTaBaSeS, and it will know what you mean. Database names and table names, however, are case-sensitive when the MySQL server is running on an operating system with a case-sensitive file system (like Linux or Mac OS X, depending on your system configuration).</em></p>
+<p><em>Also, table, column, and other names must be spelled exactly the same when they&#8217;re used more than once in the same command.</em></p>
+<p><em>For consistency, this book will respect the accepted convention of typing database commands in all capitals, and database entities (databases, tables, columns, and so on) in all lowercase.</em></p>
+<p>If you&#8217;re halfway through a command and realize that you made a mistake early on, you may want to cancel the current command entirely and start over from scratch. To do this, type <code>c</code> and press Enter:</p>
+<p><code>mysql&gt; DROP DATABASEc<br />
+mysql&gt; </code></p>
+<p>MySQL will ignore the command you had begun to type and will return to the <code>mysql&gt;</code> prompt to await another command.</p>
+<p>Finally, if at any time you want to exit the MySQL client program, just type quit or exit (either will work). This is the only command where the semicolon is unnecessary, but you can use one if you want to.</p>
+<p><code>mysql&gt; quit<br />
+Bye</code></p>
+<p>Now that we&#8217;ve successfully connected to our MySQL server it&#8217;s time to create our data.</p>
+<h5>Structured Query Language</h5>
+<p>The set of commands we&#8217;ll use to direct MySQL throughout the rest of this book is part of a standard called Structured Query Language, or SQL (pronounced as either &#8220;sequel&#8221; or &#8220;ess-cue-ell&#8221; &#8211; take your pick). Commands in SQL are also referred to as queries; I&#8217;ll use these two terms interchangeably.</p>
+<p>SQL is the standard language for interacting with most databases, so, even if you move from MySQL to a database like Microsoft SQL Server in the future, you&#8217;ll find that most of the commands are identical. It&#8217;s important that you understand the distinction between SQL and MySQL. MySQL is the database server software that you&#8217;re using. SQL is the language that you use to interact with that database.</p>
+<div id="adz" class="vertical"><script type="text/javascript">// < ![CDATA[
+GA_googleFillSlot("Articles_6_300x250");
+// ]]&gt;</script></div>
+<p><em><strong>Learn SQL in Depth</strong></em></p>
+<p><em>In this book, I&#8217;ll teach you the essentials of SQL that every PHP developer needs to know.</em></p>
+<p><em>If you decide to make a career out of building database driven web sites, you&#8217;ll find that it pays to know some of the more advanced details of SQL, especially when it comes to making your sites run as quickly and smoothly as possible.</em></p>
+<p><em>If you&#8217;d like to dive deeper into SQL, I highly recommend the book <a class="sublink" href="http://www.sitepoint.com/books/sql1/">Simply SQL</a> by Rudy Limeback (Melbourne: SitePoint, 2008).</em></p>
+<h5>Creating a Database</h5>
+<p>When the time comes to deploy your first database driven web site on the Web, you&#8217;ll likely find that your web host or IT department has already created a MySQL database for you to use. Since you&#8217;re in charge of your own MySQL server, however, you&#8217;ll need to create your own database to use in developing your site.</p>
+<p>It&#8217;s just as easy to create a database as it is to delete one:</p>
+<p><code>mysql&gt; CREATE DATABASE ijdb;</code></p>
+<p>I chose to name the database <code>ijdb</code>, for Internet Joke Database (With a tip of the hat to the <a class="sublink" href="http://www.imdb.com/">Internet Movie Database</a>), because that fits with the example I gave at the beginning of this chapter &#8211; a web site that displays a database of jokes. Feel free to give the database any name you like, though.</p>
+<p>Now that you have a database, you need to tell MySQL that you want to use it. Again, the command is easy to remember:</p>
+<p><code>mysql&gt; USE ijdb;</code></p>
+<p>You&#8217;re now ready to use your database. Since a database is empty until you add some tables to it, our first order of business will be to create a table that will hold your jokes (now might be a good time to think of some!).</p>
+<h5>Creating a Table</h5>
+<p>The SQL commands we&#8217;ve encountered so far have been reasonably simple, but as tables are so flexible, it takes a more complicated command to create them. The basic form of the command is as follows:</p>
+<p><code>mysql&gt; CREATE TABLE table_name (<br />
+-&gt;   column1Name column1Type column1Details,<br />
+-&gt;   column2Name column2Type column2Details,<br />
+-&gt;   ?<br />
+-&gt; ) DEFAULT CHARACTER SET charset;</code></p>
+<p>Let&#8217;s continue with the joke table I showed you in the previous figure. You&#8217;ll recall that it had three columns: <code>id</code> (a number), <code>joketext</code> (the text of the joke), and <code>jokedate</code> (the date on which the joke was entered). This is the command to create that table:</p>
+<p><code>mysql&gt; CREATE TABLE joke (<br />
+-&gt;   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,<br />
+-&gt;   joketext TEXT,<br />
+-&gt;   jokedate DATE NOT NULL<br />
+-&gt; ) DEFAULT CHARACTER SET utf8;</code></p>
+<p>Looks scary, huh? Let&#8217;s break it down:</p>
+<p><code>CREATE TABLE joke (</code></p>
+<p>This first line is fairly simple; it says that we want to create a new table named joke. The opening parenthesis (() marks the beginning of the list of columns in the table.</p>
+<p><code>id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,</code></p>
+<p>This second line says that we want a column called id that will contain an integer (<code>INT</code>), that is, a whole number. The rest of this line deals with special details for the column:</p>
+<ol>
+<li>First, when creating a row in this table, this column is not allowed to be left blank (<code>NOT NULL</code>).</li>
+<li>Next, if we omit specifying a particular value for this column when we add a new entry to the table, we want MySQL to automatically pick a value that is one more than the highest value in the table so far (<code>AUTO_INCREMENT</code>).</li>
+<li>Finally, this column is to act as a unique identifier for the entries in the table, so all values in this column must be unique (<code>PRIMARY KEY</code>).</li>
+</ol>
+<p><code>joketext TEXT,</code></p>
+<p>This third line is super simple; it says that we want a column called <code>joketext</code>, which will contain text (<code>TEXT</code>).</p>
+<p><code>jokedate DATA NOT NULL</code></p>
+<p>This fourth line defines our last column, called <code>jokedate</code>; this will contain a date (<code>DATE</code>), which cannot be left blank (<code>NOT NULL</code>).</p>
+<p><code>) DEFAULT CHARACTER SET utf8;</code></p>
+<p>The closing parenthesis (<code>)</code>) marks the end of the list of columns in the table.</p>
+<p><code>DEFAULT CHARACTER SET utf8</code> tells MySQL that you will be storing UTF-8 encoded text in this table. UTF-8 is the most common encoding used for web content, so you should use it in all your database tables that you intend to use on the Web.</p>
+<p>Finally, the semicolon tells the mysql client program that you&#8217;ve finished typing your query.</p>
+<p>Note that we assigned a specific data type to each column we created. <code>id</code> will contain integers, <code>joketext</code> will contain text, and <code>jokedate</code> will contain dates. MySQL requires you to specify in advance a data type for each column. This helps to keep your data organized, and allows you to compare the values within a column in powerful ways, as we&#8217;ll see later. For a complete list of supported MySQL data types, see Appendix C, MySQL Column Types.</p>
+<p>Now, if you typed the above command correctly, MySQL will respond with &#8220;Query OK&#8221;, and your first table will be created. If you made a typing mistake, MySQL will tell you there was a problem with the query you typed, and will try to indicate where it had trouble understanding what you meant.</p>
+<p>For such a complicated command, &#8220;Query OK&#8221; is a fairly underwhelming response. Let&#8217;s have a look at your new table to make sure it was created properly. Type the following command:</p>
+<p><code>mysql&gt; SHOW TABLES;</code></p>
+<p>The response should look like this:</p>
+<p><code>+----------------+<br />
+| Tables_in_ijdb |<br />
++----------------+<br />
+| joke           |<br />
++----------------+<br />
+1 row in set (0.02 sec)</code></p>
+<p>This is a list of all the tables in your database (which we named <code>ijdb</code> above). The list contains only one table: the <code>joke</code> table you just created. So far, everything seems fine. Let&#8217;s take a closer look at the joke table itself using a <code>DESCRIBE</code> query:</p>
+<p><code>mysql&gt; DESCRIBE joke;<br />
++----------+---------+------+-----+---------+----------------+<br />
+| Field    | Type    | Null | Key | Default | Extra          |<br />
++----------+---------+------+-----+---------+----------------+<br />
+| id       | int(11) | NO   | PRI | NULL    | auto_increment |<br />
+| joketext | text    | YES  |     | NULL    |                |<br />
+| jokedate | date    | NO   |     | NULL    |                |<br />
++----------+---------+------+-----+---------+----------------+<br />
+3 rows in set (0.10 sec)</code></p>
+<p>As you can see, there are three columns (or fields) in this table, which appear as the three rows in this table of results. The details are a little cryptic, but if you look at them closely, you should be able to figure out what they mean. It&#8217;s nothing to be too worried about, though. You have better things to do, like adding some jokes to your table!</p>
+<p>We need to look at just one more task before you get to that, though: deleting a table. This task is as frighteningly easy as deleting a database. In fact, the command is almost identical. Don&#8217;t run this command with your joke table, unless you actually do want to be rid of it!</p>
+<p><code>mysql&gt; DROP TABLE tableName;</code></p>
+<h5>Inserting Data into a Table</h5>
+<p>Your database is created and your table is built; all that&#8217;s left is to put some actual jokes into the database. The command that inserts data into a database is called, appropriately enough, <code>INSERT</code>. This command can take two basic forms:</p>
+<p><code>mysql&gt; INSERT INTO tableName SET<br />
+-&gt;   column1Name = column1Value,<br />
+-&gt;   column2Name = column2Value,<br />
+-&gt;   ?<br />
+-&gt; ;</p>
+<p>mysql&gt; INSERT INTO tableName<br />
+-&gt;   (column1Name, column2Name, ...)<br />
+-&gt;   VALUES (column1Value, column2Value, ...);</code></p>
+<p>So, to add a joke to our table, we can use either of these commands:</p>
+<p><code>mysql&gt; INSERT INTO joke SET<br />
+-&gt; joketext = "Why did the chicken cross the road? To get to<br />
+"&gt;  the other side!",<br />
+-&gt; jokedate = "2009-04-01";</p>
+<p>mysql&gt; INSERT INTO joke<br />
+-&gt; (joketext, jokedate) VALUES (<br />
+-&gt; "Why did the chicken cross the road? To get to the other<br />
+"&gt;  side!",<br />
+-&gt; "2009-04-01"<br />
+-&gt; );</code></p>
+<p>Note that in both forms of the <code>INSERT</code> command, the order in which you list the columns must match the order in which you list the values. Otherwise, the order of the columns is unimportant.</p>
+<p>As you typed this query, you&#8217;ll have noticed that we used double quotes (<code>"</code>) to mark where the text of the joke started and ended. A piece of text enclosed in quotes this way is called a text string, and this is how you represent most data values in SQL. You&#8217;ll notice, for instance, that the dates are typed as text strings as well, in the form &#8220;<code>YYYY-MM-DD</code>&#8220;.</p>
+<p>If you prefer, you can type text strings surrounded with single quotes (<code>'</code>) instead of double quotes:</p>
+<p>mysql&gt; INSERT INTO joke SET<br />
+-&gt; joketext = &#8216;Why did the chicken cross the road? To get to<br />
+&#8216;&gt;  the other side!&#8217;,<br />
+-&gt; jokedate = &#8216;2009-04-01&#8217;;</p>
+<p>You might be wondering what happens when the text of a joke itself contains quotes. Well, if the text contains single quotes, the easiest thing to do is surround it with double quotes. Conversely, if the text contains double quotes, surround it with single quotes.</p>
+<p>If the text you want to include in your query contains both single and double quotes, you&#8217;ll have to escape the conflicting characters within your text string. You escape a character in SQL by adding a backslash (<code></code>) immediately before it. This tells MySQL to ignore any &#8220;special meaning&#8221; this character might have. In the case of single or double quotes, it tells MySQL not to interpret the character as the end of the text string.</p>
+<p>To make this as clear as possible, here&#8217;s an <code>INSERT</code> command for a joke containing both single and double quotes:</p>
+<p><code>mysql&gt; INSERT INTO joke<br />
+-&gt; (joketext, jokedate) VALUES (<br />
+-&gt; 'Knock-knock! Who's there? Boo! "Boo" who?<br />
+'&gt;  Don't cry; it's only a joke!',<br />
+-&gt; "2009-04-01");</code></p>
+<p>As you can see, I&#8217;ve marked the start and end of the text string for the joke text using single quotes. I&#8217;ve therefore had to escape the three single quotes within the string by putting backslashes before them. MySQL sees these backslashes and knows to treat the single quotes as characters within the string, rather than end-of-string markers.</p>
+<p>If you&#8217;re especially clever, you might now be wondering how to include actual backslashes in SQL text strings. The answer is to type a double-backslash (<code>\</code>), which MySQL will see and treat as a single backslash in the string of text.</p>
+<p>Now that you know how to add entries to a table, let&#8217;s see how we can view those entries.</p>
+<h5>Viewing Stored Data</h5>
+<p>The command we use to view data stored in database tables, <code>SELECT</code>, is the most complicated command in the SQL language. The reason for this complexity is that the chief strength of a database is its flexibility in data retrieval. At this early point in our experience with databases we need only fairly simple lists of results, so we&#8217;ll just consider the simpler forms of the <code>SELECT</code> command here.</p>
+<p>This command will list everything that&#8217;s stored in the joke table:</p>
+<p><code>mysql&gt; SELECT * FROM joke;</code></p>
+<p>Read aloud, this command says &#8220;select everything from <code>joke</code>.&#8221; If you try this command, your results will resemble the following:</p>
+<p><code>+----+--------------------------------------------------------------<br />
+-+------------+<br />
+| id | joketext<br />
+| jokedate   |<br />
++----+--------------------------------------------------------------<br />
+-+------------+<br />
+|  1 | Why did the chicken cross the road? To get to the other side!<br />
+| 2009-04-01 |<br />
++----+--------------------------------------------------------------<br />
+-+------------+<br />
+1 row in set (0.00 sec)</code></p>
+<p>The results look a little disorganized because the text in the <code>joketext</code> column is so long that the table is too wide to fit on the screen properly. For this reason, you might want to tell MySQL to leave out the <code>joketext</code> column. The command for doing this is as follows:</p>
+<p><code>mysql&gt; SELECT id, jokedate FROM joke;</code></p>
+<p>This time, instead of telling it to &#8220;select everything,&#8221; we told it precisely which columns we wanted to see. The results look like this:</p>
+<div id="adz" class="vertical"><script type="text/javascript">// < ![CDATA[
+GA_googleFillSlot("Articles_6_300x250");
+// ]]&gt;</script></div>
+<p><code>+----+------------+<br />
+| id | jokedate   |<br />
++----+------------+<br />
+|  1 | 2009-04-01 |<br />
++----+------------+<br />
+1 row in set (0.00 sec)</code></p>
+<p>That&#8217;s okay, but we&#8217;d like to see at least some of the joke text? As well as being able to name specific columns that we want the <code>SELECT</code> command to show us, we can use functions to modify each column&#8217;s display. One function, called <code>LEFT</code>, lets us tell MySQL to display a column&#8217;s contents up to a specified maximum number of characters. For example, let&#8217;s say we wanted to see only the first 20 characters of the <code>joketext</code> column. Here&#8217;s the command we&#8217;d use:</p>
+<p><code>mysql&gt; SELECT id, LEFT(joketext, 20), jokedate FROM joke;<br />
++----+----------------------+------------+<br />
+| id | LEFT(joketext, 20)   | jokedate   |<br />
++----+----------------------+------------+<br />
+|  1 | Why did the chicken  | 2009-04-01 |<br />
++----+----------------------+------------+<br />
+1 row in set (0.00 sec)</code></p>
+<p>See how that worked? Another useful function is <code>COUNT</code>, which lets us count the number of results returned. If, for example, you wanted to find out how many jokes were stored in your table, you could use the following command:</p>
+<p><code>mysql&gt; SELECT COUNT(*) FROM joke;<br />
++----------+<br />
+| COUNT(*) |<br />
++----------+<br />
+|        1 |<br />
++----------+<br />
+1 row in set (0.02 sec)</code></p>
+<p>As you can see, you have just one joke in your table.</p>
+<p>So far, all the examples have fetched all the entries in the table; however, you can limit your results to include only those database entries that have the specific attributes you want. You set these restrictions by adding what&#8217;s called a <code>WHERE</code> clause to the <code>SELECT</code> command. Consider this example:</p>
+<p><code>mysql&gt; SELECT COUNT(*) FROM joke WHERE jokedate &gt;= "2009-01-01";</code></p>
+<p>This query will count the number of jokes that have dates greater than or equal to January 1, 2009. In the case of dates, &#8220;greater than or equal to&#8221; means &#8220;on or after.&#8221; Another variation on this theme lets you search for entries that contain a certain piece of text. Check out this query:</p>
+<p><code>mysql&gt; SELECT joketext FROM joke WHERE joketext LIKE "%chicken%";</code></p>
+<p>This query displays the full text of all jokes that contain the text &#8220;chicken&#8221; in their <code>joketext</code> column. The <code>LIKE</code> keyword tells MySQL that the named column must match the given pattern. In this case, the pattern we&#8217;ve used is &#8220;<code>%chicken%</code>&#8220;. The <code>%</code> signs indicate that the text &#8220;chicken&#8221; may be preceded and/or followed by any string of text.</p>
+<p>Additional conditions may also be combined in the <code>WHERE</code> clause to further restrict results. For example, to display knock-knock jokes from April 2009 only, you could use the following query:</p>
+<p><code>mysql&gt; SELECT joketext FROM joke WHERE<br />
+-&gt; joketext LIKE "%knock%" AND<br />
+-&gt; jokedate &gt;= "2009-04-01" AND<br />
+-&gt; jokedate &lt; "2009-05-01";</code></p>
+<p>Enter a few more jokes into the table and experiment with <code>SELECT</code> queries. A good familiarity with the <code>SELECT</code> command will come in handy later in this book.</p>
+<p>You can do a lot with the <code>SELECT</code> command. We&#8217;ll look at some of its more advanced features later, when we need them.</p>
+<h5>Modifying Stored Data</h5>
+<p>Having entered your data into a database table, you might like to change it. Whether you want to correct a spelling mistake, or change the date attached to a joke, such alterations are made using the <code>UPDATE</code> command. This command contains elements of the <code>SELECT</code> and <code>INSERT</code> commands, since the command both picks out entries for modification and sets column values. The general form of the <code>UPDATE</code> command is as follows:</p>
+<p><code>mysql&gt; UPDATE tableName SET<br />
+-&gt;   colName = newValue, ...<br />
+-&gt; WHERE conditions;</code></p>
+<p>So, for example, if we wanted to change the date on the joke we entered above, we&#8217;d use the following command:</p>
+<p><code>mysql&gt; UPDATE joke SET jokedate = "2010-04-01" WHERE id = "1";</code></p>
+<p>Here&#8217;s where that <code>id</code> column comes in handy: it enables you to single out a joke for changes easily. The <code>WHERE</code> clause used here works just as it did in the <code>SELECT</code> command. This next command, for example, changes the date of all entries that contain the word &#8220;chicken&#8221;:</p>
+<p><code>mysql&gt; UPDATE joke SET jokedate = "2010-04-01"<br />
+-&gt; WHERE joketext LIKE "%chicken%";</code></p>
+<h5>Deleting Stored Data</h5>
+<p>Deleting entries in SQL is dangerously easy, which, if you&#8217;ve yet to notice, is a recurring theme. Here&#8217;s the command syntax:</p>
+<p><code>mysql&gt; DELETE FROM tableName WHERE conditions;</code></p>
+<p>To delete all chicken jokes from your table, you&#8217;d use the following query:</p>
+<p><code>mysql&gt; DELETE FROM joke WHERE joketext LIKE "%chicken%";</code></p>
+<p><em><strong>Careful With That Enter Key!</strong></em></p>
+<p><em>Believe it or not, the <code>WHERE</code> clause in the <code>DELETE</code> command is actually optional.</em></p>
+<p><em>Consequently, you should be very careful when typing this command! If you leave the <code>WHERE</code> clause out, the <code>DELETE</code> command will then apply to all entries in the table.</em></p>
+<p><em>This command will empty the joke table in one fell swoop:</em></p>
+<p><code>mysql&gt; DELETE FROM joke;</code></p>
+<p><em>Scary, huh?</em></p>
+<h5>Let PHP Do the Typing</h5>
+<p>There&#8217;s a lot more to the MySQL database server software and SQL than the handful of basic commands I&#8217;ve presented here, but these commands are by far the most commonly used.</p>
+<p>At this stage, you might be thinking that databases seem a little cumbersome. SQL can be fairly tricky to type &#8211; its commands tend to be rather long and verbose compared to other computer languages. You&#8217;re probably already dreading the thought of typing in a complete library of jokes in the form of <code>INSERT</code> commands.</p>
+<p>Don&#8217;t sweat it! As we proceed through this book, you&#8217;ll be surprised at how few SQL queries you actually type by hand. Generally, you&#8217;ll be writing PHP scripts that type your SQL for you. If you want to be able to insert a bunch of jokes into your database, for example, you&#8217;ll typically create a PHP script for adding jokes that includes the necessary <code>INSERT</code> query, with a placeholder for the joke text. You can then run that PHP script whenever you have jokes to add. The PHP script prompts you to enter your joke, then issues the appropriate <code>INSERT</code> query to your MySQL server.</p>
+<p>For now, however, it&#8217;s important for you to gain a good feel for typing SQL by hand. It will give you a strong sense of the inner workings of MySQL databases, and will make you appreciate the work that PHP will save you all the more!</p>
+<p>To date, we&#8217;ve only worked with a single table, but to realize the true power of a relational database, you&#8217;ll also need to learn how to use multiple tables together to represent potentially complex relationships between the items stored in your database. I&#8217;ll cover all this and more in Chapter 5, Relational Database Design, in which I&#8217;ll discuss database design principles and show off some more advanced examples.</p>
+<p>For now, though, we&#8217;ve accomplished our objective, and you can comfortably interact with MySQL using the mysql client program. In <a class="sublink" href="http://www.sitepoint.com/article/mysql-3-getting-started-php/">Chapter 3: Introducing PHP</a>, the fun continues as we delve into the PHP language, and use it to create several dynamically-generated web pages.</p>
+<p>If you like, you can practice with MySQL a little before you move on by creating a decent-sized joke table. This knowledge will come in handy later on in <a class="sublink" href="http://www.sitepoint.com/article/publishing-mysql-data-web/">Chapter 4: Publishing MySQL Data on the Web</a>.</p>
+    </div>
+        <div class="l-mb3">
+            <thumbvoter-buttons id="33752"
+        url="https://www.sitepoint.com/wp-admin/admin-ajax.php"
+        user_rating="0"
+        channel="Programming"
+      />
+    </div>
+        </div>
+                    <div class="Article_authorBio l-mb4 l-pa3 t-bg-white m-border">
+        <div class="l-d-f">
+          <a class="l-s5 l-mr3 l-round l-o-h" href="https://www.sitepoint.com/author/kevin-yank/">
+            <img src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/04/1429112558kevinyank-96x96.jpg" width="96" height="96" alt="Kevin Yank" class="avatar avatar-96 wp-user-avatar wp-user-avatar-96 alignnone photo" />          </a>
+          <div class="f-lh-title">
+            <div class="f-c-grey-300">Meet the author</div>
+            <div class="f-large">
+              <a class="f-bold f-c-grey-500" href="https://www.sitepoint.com/author/kevin-yank/">
+                Kevin Yank              </a>
+              <a class="f-c-grey-500 l-mh1" target="_blank" href="https://twitter.com/sentience"><i class="fa fa-twitter"></i></a><a class="f-c-grey-500 l-mh1" target="_blank" href="https://plus.google.com/105505321936740566301"><i class="fa fa-google-plus"></i></a>            </div>
+          </div>
+        </div>
+        <div class="f-light f-lh-copy l-mt3">Kevin began developing for the Web in 1995 and is a highly respected technical author. Kev is a world-renowned author, speaker and JavaScript expert. He has a passion for making web technology easy to understand by anyone. Yes, even you!</div>
+      </div>
+      
+          <div class="ArticleContent_endcap">
+                      </div>
+
+                  <ads-weighted widget='72' data='{"fallback":[{"id":"440","demandbase_field":null,"demandbase_value":null,"weight":"100","randMax":100}]}' fallback='' url='getting-started-mysql' channelSlug='programming'></ads-weighted>          <div class="l-pa3 t-bg-white">
+            <a id="comments"></a>
+            
+<div id="disqus_thread">
+    </div>
+
+<script type="text/javascript">
+var disqus_url = 'https://www.sitepoint.com/getting-started-mysql/';
+var disqus_identifier = '33752 http://www.sitepoint.com/?p=33752';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'sitepointproduction';
+var disqus_title = "Build Your Own Database Driven Web Site Using PHP &#038; MySQL, Part 2: Introducing MySQL Article";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+    
+    
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=33752';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+    
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+          </div>
+
+          <div class="l-pv3 l-mt4">
+                <div class="t-t t-o-100"><div class="l-w-100  l-d-f l-jc-sb l-fw-w l-ai-cen"><a href="/premium/courses/"><h4 class="l-as-fs l-mv0 l-pv1 l-ph3 f-light f-larger f-uppercase f-c-white t-bg-grey-500">Latest Courses <i class="fa fa-angle-right"></i></h4></a><span class="l-d-n l-d-b--2col"><a href="/premium/courses/" class="f-light f-underline f-c-grey-500">Browse all 69 courses</a> <i class="fa fa-angle-right"></i></span></div><div class="l-d-n l-d-f--4col l-fw-w l-jc-cen l-jc-sb l-pv4"><a class="l-w-col l-p-rel l-d-f l-fd-col l-fw-w l-mb5 l-mh3--2col l-mh0--3col l-o-h t-t HomeCard" href="https://www.sitepoint.com/premium/courses/introducing-typescript-2933"><div class="l-pv2 l-ph2 l-ph3--2col f-small f-bold f-c-white undefined u-course HomeCard_numbers"><div class="l-w-100 t-bg-grey-500 HomeCard_numbersBg"></div><span class="l-p-rel"><i class="l-pr2 l-d-n l-d-ib--2col fa fa-clock-o"></i>44m</span></div><div class="l-w-100 t-bg-grey-200 u-course HomeCard_image t-t HomeResult_image u-javascript" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/courses/b7521404-675f-4917-9c72-ac0db54e8365_medium.png);"></div><div class="l-w-100 l-pa3 t-bg-white f-c-grey-500 t-t HomeCard_content"><div class="l-d-f l-jc-sb l-pv2 HomeCard_meta"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div><div class="f-small f-light">Zsolt Nagy</div></div><h3 class="l-mv1 f-large f-bold">Introducing TypeScript</h3><div class="l-pt3 f-small f-c-grey-300"><div class="Stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><meta content="4.85714" itemprop="ratingValue"/></div></div><div class="l-d-n l-h5 l-pt3 l-w-100 f-small f-light f-lh-copy HomeCard_description">Tighten up your programming with strong typing, through TypeScript</div></div></a><a class="l-w-col l-p-rel l-d-f l-fd-col l-fw-w l-mb5 l-mh3--2col l-mh0--3col l-o-h t-t HomeCard" href="https://www.sitepoint.com/premium/courses/animating-with-css-2941"><div class="l-pv2 l-ph2 l-ph3--2col f-small f-bold f-c-white undefined u-course HomeCard_numbers"><div class="l-w-100 t-bg-grey-500 HomeCard_numbersBg"></div><span class="l-p-rel"><i class="l-pr2 l-d-n l-d-ib--2col fa fa-clock-o"></i>1h 19m</span></div><div class="l-w-100 t-bg-grey-200 u-course HomeCard_image t-t HomeResult_image u-htmlcss" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/courses/688a673a-2cff-4cc2-95ae-d961672143b8_medium.png);"></div><div class="l-w-100 l-pa3 t-bg-white f-c-grey-500 t-t HomeCard_content"><div class="l-d-f l-jc-sb l-pv2 HomeCard_meta"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div><div class="f-small f-light">Donovan Hutchinson </div></div><h3 class="l-mv1 f-large f-bold">Animating with CSS</h3><div class="l-pt3 f-small f-c-grey-300"><div class="Stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><meta content="4.85714" itemprop="ratingValue"/></div></div><div class="l-d-n l-h5 l-pt3 l-w-100 f-small f-light f-lh-copy HomeCard_description">Bring your UI to life with CSS animations</div></div></a><a class="l-w-col l-p-rel l-d-f l-fd-col l-fw-w l-mb5 l-mh3--2col l-mh0--3col l-o-h t-t HomeCard" href="https://www.sitepoint.com/premium/courses/ms-bots-2939"><div class="l-pv2 l-ph2 l-ph3--2col f-small f-bold f-c-white undefined u-course HomeCard_numbers"><div class="l-w-100 t-bg-grey-500 HomeCard_numbersBg"></div><span class="l-p-rel"><i class="l-pr2 l-d-n l-d-ib--2col fa fa-clock-o"></i>1h 3m</span></div><div class="l-w-100 t-bg-grey-200 u-course HomeCard_image t-t HomeResult_image u-javascript" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/courses/fd307c37-68dc-4423-b3b9-2c6ba41b3fdc_medium.png);"></div><div class="l-w-100 l-pa3 t-bg-white f-c-grey-500 t-t HomeCard_content"><div class="l-d-f l-jc-sb l-pv2 HomeCard_meta"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div><div class="f-small f-light">Esteban Herrera</div></div><h3 class="l-mv1 f-large f-bold">MS Bots</h3><div class="l-pt3 f-small f-c-grey-300"><div class="Stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><meta content="4.66667" itemprop="ratingValue"/></div></div><div class="l-d-n l-h5 l-pt3 l-w-100 f-small f-light f-lh-copy HomeCard_description">You botter believe it, Microsoft are aiming for the Skypes</div></div></a></div><div class="l-d-n--4col l-d-f l-fw-w l-jc-sb l-pv4"><div class="l-w-100 l-w-49--3col"><div class="l-d-f l-w-100 l-jc-sb l-ml2 l-mb2 f-small l-d-n--2col"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div></div><a class="l-p-rel l-d-f l-jc-cen l-jc-fs--2col l-w-100 l-mb3 l-mb4--2col t-bg-white FeaturePanel" href="https://www.sitepoint.com/premium/courses/introducing-typescript-2933"><div class="l-p-rel l-mb0 l-fs0 t-bg-grey-200 FeaturePanel_imageContainer"><div class="l-pv2 l-ph2 l-ph3--2col f-small f-bold f-c-white l-w-100 u-course HomeCard_numbers"><div class="l-w-100 t-bg-grey-500 HomeCard_numbersBg"></div><span class="l-p-rel"><i class="l-pr2 l-d-n l-d-ib--2col fa fa-clock-o"></i>44m</span></div><div class="l-w-100 l-mb2 FeaturePanel_image u-course t-t HomeResult_image u-javascript" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/courses/b7521404-675f-4917-9c72-ac0db54e8365_medium.png);"></div></div><div class="l-d-f l-fw-w l-w-100 l-ai-cen l-ai-fs--2col l-ph3 l-mh3--2col f-c-grey-500 FeaturePanel_content"><div class="l-d-n l-d-f--2col l-pt2--2col l-w-100 l-jc-sb"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div><div class="l-d-n l-d-b--4col f-small f-light">Zsolt Nagy, Feb 15</div></div><h3 class="l-mv1 f-medium f-bold f-large--4col FeaturePanel_title">Introducing TypeScript</h3><div class="l-d-n l-d-b--4col l-mb3 l-mb0--2col f-small f-light f-lh-copy FeaturePanel_description"></div></div></a></div><div class="l-w-100 l-w-49--3col"><div class="l-d-f l-w-100 l-jc-sb l-ml2 l-mb2 f-small l-d-n--2col"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div></div><a class="l-p-rel l-d-f l-jc-cen l-jc-fs--2col l-w-100 l-mb3 l-mb4--2col t-bg-white FeaturePanel" href="https://www.sitepoint.com/premium/courses/animating-with-css-2941"><div class="l-p-rel l-mb0 l-fs0 t-bg-grey-200 FeaturePanel_imageContainer"><div class="l-pv2 l-ph2 l-ph3--2col f-small f-bold f-c-white l-w-100 u-course HomeCard_numbers"><div class="l-w-100 t-bg-grey-500 HomeCard_numbersBg"></div><span class="l-p-rel"><i class="l-pr2 l-d-n l-d-ib--2col fa fa-clock-o"></i>1h 19m</span></div><div class="l-w-100 l-mb2 FeaturePanel_image u-course t-t HomeResult_image u-htmlcss" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/courses/688a673a-2cff-4cc2-95ae-d961672143b8_medium.png);"></div></div><div class="l-d-f l-fw-w l-w-100 l-ai-cen l-ai-fs--2col l-ph3 l-mh3--2col f-c-grey-500 FeaturePanel_content"><div class="l-d-n l-d-f--2col l-pt2--2col l-w-100 l-jc-sb"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div><div class="l-d-n l-d-b--4col f-small f-light">Donovan Hutchinson , Feb 07</div></div><h3 class="l-mv1 f-medium f-bold f-large--4col FeaturePanel_title">Animating with CSS</h3><div class="l-d-n l-d-b--4col l-mb3 l-mb0--2col f-small f-light f-lh-copy FeaturePanel_description"></div></div></a></div><div class="l-w-100 l-w-49--3col"><div class="l-d-f l-w-100 l-jc-sb l-ml2 l-mb2 f-small l-d-n--2col"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div></div><a class="l-p-rel l-d-f l-jc-cen l-jc-fs--2col l-w-100 l-mb3 l-mb4--2col t-bg-white FeaturePanel" href="https://www.sitepoint.com/premium/courses/ms-bots-2939"><div class="l-p-rel l-mb0 l-fs0 t-bg-grey-200 FeaturePanel_imageContainer"><div class="l-pv2 l-ph2 l-ph3--2col f-small f-bold f-c-white l-w-100 u-course HomeCard_numbers"><div class="l-w-100 t-bg-grey-500 HomeCard_numbersBg"></div><span class="l-p-rel"><i class="l-pr2 l-d-n l-d-ib--2col fa fa-clock-o"></i>1h 3m</span></div><div class="l-w-100 l-mb2 FeaturePanel_image u-course t-t HomeResult_image u-javascript" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/courses/fd307c37-68dc-4423-b3b9-2c6ba41b3fdc_medium.png);"></div></div><div class="l-d-f l-fw-w l-w-100 l-ai-cen l-ai-fs--2col l-ph3 l-mh3--2col f-c-grey-500 FeaturePanel_content"><div class="l-d-n l-d-f--2col l-pt2--2col l-w-100 l-jc-sb"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Course</div><div class="l-d-n l-d-b--4col f-small f-light">Esteban Herrera, Jan 25</div></div><h3 class="l-mv1 f-medium f-bold f-large--4col FeaturePanel_title">MS Bots</h3><div class="l-d-n l-d-b--4col l-mb3 l-mb0--2col f-small f-light f-lh-copy FeaturePanel_description"></div></div></a></div></div></div>
+    <div class="t-t t-o-100"><div class="l-w-100  l-d-f l-jc-sb l-fw-w l-ai-cen"><a href="/premium/books/"><h4 class="l-as-fs l-mv0 l-pv1 l-ph3 f-light f-larger f-uppercase f-c-white t-bg-grey-500">Latest Books <i class="fa fa-angle-right"></i></h4></a><span class="l-d-n l-d-b--2col"><a href="/premium/books/" class="f-light f-underline f-c-grey-500">Browse all 86 books</a> <i class="fa fa-angle-right"></i></span></div><div class="l-d-n l-d-f--4col l-fw-w l-jc-cen l-jc-sb l-pv4"><a class="l-w-col l-p-rel l-d-f l-fd-col l-fw-w l-mb5 l-mh3--2col l-mh0--3col l-o-h t-t HomeCard" href="https://www.sitepoint.com/premium/books/researching-ux-analytics"><div class="l-w-100 t-bg-grey-200 u-book HomeCard_image t-t HomeResult_image u-designux" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/books/da00c613-b0e6-48dd-a1c7-0820835f50a9_medium.png);"></div><div class="l-w-100 l-pa3 t-bg-white f-c-grey-500 t-t HomeCard_content"><div class="l-d-f l-jc-sb l-pv2 HomeCard_meta"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div><div class="f-small f-light">Luke Hay</div></div><h3 class="l-mv1 f-large f-bold">Researching UX: Analytics</h3><div class="l-pt3 f-small f-c-grey-300"><div class="Stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><meta content="4.51613" itemprop="ratingValue"/></div></div><div class="l-d-n l-h5 l-pt3 l-w-100 f-small f-light f-lh-copy HomeCard_description">Understanding is at the heart of good UX</div></div></a><a class="l-w-col l-p-rel l-d-f l-fd-col l-fw-w l-mb5 l-mh3--2col l-mh0--3col l-o-h t-t HomeCard" href="https://www.sitepoint.com/premium/books/rails-novice-to-ninja"><div class="l-w-100 t-bg-grey-200 u-book HomeCard_image t-t HomeResult_image u-ruby" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/books/49803ddf-32d1-4f96-968e-c01b65083eca_medium.png);"></div><div class="l-w-100 l-pa3 t-bg-white f-c-grey-500 t-t HomeCard_content"><div class="l-d-f l-jc-sb l-pv2 HomeCard_meta"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div><div class="f-small f-light">Glenn Goodrich</div></div><h3 class="l-mv1 f-large f-bold">Rails: Novice to Ninja</h3><div class="l-pt3 f-small f-c-grey-300"><div class="Stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="star-o"></i><meta content="3.9" itemprop="ratingValue"/></div></div><div class="l-d-n l-h5 l-pt3 l-w-100 f-small f-light f-lh-copy HomeCard_description">The ultimate beginner&#x27;s guide to Rails!</div></div></a><a class="l-w-col l-p-rel l-d-f l-fd-col l-fw-w l-mb5 l-mh3--2col l-mh0--3col l-o-h t-t HomeCard" href="https://www.sitepoint.com/premium/books/designing-ux-forms"><div class="l-w-100 t-bg-grey-200 u-book HomeCard_image t-t HomeResult_image u-designux" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/books/c13a1661-467d-46f2-8fe5-999e8e294acd_medium.png);"></div><div class="l-w-100 l-pa3 t-bg-white f-c-grey-500 t-t HomeCard_content"><div class="l-d-f l-jc-sb l-pv2 HomeCard_meta"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div><div class="f-small f-light">Jessica Enders</div></div><h3 class="l-mv1 f-large f-bold">Designing UX: Forms</h3><div class="l-pt3 f-small f-c-grey-300"><div class="Stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><meta content="4.23529" itemprop="ratingValue"/></div></div><div class="l-d-n l-h5 l-pt3 l-w-100 f-small f-light f-lh-copy HomeCard_description">Design forms that won&#x27;t drive users crazy</div></div></a></div><div class="l-d-n--4col l-d-f l-fw-w l-jc-sb l-pv4"><div class="l-w-100 l-w-49--3col"><div class="l-d-f l-w-100 l-jc-sb l-ml2 l-mb2 f-small l-d-n--2col"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div></div><a class="l-p-rel l-d-f l-jc-cen l-jc-fs--2col l-w-100 l-mb3 l-mb4--2col t-bg-white FeaturePanel" href="https://www.sitepoint.com/premium/books/researching-ux-analytics"><div class="l-p-rel l-mb0 l-fs0 t-bg-grey-200 FeaturePanel_imageContainer"><div class="l-w-100 l-mb2 FeaturePanel_image u-book t-t HomeResult_image u-designux" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/books/da00c613-b0e6-48dd-a1c7-0820835f50a9_medium.png);"></div></div><div class="l-d-f l-fw-w l-w-100 l-ai-cen l-ai-fs--2col l-ph3 l-mh3--2col f-c-grey-500 FeaturePanel_content"><div class="l-d-n l-d-f--2col l-pt2--2col l-w-100 l-jc-sb"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div><div class="l-d-n l-d-b--4col f-small f-light">Luke Hay, Jan 11</div></div><h3 class="l-mv1 f-medium f-bold f-large--4col FeaturePanel_title">Researching UX: Analytics</h3><div class="l-d-n l-d-b--4col l-mb3 l-mb0--2col f-small f-light f-lh-copy FeaturePanel_description"></div></div></a></div><div class="l-w-100 l-w-49--3col"><div class="l-d-f l-w-100 l-jc-sb l-ml2 l-mb2 f-small l-d-n--2col"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div></div><a class="l-p-rel l-d-f l-jc-cen l-jc-fs--2col l-w-100 l-mb3 l-mb4--2col t-bg-white FeaturePanel" href="https://www.sitepoint.com/premium/books/rails-novice-to-ninja"><div class="l-p-rel l-mb0 l-fs0 t-bg-grey-200 FeaturePanel_imageContainer"><div class="l-w-100 l-mb2 FeaturePanel_image u-book t-t HomeResult_image u-ruby" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/books/49803ddf-32d1-4f96-968e-c01b65083eca_medium.png);"></div></div><div class="l-d-f l-fw-w l-w-100 l-ai-cen l-ai-fs--2col l-ph3 l-mh3--2col f-c-grey-500 FeaturePanel_content"><div class="l-d-n l-d-f--2col l-pt2--2col l-w-100 l-jc-sb"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div><div class="l-d-n l-d-b--4col f-small f-light">Glenn Goodrich, Oct 31</div></div><h3 class="l-mv1 f-medium f-bold f-large--4col FeaturePanel_title">Rails: Novice to Ninja</h3><div class="l-d-n l-d-b--4col l-mb3 l-mb0--2col f-small f-light f-lh-copy FeaturePanel_description"></div></div></a></div><div class="l-w-100 l-w-49--3col"><div class="l-d-f l-w-100 l-jc-sb l-ml2 l-mb2 f-small l-d-n--2col"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div></div><a class="l-p-rel l-d-f l-jc-cen l-jc-fs--2col l-w-100 l-mb3 l-mb4--2col t-bg-white FeaturePanel" href="https://www.sitepoint.com/premium/books/designing-ux-forms"><div class="l-p-rel l-mb0 l-fs0 t-bg-grey-200 FeaturePanel_imageContainer"><div class="l-w-100 l-mb2 FeaturePanel_image u-book t-t HomeResult_image u-designux" style="background-image:url(https://d2sis3lil8ndrq.cloudfront.net/books/c13a1661-467d-46f2-8fe5-999e8e294acd_medium.png);"></div></div><div class="l-d-f l-fw-w l-w-100 l-ai-cen l-ai-fs--2col l-ph3 l-mh3--2col f-c-grey-500 FeaturePanel_content"><div class="l-d-n l-d-f--2col l-pt2--2col l-w-100 l-jc-sb"><div class="l-d-f f-small f-bold f-uppercase f-c-grey-300"><i class="l-d-n l-d-ib--2col l-pr1 fa fa-lock"></i> Premium Book</div><div class="l-d-n l-d-b--4col f-small f-light">Jessica Enders, Sep 04</div></div><h3 class="l-mv1 f-medium f-bold f-large--4col FeaturePanel_title">Designing UX: Forms</h3><div class="l-d-n l-d-b--4col l-mb3 l-mb0--2col f-small f-light f-lh-copy FeaturePanel_description"></div></div></a></div></div></div>
+              </div>
+        </div>
+
+            <div class="l-w-aside-i l-mt6 l-mh3 l-d-n l-d-f--3col l-fd-col l-fs0">
+      <div class="l-mb3">
+        <div class="widget maestro maestro-content-type-ad hide-for-mobile-SP" id="maestro-1"><!-- SP2013_Articles_300x250_1 -->
+<div id="div-gpt-ad-1392428092543-0" style="" class="adspot ">
+    <script type="text/javascript">
+      window.SP_Adbridg_Slots.push({
+        id      : "1392428092543-0",
+        name    : "SP2013_Articles_300x250_1",
+        sizes   : [300,250],
+        desktop : 1,
+        tablet  : 1,
+        phone   : 0
+      });
+    </script>
+ </div></div>      </div>
+          <div class="l-as-fs l-mv0 l-pv1 l-ph3 f-light f-larger f-uppercase f-c-white t-bg-grey-500">Recommended</div>
+
+    <div class="l-w-100 l-mv3 l-pa3 t-bg-white m-border">
+      <div>
+        <ul>
+                  <li class="l-d-f l-ai-fs lst-s-n l-mb3">
+            <span class="Article_recommendedListMarker l-d-ib l-fs0 l-mt1 l-round f-center f-small f-c-white t-bg-grey-300">1</span>
+            <a class="l-d-ib l-pl2 f-c-grey-500 f-medium f-bold" href="https://www.sitepoint.com/combinator-pattern-with-java-8/?utm_source=sitepoint&utm_medium=relatedsidebar&utm_term=programming">Combinator Pattern with Java 8</a>
+          </li>
+                  <li class="l-d-f l-ai-fs lst-s-n l-mb3">
+            <span class="Article_recommendedListMarker l-d-ib l-fs0 l-mt1 l-round f-center f-small f-c-white t-bg-grey-300">2</span>
+            <a class="l-d-ib l-pl2 f-c-grey-500 f-medium f-bold" href="https://www.sitepoint.com/functional-programming-choo/?utm_source=sitepoint&utm_medium=relatedsidebar&utm_term=programming">Fun Functional Programming with the Choo Framework</a>
+          </li>
+                  <li class="l-d-f l-ai-fs lst-s-n l-mb3">
+            <span class="Article_recommendedListMarker l-d-ib l-fs0 l-mt1 l-round f-center f-small f-c-white t-bg-grey-300">3</span>
+            <a class="l-d-ib l-pl2 f-c-grey-500 f-medium f-bold" href="https://www.sitepoint.com/using-joins-in-mongodb-nosql-databases/?utm_source=sitepoint&utm_medium=relatedsidebar&utm_term=programming">Using JOINs in MongoDB NoSQL Databases</a>
+          </li>
+                  <li class="l-d-f l-ai-fs lst-s-n l-mb3">
+            <span class="Article_recommendedListMarker l-d-ib l-fs0 l-mt1 l-round f-center f-small f-c-white t-bg-grey-300">4</span>
+            <a class="l-d-ib l-pl2 f-c-grey-500 f-medium f-bold" href="https://www.sitepoint.com/developing-add-ons-for-enterprise-apps-like-jira/?utm_source=sitepoint&utm_medium=relatedsidebar&utm_term=programming">Developing Add-ons for Enterprise Apps like JIRA</a>
+          </li>
+                  <li class="l-d-f l-ai-fs lst-s-n l-mb3">
+            <span class="Article_recommendedListMarker l-d-ib l-fs0 l-mt1 l-round f-center f-small f-c-white t-bg-grey-300">5</span>
+            <a class="l-d-ib l-pl2 f-c-grey-500 f-medium f-bold" href="https://www.sitepoint.com/there-are-more-virtual-reality-headsets-than-you-realize/?utm_source=sitepoint&utm_medium=relatedsidebar&utm_term=programming">There Are More Virtual Reality Headsets Than You Realize!</a>
+          </li>
+                </ul>
+      </div>
+    </div>
+              <div class="l-as-fs l-mv0 l-pv1 l-ph3 f-light f-larger f-uppercase f-c-white t-bg-grey-500">Sponsors</div>
+    <div class="l-w-100 l-mv3 t-bg-white m-border">        <ads-weighted widget='75' data='{"fallback":[{"id":"448","demandbase_field":null,"demandbase_value":null,"weight":"100","randMax":100}]}' fallback='' url='getting-started-mysql' channelSlug='programming'></ads-weighted></div>
+              <div class="l-w-100">
+      <featured-listing slug="programming" limit="2" exclude="33752" server-rendered="1"><div class="t-t t-o-100 l-w-100" data-reactroot="" data-reactid="1" data-react-checksum="-1117174271"><div class="l-d-n l-d-f--4col l-fw-w l-jc-sb l-pv4" data-reactid="2"></div><div class="l-d-n--4col l-d-f l-fw-w l-jc-sb l-pv4" data-reactid="3"></div></div></featured-listing>
+    </div>
+          <div class="ArticleBox u-premium-preview"></div>
+      <div class="ArticleAside_row ArticleAside_newboxads"><div class="widget maestro maestro-content-type-ad hide-for-mobile-SP" id="maestro-251"><!-- SP_Articles_200x125_1 -->
+<div id="div-gpt-ad-1436815711585-0" style="" class="adspot ">
+    <script type="text/javascript">
+      window.SP_Adbridg_Slots.push({
+        id      : "1436815711585-0",
+        name    : "SP_Articles_200x125_1",
+        sizes   : [200,125],
+        desktop : 1,
+        tablet  : 1,
+        phone   : 0
+      });
+    </script>
+ </div></div><div class="widget maestro maestro-content-type-ad hide-for-mobile-SP" id="maestro-252"><!-- SP_Articles_200x125_2 -->
+<div id="div-gpt-ad-1436815711585-1" style="" class="adspot ">
+    <script type="text/javascript">
+      window.SP_Adbridg_Slots.push({
+        id      : "1436815711585-1",
+        name    : "SP_Articles_200x125_2",
+        sizes   : [200,125],
+        desktop : 1,
+        tablet  : 1,
+        phone   : 0
+      });
+    </script>
+ </div></div><div class="widget maestro maestro-content-type-ad hide-for-mobile-SP" id="maestro-253"><!-- SP_Articles_200x125_3 -->
+<div id="div-gpt-ad-1436815711585-2" style="" class="adspot ">
+    <script type="text/javascript">
+      window.SP_Adbridg_Slots.push({
+        id      : "1436815711585-2",
+        name    : "SP_Articles_200x125_3",
+        sizes   : [200,125],
+        desktop : 1,
+        tablet  : 1,
+        phone   : 0
+      });
+    </script>
+ </div></div><div class="widget maestro maestro-content-type-ad hide-for-mobile-SP" id="maestro-254"><!-- SP_Articles_200x125_4 -->
+<div id="div-gpt-ad-1436815711585-3" style="" class="adspot ">
+    <script type="text/javascript">
+      window.SP_Adbridg_Slots.push({
+        id      : "1436815711585-3",
+        name    : "SP_Articles_200x125_4",
+        sizes   : [200,125],
+        desktop : 1,
+        tablet  : 1,
+        phone   : 0
+      });
+    </script>
+ </div></div></div>
+      <div class="ArticleAside_row"><div class="widget maestro maestro-content-type-ad hide-for-mobile-SP" id="maestro-56"><!-- SP2013_Articles_300x600_1 -->
+<div id="div-gpt-ad-1392428092543-4" style="" class="adspot Sticky">
+    <script type="text/javascript">
+      window.SP_Adbridg_Slots.push({
+        id      : "1392428092543-4",
+        name    : "SP2013_Articles_300x600_1",
+        sizes   : [[300, 600], [300, 250], [160, 600]],
+        desktop : 1,
+        tablet  : 1,
+        phone   : 0
+      });
+    </script>
+ </div></div></div>
+    </div>
+          </div>
+
+      <div class="u-accordion-end"></div>
+
+      <category-subscribe slug="programming" server-rendered="1"><div class="l-w-100 l-pv2 l-pv5--2col f-c-white l-mb4 l-mb5--2col CategorySubscribeForm u-programming " data-reactroot="" data-reactid="1" data-react-checksum="-245374004"><form class="l-w-100 l-w-2col--2col l-ph3" data-reactid="2"><div class="l-pv3 l-pt0--2col l-mt0 f-c-white f-center f-bold f-large f-xlarge--2col" data-reactid="3"><!-- react-text: 4 -->Get the latest in <!-- /react-text --><!-- react-text: 5 -->Front-end<!-- /react-text --><!-- react-text: 6 -->, once a week, for free.<!-- /react-text --></div><input type="email" class="l-pb3 l-br f-center" placeholder="Enter your email" value="" required="" data-reactid="7"/><button class="Button l-w-100 l-ma0 l-h5 u-large u-cta" data-reactid="8">Subscribe</button></form></div></category-subscribe>
+
+          <article-sharer data-url="https%3A%2F%2Fwww.sitepoint.com%2Fgetting-started-mysql%2F" data-title="Build Your Own Database Driven Web Site Using PHP &#038; MySQL, Part 2: Introducing MySQL Article"></article-sharer>
+    
+    </div>
+    </div>
+    <div class="widget maestro maestro-content-type-html hide-for-mobile-SP" id="maestro-577"><script type="text/html" class=" ModalOnce" data-activate-delay=5 data-tracking="basetheme" data-min-height="400" data-min-width="400" data-tracking-days="14">
+
+<div id="basetheme-modal" class="reveal-modal" data-reveal aria-labelledby="Get our FREE WordPress Base Theme" aria-hidden="true" role="dialog">
+
+<purchase-form
+product="Z2lkOi8vbGVhcm5hYmxlL1Byb2R1Y3QvOTc" 
+title="Want to build better WordPress sites?"
+ subtitle="Whether you're a newbie or a seasoned developer, our totally FREE Base Theme makes it easy to build fast, responsive, beautiful websites." 
+cta="Yes, I Want to Download SitePoint's Base Theme!" 
+img="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/12/1481204009Base-Theme.png"
+subtext="No credit card required. Completely free."
+ga_event_label="maestro-577"
+>
+
+</purchase-form>
+<a  data-ga-on="click" data-ga-event-category="maestro" data-ga-event-label="maestro-577" data-ga-event-action="close" class="close-reveal-modal" aria-label="Close">&#215;</a>
+</script><script>ga('SitePointPlugin:observeImpressions', 'maestro-577')</script></div>
+    <footer class="Footer" role="contentinfo">
+  <div class="Footer_container">
+    <ul class="FooterList">
+      <li class="FooterList_item">
+        <div class="f-medium f-bold">About</div>
+      </li>
+      <li class="FooterList_item">
+        <a href="/about-us/">Our Story</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/advertise/">Advertise</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/press/">Press Room</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="http://reference.sitepoint.com/css/" target="_blank">Reference</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/legals/">Terms of Use</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/legals/#privacy">Privacy Policy</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="https://sitepoint.zendesk.com/hc/en-us" target="_blank">FAQ</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="mailto:feedback@sitepoint.com">Contact Us</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/write-for-us/">Contribute</a>
+      </li>
+    </ul>
+
+    <ul class="FooterList">
+      <li class="FooterList_item">
+        <div class="f-medium f-bold">Visit</div>
+      </li>
+      <li class="FooterList_item">
+        <a href="/">SitePoint Home</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/themes/?utm_source=blog&utm_medium=footer">Themes</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/versioning-show/">Podcast</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="https://www.sitepoint.com/community/">Forums</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/newsletter/">Newsletters</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/premium/">Premium</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="/sass-reference/">References</a>
+      </li>
+      <li class="FooterList_item">
+        <a href="https://www.sitepoint.com/versioning/">Versioning</a>
+      </li>
+    </ul>
+
+    <ul class="FooterList">
+      <li class="FooterList_item">
+        <div class="f-medium f-bold">Connect</div>
+      </li>
+      <li class="FooterList_item FooterList_item--icons">
+        <a href="https://www.sitepoint.com/feed/">
+          <i class="fa fa-rss-square"></i>
+        </a>
+        <a href="/newsletter/">
+          <i class="fa fa-envelope-square"></i>
+        </a>
+        <a href="https://www.facebook.com/sitepoint" target="_blank">
+          <i class="fa fa-facebook-square"></i>
+        </a>
+        <a href="http://twitter.com/sitepointdotcom" target="_blank">
+          <i class="fa fa-twitter-square"></i>
+        </a>
+        <a href="https://plus.google.com/+sitepoint" target="_blank">
+          <i class="fa fa-google-plus-square"></i>
+        </a>
+      </li>
+
+      <p class="Footer_copyright">
+        &copy; 2000 &ndash; 2017 SitePoint Pty. Ltd.
+      </p>
+    </ul>
+  </div>
+</footer>
+    <script type="text/javascript">
+  adroll_adv_id = "DJI3I3WGJBGL7PDJEDAYHV";
+  adroll_pix_id = "4RKMV6N56FGA7ANPGL4FQW";
+  (function () {
+    var adblocked = false;
+    var onAdblock = function() {
+      if(adblocked) return;
+
+      adblocked = true;
+
+      gaEventQueue && gaEventQueue.track('CanSeeAds', 'adrollBlocked', {'nonInteraction': true});
+
+      Array.prototype.slice.call(document.getElementsByClassName('CantSeeAds'))
+        .forEach(function(el) {
+          el.className = el.className.replace('CantSeeAds', '');
+        });
+
+    };
+    var _onload = function(){
+      if (document.readyState && !/loaded|complete/.test(document.readyState)){setTimeout(_onload, 10);return}
+      if (!window.__adroll_loaded){__adroll_loaded=true;setTimeout(_onload, 50);return}
+      var scr = document.createElement("script");
+      var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+      scr.setAttribute('async', 'true');
+      scr.type = "text/javascript";
+      scr.src = host + "/j/roundtrip.js";
+      scr.onerror = onAdblock;
+      ((document.getElementsByTagName('head') || [null])[0] ||
+          document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+    };
+    if (window.addEventListener) {window.addEventListener('load', _onload, false);}
+    else {window.attachEvent('onload', _onload)}
+  }());
+</script>
+    <script>
+(function(d,b,a,s,e){ var t = b.createElement(a),
+  fs = b.getElementsByTagName(a)[0]; t.async=1; t.id=e; t.src=s;
+  fs.parentNode.insertBefore(t, fs); })
+(window,document,'script','https://scripts.demandbase.com/IM2QfEma.min.js','demandbase_js_lib');
+</script>
+    				<script type='text/javascript'><!--
+			var seriesdropdown = document.getElementById("orgseries_dropdown");
+			if (seriesdropdown) {
+			 function onSeriesChange() {
+					if ( seriesdropdown.options[seriesdropdown.selectedIndex].value != ( 0 || -1 ) ) {
+						location.href = "https://www.sitepoint.com/series/"+seriesdropdown.options[seriesdropdown.selectedIndex].value;
+					}
+				}
+				seriesdropdown.onchange = onSeriesChange;
+			}
+			--></script>
+			        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'sitepointproduction';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1) {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        
+<!-- START Parse.ly Include: Standard -->
+<div id="parsely-root" style="display: none">
+  <div id="parsely-cfg" data-parsely-site="sitepoint.com"></div>
+</div>
+<script data-cfasync="false">
+(function(s, p, d) {
+  var h=d.location.protocol, i=p+"-"+s,
+      e=d.getElementById(i), r=d.getElementById(p+"-root"),
+      u=h==="https:"?"d1z2jf7jlzjs58.cloudfront.net"
+      :"static."+p+".com";
+  if (e) return;
+  e = d.createElement(s); e.id = i; e.async = true;
+  e.setAttribute('data-cfasync', 'false'); e.src = h+"//"+u+"/p.js"; r.appendChild(e);
+})("script", "parsely", document);
+</script>
+<!-- END Parse.ly Include: Standard -->
+    <script type="text/javascript">
+    (function(AdBridg, SP_Adbridg_Slots, matchMedia) {
+      if(!SP_Adbridg_Slots.length) return;
+
+      var SP_Adbridg_All_Slots_Count = SP_Adbridg_Slots.length;
+      var SP_Adbridg_Displayed_Slots = 0;
+      var SP_Adbridg_First_Slot_Rendered = false;
+      AdBridg.cmd.push(function(){
+        googletag.pubads().addEventListener("slotRenderEnded", function(e){
+          if (!SP_Adbridg_First_Slot_Rendered) {
+            gaEventQueue.track("CanSeeAds", "dfpFirstRendered", {"nonInteraction": true});
+            SP_Adbridg_First_Slot_Rendered = true;
+          }
+          SP_Adbridg_Displayed_Slots--;
+          if(SP_Adbridg_Displayed_Slots===0) {
+            gaEventQueue.track("CanSeeAds", "dfpAllRendered", {"nonInteraction": true});
+          }
+        });
+      });
+
+      if(matchMedia) {
+        var phoneMq   = matchMedia("(max-width: 768px)");
+        var tabletMq  = matchMedia("(min-width: 769px) and (max-width: 1024px)");
+        var desktopMq = matchMedia("(min-width: 1025px)");
+        phoneMq.addListener(checkSlots);
+        tabletMq.addListener(checkSlots);
+        desktopMq.addListener(checkSlots);
+
+        checkSlots({matches: true, media: "initial"});
+      } else {
+        // display all slots for old browsers
+        var i   = 0;
+        var len = SP_Adbridg_Slots.length;
+        for(; i < len; i++) {
+          displaySlot(SP_Adbridg_Slots[i]);
+        }
+        SP_Adbridg_Slots = [];
+        AdBridg.cmd.push(function() { AdBridg.serve(); });
+      }
+
+      function checkSlots(mq) {
+        if(!mq.matches || !SP_Adbridg_Slots.length) return;
+        SP_Adbridg_Slots = SP_Adbridg_Slots.reduce(function(acc, slot){
+          if (
+            (slot.phone && phoneMq.matches) ||
+            (slot.tablet && tabletMq.matches) ||
+            (slot.desktop && desktopMq.matches)
+          ) {
+            displaySlot(slot);
+          } else {
+            acc.push(slot);
+          }
+          return acc;
+        }, []);
+        if(SP_Adbridg_Slots.length < SP_Adbridg_All_Slots_Count) {
+          phoneMq.removeListener(checkSlots);
+          tabletMq.removeListener(checkSlots);
+          desktopMq.removeListener(checkSlots);
+        }
+        AdBridg.cmd.push(function() { AdBridg.serve(); });
+      }
+
+      function displaySlot(slot) {
+        AdBridg.cmd.push(function(){
+          AdBridg.defineSlot("/7448792/" + slot.name, slot.sizes, "div-gpt-ad-" + slot.id); 
+          AdBridg.display("div-gpt-ad-" + slot.id); 
+        });
+        SP_Adbridg_Displayed_Slots++;
+      }
+
+    })(AdBridg, SP_Adbridg_Slots, window.matchMedia);
+    </script>
+<script type='text/javascript' src='//www.sitepoint.com/wp-content/themes/sitepoint/assets/javascripts/scripts-foot-0c06272de72a10fb25faf2f32dd5c43a.js?ver=4.4.2'></script>
+<script type="text/javascript" src="/dist/js/compiled.50cd338283de9d3524ef.js"></script>
+<script type='text/javascript' src='https://www.sitepoint.com/wp-includes/js/wp-embed.min.js?ver=4.4.2'></script>
+    <script>
+    jQuery(document).ready(function() {
+      jQuery('.lazyYT').each(function() {
+        var id = jQuery(this).data('youtube-id'),
+            url = 'https://www.youtube.com/watch?v=' + id;
+        jQuery(this).replaceWith('<a href="' + url + '">' + url + '</a>');
+      });
+    });
+    </script>
+  
+  </body>
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using memcached
+Object Caching 1129/1182 objects using memcached
+Content Delivery Network via Amazon Web Services: CloudFront: dab1nmslvvntp.cloudfront.net
+
+ Served from: www.sitepoint.com @ 2017-02-23 20:39:52 by W3 Total Cache -->
